@@ -1,0 +1,226 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Text.RegularExpressions;
+using System.Security.Cryptography;
+using System.IO;
+using System.Xml;
+using System.Xml.Linq;
+using ParcelDeliveryCompany_ClassLibrary1;
+using Microsoft.SqlServer.Server;
+
+namespace TestSQLServerProject01
+{
+    public partial class ServerLoginControler : UserControl
+    {
+        private MainForm MainW { get; set; }
+        //private UserClass userRef { get; set; }
+        /*private string ServerUrlString { get; set; }
+        private string DatabaseNameString { get; set; }
+        private string UserLoginString { get; set; }
+        private string PortString { get; set; }*/
+        private int TimeOutInt = 10;
+
+        enum ButtonsEnabled
+        {
+            disabled=0,
+            enabled=1
+        }
+
+        public ServerLoginControler()
+        {
+            InitializeComponent();
+            //serverUrl = " ";
+        }
+
+        public ServerLoginControler(MainForm mainW)
+        {
+            InitializeComponent();
+            this.MainW = mainW;
+            //this.userRef = this.MainW.UserItem;
+
+            try { //wczytywanie nazwy serwera i bazy danych z pliku dataSource.xml
+                FileStream fs = new FileStream(AppDomain.CurrentDomain.BaseDirectory+"\\dataSource.xml", FileMode.Open, FileAccess.Read);
+                XDocument xdoc = XDocument.Load(fs);
+
+                this.ipBox.Text = (from xml in xdoc.Element("Data_source").Descendants("Source")
+                                   select xml.Element("Server_url").Value).First().ToString();
+
+                this.portNumberBox.Text = (from xml in xdoc.Element("Data_source").Descendants("Source")
+                                   select xml.Element("Port").Value).First().ToString();
+
+                this.databaseBox.Text = (from xml in xdoc.Element("Data_source").Descendants("Source")
+                                           select xml.Element("Database").Value).First().ToString();
+
+                fs.Close();
+                //XmlReader xmlreader =
+            }
+            catch (Exception ex)
+            {
+                ErrorMessageClass.DisplayErrorMessage(103, ex);
+                FileStream fs = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\dataSource.xml", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+                XDocument xdoc = new XDocument(
+                    new XDeclaration("1.0", "UTF-8", "no"),
+                        new XElement("Data_source",
+                                        new XElement("Source",
+                                            new XElement("Server_url"),
+                                            new XElement("Port"),
+                                            new XElement("Database")
+                                                    )
+                                     )
+                );
+                try
+                {
+                    xdoc.Save(fs);
+                }
+                finally
+                {
+                    fs.Close();
+                }
+
+            }
+        }
+
+        private void TestConnectionButton1_Click(object sender, EventArgs e) //do usunięcia po ukończeniu prototypu
+        {
+            //string tConnectionString = null;
+            /*string tServerUrlString = @"DESKTOP-UUNN1M4"; //, 49172";
+            string tDatabaseNameString = "ParcelDeliveryTest01";//"CompanyNameParcelDeliveryDB";
+            string tConnectionString = "Data Source=" + tServerUrlString + ";Initial Catalog=" + tDatabaseNameString+";User ID=TestUser01;Password=123456";
+            SqlConnection tconnection01 = new SqlConnection(tConnectionString); 
+            try 
+            {
+                tconnection01.Open();
+                MessageBox.Show ("Connection Open ! ");
+                tconnection01.Close(); 
+            } catch (Exception ex) {
+                //MessageBox.Show("Could not open connection ! "+ ex.Message);
+                ParcelDeliveryCompany_ClassLibrary1.ErrorMessageClass.DisplayErrorMessage(101, ex);
+            }*/
+        }
+
+        private void ConnectButton1_Click(object sender, EventArgs e)
+        {
+            //Blokowanie pól
+            ToggleButtons(ButtonsEnabled.disabled);
+
+            //string connectionString = null;
+            //SqlConnection connection01;
+            Regex portReg1 = new Regex("^\\d+$");
+
+            //Zapamiętywanie adresu serwera, nazwy BD i loginu użytkownika
+            String ServerUrlString = ipBox.Text;//@"DESKTOP-UUNN1M4";
+            String DatabaseNameString = databaseBox.Text;
+            String UserLoginString = userLoginBox.Text;
+            String PortString = portNumberBox.Text;//Convert.ToInt32(portNumberBox.Text);
+            //MainW.UserPasswordString = passwordBox.Text;
+
+            if (!(portReg1.IsMatch(PortString)) && PortString.Length!=0)
+            {
+                ErrorMessageClass.DisplayErrorMessage(102, null);
+                return;
+            }
+            SqlConnectionStringBuilder builder1 = new SqlConnectionStringBuilder(); //umożliwia budowę ciągu znaków zawierającego dane potrzebne do nawiązania połączenia
+
+            //Wprowadzanie danych do ciągu znaków, wykorzystywanego do nawiązania połączenia
+            if (PortString.Length == 0) //nie rozpoznano numeru portu
+            {
+                builder1.DataSource = ServerUrlString;
+                builder1.InitialCatalog = DatabaseNameString;
+                builder1.UserID = userLoginBox.Text;
+                builder1.Password = passwordBox.Text;
+                builder1.ConnectTimeout = TimeOutInt;
+
+                /*connectionString = "Data Source=" + ServerUrlString + ";Initial Catalog=" + DatabaseNameString +
+                    ";User ID=" + userLoginBox.Text +";Password=" + passwordBox.Text + ";Connection Timeout=" + this.TimeOutInt.ToString();//MainW.UserLoginString + ";Password=" + passwordBox.Text + ";Connection Timeout="+this.TimeOutInt.ToString();
+                /*connectionString = "Data Source=@ServerUrlString; Initial Catalog=@DatabaseNameString;User ID=@UserLogin;Password=@Password;" + "Connection Timeout=" + this.TimeOutInt.ToString();*/
+                //MainW.Set_ConnectionString(connectionString);//builder1.ConnectionString.ToString());
+
+                //MainW.Set_ConnectionString(builder1.ConnectionString.ToString());
+                this.MainW.UserItem.ConnectionString = builder1.ConnectionString.ToString();
+            }
+            else //numer portu został podany
+            {
+                builder1.DataSource = ServerUrlString + ", " + PortString;
+                builder1.InitialCatalog = DatabaseNameString;
+                builder1.UserID = userLoginBox.Text;
+                builder1.Password = passwordBox.Text;
+                builder1.ConnectTimeout = TimeOutInt;
+
+                //connectionString = "Data Source=" + ServerUrlString + ", " + PortString + ";Initial Catalog=" + 
+                // DatabaseNameString + ";User ID=" + userLoginBox.Text + ";Password=" + passwordBox.Text + ";Connection Timeout=" + this.TimeOutInt.ToString(); // MainW.UserLoginString + ";Password=" + passwordBox.Text + ";Connection Timeout="+this.TimeOutInt.ToString();
+                /*connectionString = "Data Source=@ServerUrlString, @PortString;Initial Catalog=@DatabaseName;" +
+                "User ID=@UserLogin;Password=@Password;Connection Timeout=" + this.TimeOutInt.ToString(); // MainW.UserLoginString + ";Password=" + passwordBox.Text + ";Connection Timeout="+this.TimeOutInt.ToString();*/
+
+                //MainW.Set_ConnectionString(builder1.ConnectionString);// connectionString);
+                this.MainW.UserItem.ConnectionString = builder1.ConnectionString.ToString();
+            }
+
+            //using
+            int result = MainW.SQLconnectionOpenClose(/*builder1.ConnectionString*/);
+            
+
+            ToggleButtons(ButtonsEnabled.enabled);
+
+            if (result == 0)
+            {
+                MainW.MasterDatabaseManager_load();
+                this.Dispose();
+            }
+
+            /*/Przygotowanie do nawiązania połączenia
+            connection01 = new SqlConnection(connectionString);
+            
+            try
+            {
+                connection01.Open(); //łączenie z serwerem, wykorzystując wcześniejsze parametry 
+                MessageBox.Show("Connection open successful.");
+                connection01.Close(); //Kończenie połączenia
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to connect to server." + ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MainW.ServerUrlString = "";
+                MainW.DatabaseNameString = "";
+                MainW.UserLoginString = "";
+                MainW.PortString = "";
+            }*/
+        }
+
+        private void ToggleButtons(ButtonsEnabled buttons_mode)
+        {
+            if (buttons_mode == ButtonsEnabled.enabled)
+            {
+                ipBox.ReadOnly = false;
+                portNumberBox.ReadOnly = false;
+                databaseBox.ReadOnly = false;
+                userLoginBox.ReadOnly = false;
+                passwordBox.ReadOnly = false;
+                connectButton1.Enabled = true;
+                testConnectionButton1.Enabled = true;
+            }
+            else if (buttons_mode == ButtonsEnabled.disabled)
+            {
+                ipBox.ReadOnly = true;
+                portNumberBox.ReadOnly = true;
+                databaseBox.ReadOnly = true;
+                userLoginBox.ReadOnly = true;
+                passwordBox.ReadOnly = true;
+                connectButton1.Enabled = false;
+                testConnectionButton1.Enabled = false;
+            }
+        }
+
+        private void AcceptNumbersOnly1(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+    }
+}

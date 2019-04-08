@@ -1,0 +1,308 @@
+ private void VehicleType_button_Click(object sender, EventArgs e)
+        {
+            ClearDictionaryListViewItems();
+            DataTable query_result = new DataTable();
+
+            try {
+                //zapytanie o rekordy z tabeli Typ_pojazdu
+                using (SqlConnection connection = new SqlConnection(MainW.ConnectionString))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Typ_pojazdu", connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(query_result); //pobranie danych z bazy danych
+                    foreach (DataRow dr in query_result.Rows) //wypełnianie okna danymi otrzymanymi po zapytaniu
+                    {
+                        ListViewItem item = new ListViewItem(dr[0].ToString()); //pierwsza kolumna - ID
+                        item.SubItems.Add(dr[1].ToString()); //druga kolumna - nazwa
+                        dictionary_listView.Items.Add(item);
+                    }
+                }
+                SetCurrentDictionary(DictionariesNames.vehicle_type);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessageClass.DisplayErrorMessage(201, ex);
+                //MessageBox.Show("Could not receive query's result.\n" + ex.Message);
+                ToggleListAndButtons(ListControlEnable.disabled);
+            }
+        }
+
+        private void Area__button_Click(object sender, EventArgs e)
+        {
+            ClearDictionaryListViewItems();
+            DataTable query_result = new DataTable();
+            try
+            {
+                //zapytanie o rekordy z tabeli Typ_pojazdu
+                using (SqlConnection connection = new SqlConnection(MainW.ConnectionString))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Strefa", connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(query_result); //pobranie danych z bazy danych
+                    foreach (DataRow dr in query_result.Rows) //wypełnianie okna danymi otrzymanymi po zapytaniu
+                    {
+                        ListViewItem item = new ListViewItem(dr[0].ToString()); //pierwsza kolumna - ID
+                        item.SubItems.Add(dr[1].ToString()); //druga kolumna - nazwa
+                        dictionary_listView.Items.Add(item);
+                    }
+                }
+                SetCurrentDictionary(DictionariesNames.vehicle_type);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessageClass.DisplayErrorMessage(201, ex);
+                ToggleListAndButtons(ListControlEnable.disabled);
+            }
+        }
+
+        private void LocationType__button_Click(object sender, EventArgs e)
+        {
+            ClearDictionaryListViewItems();
+            DataTable query_result = new DataTable();
+            try
+            {
+                //zapytanie o rekordy z tabeli Typ_pojazdu
+                using (SqlConnection connection = new SqlConnection(MainW.ConnectionString))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Typ_punktu", connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(query_result); //pobranie danych z bazy danych
+                    foreach (DataRow dr in query_result.Rows) //wypełnianie okna danymi otrzymanymi po zapytaniu
+                    {
+                        ListViewItem item = new ListViewItem(dr[0].ToString()); //pierwsza kolumna - ID
+                        item.SubItems.Add(dr[1].ToString()); //druga kolumna - nazwa
+                        dictionary_listView.Items.Add(item);
+                    }
+                }
+                SetCurrentDictionary(DictionariesNames.location_type);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessageClass.DisplayErrorMessage(201, ex);
+                ToggleListAndButtons(ListControlEnable.disabled);
+            }
+        }
+
+        private void WeightCategory_button_Click(object sender, EventArgs e)
+        {
+            ClearDictionaryListViewItems();
+            DataTable query_result = new DataTable();
+            try
+            {
+                //zapytanie o rekordy z tabeli Typ_pojazdu
+                using (SqlConnection connection = new SqlConnection(MainW.ConnectionString))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Kategoria_wagowa", connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(query_result); //pobranie danych z bazy danych
+                    foreach (DataRow dr in query_result.Rows) //wypełnianie okna danymi otrzymanymi po zapytaniu
+                    {
+                        ListViewItem item = new ListViewItem(dr[0].ToString()); //pierwsza kolumna - ID
+                        item.SubItems.Add(dr[1].ToString()); //druga kolumna - nazwa
+                        dictionary_listView.Items.Add(item);
+                    }
+                }
+                SetCurrentDictionary(DictionariesNames.weight_category);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessageClass.DisplayErrorMessage(201, ex);
+                ToggleListAndButtons(ListControlEnable.disabled);
+            }
+        }
+
+        private void SizeCategory_button_Click(object sender, EventArgs e)
+        {
+            ClearDictionaryListViewItems();
+            DataTable query_result = new DataTable();
+            try
+            {
+                //zapytanie o rekordy z tabeli Typ_pojazdu
+                using (SqlConnection connection = new SqlConnection(MainW.ConnectionString))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Gabaryty", connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(query_result); //pobranie danych z bazy danych
+                    foreach (DataRow dr in query_result.Rows) //wypełnianie okna danymi otrzymanymi po zapytaniu
+                    {
+                        ListViewItem item = new ListViewItem(dr[0].ToString()); //pierwsza kolumna - ID
+                        item.SubItems.Add(dr[1].ToString()); //druga kolumna - nazwa
+                        dictionary_listView.Items.Add(item);
+                    }
+                }
+                SetCurrentDictionary(DictionariesNames.size_category);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessageClass.DisplayErrorMessage(201, ex);
+                ToggleListAndButtons(ListControlEnable.disabled);
+            }
+        }
+
+        private void Properties_button_Click(object sender, EventArgs e)
+        {
+            ClearDictionaryListViewItems();
+            DataTable query_result = new DataTable();
+            try
+            {
+                //zapytanie o rekordy z tabeli Typ_pojazdu
+                using (SqlConnection connection = new SqlConnection(MainW.ConnectionString))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Cecha", connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(query_result); //pobranie danych z bazy danych
+                    foreach (DataRow dr in query_result.Rows) //wypełnianie okna danymi otrzymanymi po zapytaniu
+                    {
+                        ListViewItem item = new ListViewItem(dr[0].ToString()); //pierwsza kolumna - ID
+                        item.SubItems.Add(dr[1].ToString()); //druga kolumna - nazwa
+                        dictionary_listView.Items.Add(item);
+                    }
+                }
+                SetCurrentDictionary(DictionariesNames.properties);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessageClass.DisplayErrorMessage(201, ex);
+                ToggleListAndButtons(ListControlEnable.disabled);
+            }
+        }
+
+        private void PickupState_button_Click(object sender, EventArgs e)
+        {
+            ClearDictionaryListViewItems();
+            DataTable query_result = new DataTable();
+            try
+            {
+                //zapytanie o rekordy z tabeli Typ_pojazdu
+                using (SqlConnection connection = new SqlConnection(MainW.ConnectionString))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Stan_odbioru", connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(query_result); //pobranie danych z bazy danych
+                    foreach (DataRow dr in query_result.Rows) //wypełnianie okna danymi otrzymanymi po zapytaniu
+                    {
+                        ListViewItem item = new ListViewItem(dr[0].ToString()); //pierwsza kolumna - ID
+                        item.SubItems.Add(dr[1].ToString()); //druga kolumna - nazwa
+                        dictionary_listView.Items.Add(item);
+                    }
+                }
+                SetCurrentDictionary(DictionariesNames.pickup_state);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessageClass.DisplayErrorMessage(201, ex);
+                ToggleListAndButtons(ListControlEnable.disabled);
+            }
+        }
+
+        private void PickupMethod_button_Click(object sender, EventArgs e)
+        {
+            ClearDictionaryListViewItems();
+            DataTable query_result = new DataTable();
+            try
+            {
+                //zapytanie o rekordy z tabeli Typ_pojazdu
+                using (SqlConnection connection = new SqlConnection(MainW.ConnectionString))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Forma_odbioru", connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(query_result); //pobranie danych z bazy danych
+                    foreach (DataRow dr in query_result.Rows) //wypełnianie okna danymi otrzymanymi po zapytaniu
+                    {
+                        ListViewItem item = new ListViewItem(dr[0].ToString()); //pierwsza kolumna - ID
+                        item.SubItems.Add(dr[1].ToString()); //druga kolumna - nazwa
+                        dictionary_listView.Items.Add(item);
+                    }
+                }
+                SetCurrentDictionary(DictionariesNames.pickup_method);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessageClass.DisplayErrorMessage(201, ex);
+                ToggleListAndButtons(ListControlEnable.disabled);
+            }
+        }
+
+        private void ConsignmentType_button_Click(object sender, EventArgs e) //typ przesyłki
+        {
+            ClearDictionaryListViewItems();
+            DataTable query_result = new DataTable();
+            try
+            {
+                //zapytanie o rekordy z tabeli Typ_pojazdu
+                using (SqlConnection connection = new SqlConnection(MainW.ConnectionString))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Typ_przesylki", connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(query_result); //pobranie danych z bazy danych
+                    foreach (DataRow dr in query_result.Rows) //wypełnianie okna danymi otrzymanymi po zapytaniu
+                    {
+                        ListViewItem item = new ListViewItem(dr[0].ToString()); //pierwsza kolumna - ID
+                        item.SubItems.Add(dr[1].ToString()); //druga kolumna - nazwa
+                        dictionary_listView.Items.Add(item);
+                    }
+                }
+                SetCurrentDictionary(DictionariesNames.consignment_type);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessageClass.DisplayErrorMessage(201, ex);
+                ToggleListAndButtons(ListControlEnable.disabled);
+            }
+        }
+
+        private void PickupRequestState_button_Click(object sender, EventArgs e)
+        {
+            ClearDictionaryListViewItems();
+            DataTable query_result = new DataTable();
+            try
+            {
+                //zapytanie o rekordy z tabeli Typ_pojazdu
+                using (SqlConnection connection = new SqlConnection(MainW.ConnectionString))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Stan_zlecenia_odbioru", connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(query_result); //pobranie danych z bazy danych
+                    foreach (DataRow dr in query_result.Rows) //wypełnianie okna danymi otrzymanymi po zapytaniu
+                    {
+                        ListViewItem item = new ListViewItem(dr[0].ToString()); //pierwsza kolumna - ID
+                        item.SubItems.Add(dr[1].ToString()); //druga kolumna - nazwa
+                        dictionary_listView.Items.Add(item);
+                    }
+                }
+                SetCurrentDictionary(DictionariesNames.pickup_request_state);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessageClass.DisplayErrorMessage(201, ex);
+                ToggleListAndButtons(ListControlEnable.disabled);
+            }
+        }
+
+        private void ComplaintReportState_button_Click(object sender, EventArgs e)
+        {
+            ClearDictionaryListViewItems();
+            DataTable query_result = new DataTable();
+            try
+            {
+                //zapytanie o rekordy z tabeli Typ_pojazdu
+                using (SqlConnection connection = new SqlConnection(MainW.ConnectionString))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Stan_zgloszenia_reklamacji", connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                {
+                    adapter.Fill(query_result); //pobranie danych z bazy danych
+                    foreach (DataRow dr in query_result.Rows) //wypełnianie okna danymi otrzymanymi po zapytaniu
+                    {
+                        ListViewItem item = new ListViewItem(dr[0].ToString()); //pierwsza kolumna - ID
+                        item.SubItems.Add(dr[1].ToString()); //druga kolumna - nazwa
+                        dictionary_listView.Items.Add(item);
+                    }
+                }
+                SetCurrentDictionary(DictionariesNames.complaint_report_state);
+            }
+            catch (Exception ex)
+            {
+                ErrorMessageClass.DisplayErrorMessage(201, ex);
+                ToggleListAndButtons(ListControlEnable.disabled);
+            }
+        }

@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1022C48E-198A-4D76-A289-850715DF7BF9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TestSQLServerProject01</RootNamespace>
+    <AssemblyName>TestSQLServerProject01</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GMap.NET.Core, Version=1.8.5.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TestGmapProject01\dlls\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms, Version=1.8.5.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TestGmapProject01\dlls\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddEditForms\ComplaintAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\ComplaintAddEditForm.Designer.cs">
+      <DependentUpon>ComplaintAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddInDetailsForm\CourseConsignmentAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddInDetailsForm\CourseConsignmentAddForm.Designer.cs">
+      <DependentUpon>CourseConsignmentAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CourseMapForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CourseMapForm.Designer.cs">
+      <DependentUpon>CourseMapForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailsForms\ComplaintDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetailsForms\ComplaintDetailsForm.Designer.cs">
+      <DependentUpon>ComplaintDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailsForms\CourseDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetailsForms\CourseDetailsForm.Designer.cs">
+      <DependentUpon>CourseDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\ComplaintManagementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\ComplaintManagementControl.Designer.cs">
+      <DependentUpon>ComplaintManagementControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\ConsignmentAddEditUpdateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\ConsignmentAddEditUpdateForm.Designer.cs">
+      <DependentUpon>ConsignmentAddEditUpdateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\CourseAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\CourseAddEditForm.Designer.cs">
+      <DependentUpon>CourseAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\ConsignmentManagementControl_New.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\ConsignmentManagementControl_New.Designer.cs">
+      <DependentUpon>ConsignmentManagementControl_New.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\ConsignmentParcelManagementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\ConsignmentParcelManagementControl.Designer.cs">
+      <DependentUpon>ConsignmentParcelManagementControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\CourierManagementControl_New.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\CourierManagementControl_New.Designer.cs">
+      <DependentUpon>CourierManagementControl_New.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\CourseConsignmentsManagementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\CourseConsignmentsManagementControl.Designer.cs">
+      <DependentUpon>CourseConsignmentsManagementControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\CourseManagementControler.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\CourseManagementControler.Designer.cs">
+      <DependentUpon>CourseManagementControler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\CustomerAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\CustomerAddEditForm.Designer.cs">
+      <DependentUpon>CustomerAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\CourseManagementControl_New.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\CourseManagementControl_New.Designer.cs">
+      <DependentUpon>CourseManagementControl_New.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\CustomerManagementControler.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\CustomerManagementControler.Designer.cs">
+      <DependentUpon>CustomerManagementControler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailsForms\ConsignmentDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetailsForms\ConsignmentDetailsForm.Designer.cs">
+      <DependentUpon>ConsignmentDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\ConsignmentManagementControler.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\ConsignmentManagementControler.Designer.cs">
+      <DependentUpon>ConsignmentManagementControler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\CustomerAddEditControler.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\CustomerAddEditControler.Designer.cs">
+      <DependentUpon>CustomerAddEditControler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\ItemManagementControler.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\ItemManagementControler.Designer.cs">
+      <DependentUpon>ItemManagementControler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\LocationAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\LocationAddEditForm.Designer.cs">
+      <DependentUpon>LocationAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\LocationManagementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\LocationManagementControl.Designer.cs">
+      <DependentUpon>LocationManagementControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\OrderAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\OrderAddEditForm.Designer.cs">
+      <DependentUpon>OrderAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\LocationManagementControl_New.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\LocationManagementControl_New.Designer.cs">
+      <DependentUpon>LocationManagementControl_New.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\OrderManagementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\OrderManagementControl.Designer.cs">
+      <DependentUpon>OrderManagementControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\CourierAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\CourierAddEditForm.Designer.cs">
+      <DependentUpon>CourierAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\CourierManagementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\CourierManagementControl.Designer.cs">
+      <DependentUpon>CourierManagementControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\DictionaryAddRecordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\DictionaryAddRecordForm.Designer.cs">
+      <DependentUpon>DictionaryAddRecordForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\DictionaryManagementControler.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\DictionaryManagementControler.Designer.cs">
+      <DependentUpon>DictionaryManagementControler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DispatcherControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DispatcherControl.Designer.cs">
+      <DependentUpon>DispatcherControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainDatabaseManagementControler.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainDatabaseManagementControler.Designer.cs">
+      <DependentUpon>MainDatabaseManagementControler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\ParcelAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\ParcelAddEditForm.Designer.cs">
+      <DependentUpon>ParcelAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\OrderManagementControl_New.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\OrderManagementControl_New.Designer.cs">
+      <DependentUpon>OrderManagementControl_New.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\ParcelManagementControler.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\ParcelManagementControler.Designer.cs">
+      <DependentUpon>ParcelManagementControler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\PickupRequestAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\PickupRequestAddEditForm.Designer.cs">
+      <DependentUpon>PickupRequestAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailsForms\PickupRequestDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetailsForms\PickupRequestDetailsForm.Designer.cs">
+      <DependentUpon>PickupRequestDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\ParcelManagementControl_New.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\ParcelManagementControl_New.Designer.cs">
+      <DependentUpon>ParcelManagementControl_New.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\PickupRequestManagementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\PickupRequestManagementControl.Designer.cs">
+      <DependentUpon>PickupRequestManagementControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerLoginControler.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ServerLoginControler.Designer.cs">
+      <DependentUpon>ServerLoginControler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\VehicleAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\VehicleAddEditForm.Designer.cs">
+      <DependentUpon>VehicleAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\VehicleManagementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\VehicleManagementControl.Designer.cs">
+      <DependentUpon>VehicleManagementControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\VehicleManagementControler_New.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\VehicleManagementControler_New.Designer.cs">
+      <DependentUpon>VehicleManagementControler_New.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddEditForms\ComplaintAddEditForm.resx">
+      <DependentUpon>ComplaintAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddInDetailsForm\CourseConsignmentAddForm.resx">
+      <DependentUpon>CourseConsignmentAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CourseMapForm.resx">
+      <DependentUpon>CourseMapForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailsForms\ComplaintDetailsForm.resx">
+      <DependentUpon>ComplaintDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailsForms\CourseDetailsForm.resx">
+      <DependentUpon>CourseDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\ComplaintManagementControl.resx">
+      <DependentUpon>ComplaintManagementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\ConsignmentAddEditUpdateForm.resx">
+      <DependentUpon>ConsignmentAddEditUpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\ConsignmentManagementControler.resx">
+      <DependentUpon>ConsignmentManagementControler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\CourseAddEditForm.resx">
+      <DependentUpon>CourseAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\ConsignmentManagementControl_New.resx">
+      <DependentUpon>ConsignmentManagementControl_New.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\CourierManagementControl_New.resx">
+      <DependentUpon>CourierManagementControl_New.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\CourseConsignmentsManagementControl.resx">
+      <DependentUpon>CourseConsignmentsManagementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\CourseManagementControler.resx">
+      <DependentUpon>CourseManagementControler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\CustomerAddEditControler.resx">
+      <DependentUpon>CustomerAddEditControler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\CustomerAddEditForm.resx">
+      <DependentUpon>CustomerAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\CourseManagementControl_New.resx">
+      <DependentUpon>CourseManagementControl_New.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\CustomerManagementControler.resx">
+      <DependentUpon>CustomerManagementControler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailsForms\ConsignmentDetailsForm.resx">
+      <DependentUpon>ConsignmentDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\ItemManagementControler.resx">
+      <DependentUpon>ItemManagementControler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\LocationAddEditForm.resx">
+      <DependentUpon>LocationAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\LocationManagementControl.resx">
+      <DependentUpon>LocationManagementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\OrderAddEditForm.resx">
+      <DependentUpon>OrderAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\LocationManagementControl_New.resx">
+      <DependentUpon>LocationManagementControl_New.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\OrderManagementControl.resx">
+      <DependentUpon>OrderManagementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\CourierAddEditForm.resx">
+      <DependentUpon>CourierAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\CourierManagementControl.resx">
+      <DependentUpon>CourierManagementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\DictionaryAddRecordForm.resx">
+      <DependentUpon>DictionaryAddRecordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\DictionaryManagementControler.resx">
+      <DependentUpon>DictionaryManagementControler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DispatcherControl.resx">
+      <DependentUpon>DispatcherControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainDatabaseManagementControler.resx">
+      <DependentUpon>MainDatabaseManagementControler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\ParcelAddEditForm.resx">
+      <DependentUpon>ParcelAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\OrderManagementControl_New.resx">
+      <DependentUpon>OrderManagementControl_New.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\ParcelManagementControler.resx">
+      <DependentUpon>ParcelManagementControler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\PickupRequestAddEditForm.resx">
+      <DependentUpon>PickupRequestAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailsForms\PickupRequestDetailsForm.resx">
+      <DependentUpon>PickupRequestDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\ParcelManagementControl_New.resx">
+      <DependentUpon>ParcelManagementControl_New.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\PickupRequestManagementControl.resx">
+      <DependentUpon>PickupRequestManagementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="ServerLoginControler.resx">
+      <DependentUpon>ServerLoginControler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\VehicleAddEditForm.resx">
+      <DependentUpon>VehicleAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\VehicleManagementControl.resx">
+      <DependentUpon>VehicleManagementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\VehicleManagementControler_New.resx">
+      <DependentUpon>VehicleManagementControler_New.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ParcelDeliveryCompany_ClassLibrary1\ParcelDeliveryCompany_ClassLibrary1.csproj">
+      <Project>{3c36fe37-13a1-491d-866b-cbf1b64d28b0}</Project>
+      <Name>ParcelDeliveryCompany_ClassLibrary1</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TestGmapProject01\TestGmapProject01.csproj">
+      <Project>{8379ebcc-70ad-40ac-9fe5-bfe0b046a4bf}</Project>
+      <Name>TestGmapProject01</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
