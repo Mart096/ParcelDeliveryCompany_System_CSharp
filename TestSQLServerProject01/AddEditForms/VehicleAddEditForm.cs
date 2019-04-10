@@ -71,9 +71,11 @@ namespace TestSQLServerProject01
             DataTable dt = new DataTable();
             try
             {
+                
+                string command1 = "SELECT Typ_pojazdu, Nazwa_marki, Nazwa_modelu, Rejestracja FROM Vehicle_Details_View WHERE Id_pojazdu=@Id";
                 this.edited_id = id;
                 using (SqlConnection connection = new SqlConnection(MainW.GetConnectionString()))
-                using (SqlCommand command = new SqlCommand("SELECT Typ_pojazdu, Nazwa_marki, Nazwa_modelu, Rejestracja FROM Vehicle_Details_View WHERE Id_pojazdu=@Id", connection))//Typ_pojazdu WHERE Id_typu_pojazdu=(SELECT Id_typu_pojazdu FROM Pojazd WHERE Id_pojazdu=@Id)", connection))
+                using (SqlCommand command = new SqlCommand(command1, connection))//Typ_pojazdu WHERE Id_typu_pojazdu=(SELECT Id_typu_pojazdu FROM Pojazd WHERE Id_pojazdu=@Id)", connection))
                 {
                     command.Parameters.Add("@Id", SqlDbType.Int);
                     command.Parameters["@Id"].Value = id;
@@ -136,22 +138,26 @@ namespace TestSQLServerProject01
             {
                 try
                 {
-                    string execute_command = "INSERT INTO Pojazd VALUES((SELECT Id_typu_pojazdu FROM Typ_pojazdu WHERE Typ_pojazdu = @vehicle_type), @brand_name, @model_name, @registration_plate)";
+                    string execute_command = "INSERT INTO Pojazd VALUES(@vehicle_type_id, @brand_name, @model_name, @registration_plate)"; //"INSERT INTO Pojazd VALUES((SELECT Id_typu_pojazdu FROM Typ_pojazdu WHERE Typ_pojazdu = @vehicle_type), @brand_name, @model_name, @registration_plate)";
                     if (current_mode == (FormMode.edit))
                     {
-                        execute_command = "UPDATE Pojazd SET Id_typu_pojazdu = (SELECT Id_typu_pojazdu FROM Typ_pojazdu WHERE Typ_pojazdu = @vehicle_type), Nazwa_marki = @brand_name, Nazwa_modelu = @model_name, Rejestracja = @registration_plate" +
+                        execute_command = "UPDATE Pojazd SET Id_typu_pojazdu = @vehicle_type_id, Nazwa_marki = @brand_name, Nazwa_modelu = @model_name, Rejestracja = @registration_plate" +
                         " WHERE Id_pojazdu = @Edited_id";
+                        /*"UPDATE Pojazd SET Id_typu_pojazdu = (SELECT Id_typu_pojazdu FROM Typ_pojazdu WHERE Typ_pojazdu = @vehicle_type), Nazwa_marki = @brand_name, Nazwa_modelu = @model_name, Rejestracja = @registration_plate" +
+                        " WHERE Id_pojazdu = @Edited_id";*/
                     }
                     using (SqlConnection connection = new SqlConnection(MainW.GetConnectionString()))
                     using (SqlCommand command = new SqlCommand(execute_command, connection)) //"INSERT INTO Pojazd VALUES ((SELECT Id_typu_pojazdu FROM Typ_pojazdu WHERE Typ_pojazdu=@Typ_pojazdu))", connection))
                     {
                         connection.Open();
-                        command.Parameters.Add("@vehicle_type", SqlDbType.NVarChar);
+                        //command.Parameters.Add("@vehicle_type", SqlDbType.NVarChar);
+                        command.Parameters.Add("@vehicle_type_id", SqlDbType.Int);
                         command.Parameters.Add("@brand_name", SqlDbType.NVarChar);
                         command.Parameters.Add("@model_name", SqlDbType.NVarChar);
                         command.Parameters.Add("@registration_plate", SqlDbType.NVarChar);
                         
-                        command.Parameters["@vehicle_type"].Value = vehicleTypes_listbox.SelectedItem.ToString();
+                        //command.Parameters["@vehicle_type"].Value = vehicleTypes_listbox.SelectedItem.ToString();
+                        command.Parameters["@vehicle_type_id"].Value = Get_Vehicle_Type_Id(vehicleTypes_listbox.SelectedItem.ToString());
                         command.Parameters["@brand_name"].Value = vehicleBrandName_textbox.Text;
                         command.Parameters["@model_name"].Value = vehicleModelName_textBox.Text;
                         command.Parameters["@registration_plate"].Value = vehicleRegistrationPlate.Text;
@@ -228,6 +234,33 @@ namespace TestSQLServerProject01
                     ErrorMessageClass.DisplayErrorMessage(415);
                 }
             }*/
+        }
+
+        private int Get_Vehicle_Type_Id(string type_name)
+        {
+            string get_veh_type_id_sp = "Znajdz_lub_stworz";
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(MainW.GetConnectionString()))
+                using (SqlCommand command = new SqlCommand(get_veh_type_id_sp, connection)) //"INSERT INTO Pojazd VALUES ((SELECT Id_typu_pojazdu FROM Typ_pojazdu WHERE Typ_pojazdu=@Typ_pojazdu))", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add("@Nazwa_tabeli", SqlDbType.NVarChar).Value = "Typ_pojazdu";
+                    command.Parameters.Add("@Nazwa_przedmiotu", SqlDbType.NVarChar).Value = type_name;
+                    var return_param = command.Parameters.Add("@ReturnVal", SqlDbType.Int); //wykonywanie procedury zwracającej wartość wymaga użycia dodatkowej zmiennej, aby otrzymać wynik
+                    return_param.Direction = ParameterDirection.ReturnValue;
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    int result = (int)return_param.Value;
+                    return result;
+                }
+            }
+            catch(Exception /*ex*/)
+            {
+                //MessageBox.Show(ex.Message);
+            }
+            return 0;
         }
 
         private bool Check_Input()
