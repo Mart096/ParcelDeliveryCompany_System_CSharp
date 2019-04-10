@@ -49,7 +49,7 @@ namespace TestSQLServerProject01
         {
             if (parcel_listView.SelectedItems.Count == 1)
             {
-                DialogResult dlg_result = MessageBox.Show("Are you sure you want to remove this parcel?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dlg_result = MessageClass.DisplayMessage(1410, ""); //MessageBox.Show("Are you sure you want to remove this parcel?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dlg_result == DialogResult.Yes)
                 {
                     try
@@ -65,14 +65,14 @@ namespace TestSQLServerProject01
                             int result = command.ExecuteNonQuery();
 
                             if (result != 1)
-                                MessageBox.Show("Failed to remove selected parcel! Check if parcel has assigned properties.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageClass.DisplayMessage(1408); //MessageBox.Show("Failed to remove selected parcel! Check if parcel has assigned properties.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             else if (result == 1)
-                                MessageBox.Show("Parcel removed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageClass.DisplayMessage(1409); //MessageBox.Show("Parcel removed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show("Error occured during an attempt to remove selected parcel! .", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageClass.DisplayMessage(1407); //MessageBox.Show("Error occured during an attempt to remove selected parcel! .", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                     if (consignment_id == 0)
@@ -118,7 +118,8 @@ namespace TestSQLServerProject01
             }
             catch (Exception /*ex*/)
             {
-                MessageBox.Show("Could not load parcels' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(1406);
+                //MessageBox.Show("Could not load parcels' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -153,9 +154,10 @@ namespace TestSQLServerProject01
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
-                MessageBox.Show(ex.Message+"Could not load parcels' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(1406);
+                //MessageBox.Show(/*ex.Message+*/"Could not load parcels' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
