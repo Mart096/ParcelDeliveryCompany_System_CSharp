@@ -354,6 +354,22 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             {
                 MessageBox.Show("Failed to save changes to selected order.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            else if (message_code == 1406)
+            {
+                MessageBox.Show("Could not load parcels' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (message_code == 1407)
+            {
+                MessageBox.Show("Error occured during an attempt to remove selected parcel!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (message_code == 1408)
+            {
+                MessageBox.Show("Failed to remove selected parcel! Check if parcel has assigned properties.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (message_code == 1409)
+            {
+                MessageBox.Show("Parcel removed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             //Pickup Request
             else if (message_code == 1501)
             {
@@ -607,6 +623,10 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             else if (message_code == 805)
             {
                 return MessageBox.Show("Are you sure you want to remove this customer?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
+            else if (message_code == 1410)
+            {
+                return MessageBox.Show("Are you sure you want to remove this parcel?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
             else if (message_code == 1614)
             {

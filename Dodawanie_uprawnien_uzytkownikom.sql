@@ -70,3 +70,42 @@ GRANT INSERT ON Klient TO CustomerContact;
 GRANT SELECT ON City_Area_list_View TO CustomerContact;
 GRANT SELECT ON Miasto TO CustomerContact;
 GRANT SELECT ON Strefa TO CustomerContact;
+
+--OrderManager
+GRANT SELECT ON Customers_View To OrderManager;
+GRANT SELECT ON Klient To OrderManager;
+GRANT SELECT ON Kurier_1_View TO OrderManager;
+GRANT SELECT ON Kurier TO OrderManager;
+
+GRANT SELECT ON Orders_detailed_list_View TO OrderManager;
+GRANT INSERT ON Zlecenie TO OrderManager;
+
+GRANT SELECT ON Consignment_Detailed_List_View TO OrderManager;
+GRANT SELECT ON Consignment_Details_View TO OrderManager;
+GRANT SELECT ON Przesylka TO OrderManager;
+GRANT INSERT ON Przesylka TO OrderManager;
+GRANT UPDATE ON Przesylka TO OrderManager;
+GRANT SELECT ON Parcels_View TO OrderManager;
+GRANT SELECT ON Paczka TO OrderManager;
+GRANT INSERT ON Paczka TO OrderManager;
+GRANT UPDATE ON Paczka TO OrderManager;
+GRANT SELECT ON Stan_odbioru To OrderManager;
+
+GRANT SELECT ON Cecha To OrderManager;
+GRANT SELECT ON Cecha_paczki To OrderManager;
+GRANT INSERT ON Cecha_paczki To OrderManager;
+
+GRANT SELECT ON Typ_przesylki To OrderManager;
+GRANT SELECT ON Kategoria_wagowa To OrderManager;
+GRANT SELECT ON Gabaryty To OrderManager;
+
+GRANT SELECT ON Zgloszenia_odbioru TO OrderManager;
+GRANT INSERT ON Zgloszenia_odbioru TO OrderManager;
+GRANT UPDATE ON Zgloszenia_odbioru TO OrderManager;
+
+GRANT SELECT ON Pickup_request_list_view To OrderManager;
+Grant SELECT ON Stan_zgloszenia_odbioru TO OrderManager;
+GRANT SELECT ON Stan_odbioru TO OrderManager;
+GRANT SELECT ON Pickup_Request_Details_View TO OrderManager;
+GRANT SELECT ON Location_Detailed_View TO OrderManager;
+GRANT SELECT ON Pickup_Request_Map_View TO OrderManager;
