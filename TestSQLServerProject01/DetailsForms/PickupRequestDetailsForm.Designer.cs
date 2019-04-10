@@ -49,6 +49,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pickupRequestState_textbox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.showRouteOnMapButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.consignmentData_panel.SuspendLayout();
             this.SuspendLayout();
@@ -77,7 +78,8 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.updateConsignmentPickupState_button);
@@ -140,6 +142,7 @@
             this.consignmentData_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.consignmentData_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.consignmentData_panel.Controls.Add(this.showRouteOnMapButton);
             this.consignmentData_panel.Controls.Add(this.label3);
             this.consignmentData_panel.Controls.Add(this.courierFullName_textBox);
             this.consignmentData_panel.Controls.Add(this.courierID_textBox);
@@ -263,6 +266,16 @@
             this.label4.TabIndex = 14;
             this.label4.Text = "Pickup request state";
             // 
+            // showRouteOnMapButton
+            // 
+            this.showRouteOnMapButton.Location = new System.Drawing.Point(4, 259);
+            this.showRouteOnMapButton.Name = "showRouteOnMapButton";
+            this.showRouteOnMapButton.Size = new System.Drawing.Size(251, 23);
+            this.showRouteOnMapButton.TabIndex = 22;
+            this.showRouteOnMapButton.Text = "Show route to consigner on map";
+            this.showRouteOnMapButton.UseVisualStyleBackColor = true;
+            this.showRouteOnMapButton.Click += new System.EventHandler(this.showRouteOnMapButton_Click);
+            // 
             // PickupRequestDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -310,5 +323,6 @@
         private System.Windows.Forms.TextBox courierID_textBox;
         private System.Windows.Forms.TextBox pickupDateTime_textbox;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button showRouteOnMapButton;
     }
 }

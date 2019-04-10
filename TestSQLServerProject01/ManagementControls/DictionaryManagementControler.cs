@@ -290,7 +290,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception ex)
             {
-                ErrorMessageClass.DisplayErrorMessage(201, ex);
+                MessageClass.DisplayMessage(201, ex);
                 SetCurrentDictionary(DictionariesNames.none);
                 ToggleListAndButtons(ListControlEnable.disabled);
             }
@@ -306,7 +306,7 @@ namespace TestSQLServerProject01
             }
             else
             {
-                ErrorMessageClass.DisplayErrorMessage(203);
+                MessageClass.DisplayMessage(203);
             }
 
         }
@@ -350,9 +350,10 @@ namespace TestSQLServerProject01
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
-                MessageBox.Show(ex.Message + "Error occured during an attemmpt to search for\nspecified items in customers' list.");
+                //MessageBox.Show(ex.Message + "Error occured during an attemmpt to search for\nspecified items in customers' list.");
+                MessageClass.DisplayMessage(204);
             }
 
         }
@@ -428,12 +429,13 @@ namespace TestSQLServerProject01
                 }
                 else
                 {
-                    ErrorMessageClass.DisplayErrorMessage(203);
+                    MessageClass.DisplayMessage(203);
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Failed to initialize dictionary item edit form. Error occured!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Failed to initialize dictionary item edit form. Error occured!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageClass.DisplayMessage(205);
             }
         }
     }

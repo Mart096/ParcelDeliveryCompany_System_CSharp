@@ -49,12 +49,13 @@ namespace CourierCompanyEmployeeApplication
 
         public void DispatcherControl_load()
         {
-            EmployeeControl mdmc = new EmployeeControl(this.UserItem);
-
-            mdmc.Location = new System.Drawing.Point(0, 25);// 25);
-            mdmc.Height = Convert.ToInt32(this.Size.Height) - 70;
-            mdmc.Width = Convert.ToInt32(this.Size.Width) - 20;
-            mdmc.Anchor = (AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right);
+            EmployeeControl mdmc = new EmployeeControl(this.UserItem)
+            {
+                Location = new System.Drawing.Point(0, 25),// 25);
+                Height = Convert.ToInt32(this.Size.Height) - 70,
+                Width = Convert.ToInt32(this.Size.Width) - 20,
+                Anchor = (AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right)
+            };
 
             this.Controls.Add(mdmc);
         }
@@ -80,14 +81,15 @@ namespace CourierCompanyEmployeeApplication
                 }
                 else
                 {
-                    MessageBox.Show("Your account is not authorized to use this application! Ask database administrator for permission.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //MessageBox.Show("Your account is not authorized to use this application! Ask database administrator for permission.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return 1;
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
-                MessageBox.Show("Could not connect to database!" + ex.Message);
+                //MessageBox.Show("Could not connect to database!" + ex.Message);
+                MessageClass.DisplayMessage(2302);
                 return 1;
             }
 

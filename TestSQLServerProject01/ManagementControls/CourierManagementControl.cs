@@ -65,7 +65,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                ErrorMessageClass.DisplayErrorMessage(501);
+                MessageClass.DisplayMessage(501);
             }
         }
 
@@ -78,7 +78,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                ErrorMessageClass.DisplayErrorMessage(504);
+                MessageClass.DisplayMessage(504);
             }
         }
 
@@ -92,7 +92,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                ErrorMessageClass.DisplayErrorMessage(504);
+                MessageClass.DisplayMessage(504);
             }
         }
 
@@ -116,16 +116,16 @@ namespace TestSQLServerProject01
                             int result = command.ExecuteNonQuery();
 
                             if (result == 0)
-                                ErrorMessageClass.DisplayErrorMessage(502);
+                                MessageClass.DisplayMessage(502);
                             else if (result > 1)
-                                ErrorMessageClass.DisplayErrorMessage(503);
+                                MessageClass.DisplayMessage(503);
                             else if (result == 1)
                                 MessageBox.Show("Courier removed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     catch (Exception)
                     {
-                        ErrorMessageClass.DisplayErrorMessage(502);
+                        MessageClass.DisplayMessage(502);
                     }
                     Load_Couriers_Data();
                 }

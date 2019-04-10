@@ -56,7 +56,7 @@ namespace CourierCompanyEmployeeApplication
             }
             catch (Exception ex)
             {
-                ErrorMessageClass.DisplayErrorMessage(103, ex);
+                MessageClass.DisplayMessage(103, ex);
                 FileStream fs = new FileStream(AppDomain.CurrentDomain.BaseDirectory + "\\dataSource.xml", FileMode.OpenOrCreate, FileAccess.ReadWrite);
                 XDocument xdoc = new XDocument(
                     new XDeclaration("1.0", "UTF-8", "no"),
@@ -99,7 +99,7 @@ namespace CourierCompanyEmployeeApplication
 
             if (!(portReg1.IsMatch(PortString)) && PortString.Length != 0)
             {
-                ErrorMessageClass.DisplayErrorMessage(102, null);
+                MessageClass.DisplayMessage(102, new Exception(""));
                 return;
             }
             SqlConnectionStringBuilder builder1 = new SqlConnectionStringBuilder(); //umożliwia budowę ciągu znaków zawierającego dane potrzebne do nawiązania połączenia

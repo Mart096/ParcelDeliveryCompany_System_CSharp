@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("9000");
             this.orderID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pickupRequestDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pickupRequestState = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.courierID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.courierFullName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // itemTitle_label
@@ -46,9 +46,8 @@
             this.orderID,
             this.pickupRequestDate,
             this.pickupRequestState,
-            this.courierID});
-            this.item_ListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
+            this.courierID,
+            this.courierFullName});
             // 
             // addItem_button
             // 
@@ -86,6 +85,10 @@
             this.courierID.Text = "Courier ID";
             this.courierID.Width = 87;
             // 
+            // courierFullName
+            // 
+            this.courierFullName.Text = "Courier";
+            // 
             // PickupRequestManagementControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -104,5 +107,6 @@
         private System.Windows.Forms.ColumnHeader pickupRequestDate;
         private System.Windows.Forms.ColumnHeader pickupRequestState;
         private System.Windows.Forms.ColumnHeader courierID;
+        private System.Windows.Forms.ColumnHeader courierFullName;
     }
 }

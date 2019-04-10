@@ -82,12 +82,12 @@ namespace TestSQLServerProject01
                     }
                     else
                     {
-                        MessageBox.Show("Not all data was specified. Check your input for missing infromation.", "Attention!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageClass.DisplayMessage(1112);// MessageBox.Show("Not all data was specified. Check your input for missing infromation.", "Attention!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
             catch (Exception){
-                MessageBox.Show("Failed to add/edit customer.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(813); //MessageBox.Show("Failed to add/edit customer.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.Close();
                 this.Dispose();
             }

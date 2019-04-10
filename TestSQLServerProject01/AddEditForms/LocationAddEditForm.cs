@@ -67,6 +67,7 @@ namespace TestSQLServerProject01
             catch (Exception)
             {
                 //ErrorMessageClass.DisplayErrorMessage(402);
+                MessageClass.DisplayMessage(1301);
             }
         }
 
@@ -91,6 +92,7 @@ namespace TestSQLServerProject01
             catch (Exception)
             {
                 //ErrorMessageClass.DisplayErrorMessage(402);
+                MessageClass.DisplayMessage(1001);
             }
         }
 
@@ -134,10 +136,9 @@ namespace TestSQLServerProject01
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
-                MessageBox.Show(ex.Message);
-                //ErrorMessageClass.DisplayErrorMessage(403);
+                MessageClass.DisplayMessage(1302);
                 this.Close();
                 this.Dispose();
             }
@@ -158,7 +159,7 @@ namespace TestSQLServerProject01
             }
             else
             {
-                ErrorMessageClass.DisplayErrorMessage(401);
+                MessageClass.DisplayMessage(1304);
                 this.Close();
                 this.Dispose();
             }
@@ -209,22 +210,27 @@ namespace TestSQLServerProject01
                         int result = command.ExecuteNonQuery();
                         if (result != 1)
                         {
-                            throw (new Exception("Failed to add new vehicle!"));
+                            //throw (new Exception("Failed to add new vehicle!"));
+                            MessageClass.DisplayMessage(703);
                         }
                     }
-                    this.Close();
-                    this.Dispose();
+                    /*this.Close();
+                    this.Dispose();*/
                 }
                 catch (Exception)
                 {
-                    //ErrorMessageClass.DisplayErrorMessage(404);
+                    if(current_mode == FormMode.add)
+                        MessageClass.DisplayMessage(1304);
+                    if (current_mode == FormMode.edit)
+                        MessageClass.DisplayMessage(1305);
                 }
+                this.Close();
+                this.Dispose();
             }
             else
             {
                 //ErrorMessageClass.DisplayErrorMessage(405); //"You must enter name and choose vehicle type to add new vehicle", "Some data has been left unspecified"
-                this.Close();
-                this.Dispose();
+                MessageClass.DisplayMessage(1112);
             }
         }
 

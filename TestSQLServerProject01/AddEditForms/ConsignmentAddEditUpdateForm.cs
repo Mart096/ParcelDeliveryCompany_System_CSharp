@@ -92,7 +92,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                ErrorMessageClass.DisplayErrorMessage(601);
+                MessageClass.DisplayMessage(601);
             }
         }
 
@@ -122,7 +122,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception /*ex*/)
             {
-                MessageBox.Show("Could not load consignees' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(1103); //MessageBox.Show("Could not load consignees' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -152,7 +152,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception /*ex*/)
             {
-                MessageBox.Show("Could not load pickup methods' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(1104); //MessageBox.Show("Could not load pickup methods' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -182,7 +182,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception /*ex*/)
             {
-                MessageBox.Show("Could not load pickup consignment types' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(1201);//MessageBox.Show("Could not load consignment types' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -256,7 +256,7 @@ namespace TestSQLServerProject01
             catch (Exception)
             {
                 //MessageBox.Show(ex.Message);
-                ErrorMessageClass.DisplayErrorMessage(6056);
+                MessageClass.DisplayMessage(1105);
                 this.Close();
                 this.Dispose();
             }
@@ -356,37 +356,38 @@ namespace TestSQLServerProject01
 
                             if (result == 0)
                             {
-                                ErrorMessageClass.DisplayErrorMessage(6044);
-                                MessageBox.Show("Query failed! Please, try again later.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageClass.DisplayMessage(1106);
+                                //MessageBox.Show("Query failed! Please, try again later.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             else if (result > 1)
                             {
-                                ErrorMessageClass.DisplayErrorMessage(6044);
-                                MessageBox.Show("Query unexpected behaviour detected! Please contact your data base administrator and let them know about issue.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageClass.DisplayMessage(1107);
+                                //MessageBox.Show("Query unexpected behaviour detected! Please contact your data base administrator and let them know about issue.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             else if (result == 1 && this.current_mode == FormMode.add)
-                                MessageBox.Show("New consignment added successfully!", "Success", MessageBoxButtons.OK);
+                                MessageClass.DisplayMessage(1108); //MessageBox.Show("New consignment added successfully!", "Success", MessageBoxButtons.OK);
                             else if (result == 1 && this.current_mode == FormMode.edit)
-                                MessageBox.Show("Selected consignment has been updated successfully!", "Success", MessageBoxButtons.OK);
+                                MessageClass.DisplayMessage(1109); //MessageClass.DisplayMessage(1109); MessageBox.Show("Selected consignment has been updated successfully!", "Success", MessageBoxButtons.OK);
                         }
 
                     }
                     this.Close();
                     this.Dispose();
                 }
-                catch (Exception ex)
+                catch (Exception /*ex*/)
                 {
                     if (this.current_mode == FormMode.add)
-                        MessageBox.Show("Failed to save new order's details." + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageClass.DisplayMessage(1110); //MessageBox.Show("Failed to save new order's details." + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     else if (this.current_mode == FormMode.edit)
-                        MessageBox.Show("Failed to save changes to selected order.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageClass.DisplayMessage(1111); //MessageBox.Show("Failed to save changes to selected order.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.Close();
                     this.Dispose();
                 }
             }
             else
             {
-                MessageBox.Show("Not all data was specified. Check your input for missing information.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageClass.DisplayMessage(1112);
+                //MessageBox.Show("Not all data was specified. Check your input for missing information.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
             private void Cancel_button_Click(object sender, EventArgs e)
@@ -448,9 +449,9 @@ namespace TestSQLServerProject01
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
-                MessageBox.Show(ex.Message+"Error occured during an attemmpt to search for\nspecified items in consignees' list.");
+                MessageClass.DisplayMessage(1113); //MessageBox.Show(/*ex.Message+*/"Error occured during an attemmpt to search for\nspecified items in consignees' list.");
             }
             
         }

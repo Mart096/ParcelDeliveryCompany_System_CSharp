@@ -77,7 +77,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception /*ex*/)
             {
-                MessageBox.Show("Could not load senders/customers' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(801);//MessageBox.Show("Could not load senders/customers' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -110,7 +110,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                ErrorMessageClass.DisplayErrorMessage(501);
+                MessageClass.DisplayMessage(501);
             }
         }
 
@@ -134,7 +134,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                ErrorMessageClass.DisplayErrorMessage(6065);
+                MessageClass.DisplayMessage(901);
             }
         }
 
@@ -160,7 +160,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                ErrorMessageClass.DisplayErrorMessage(6065);
+                MessageClass.DisplayMessage(1001);
             }
         }
 
@@ -213,7 +213,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                ErrorMessageClass.DisplayErrorMessage(6056);
+                MessageClass.DisplayMessage(603);
                 this.Close();
                 this.Dispose();
             }
@@ -286,30 +286,30 @@ namespace TestSQLServerProject01
 
                             if (result == 0)
                             {
-                                ErrorMessageClass.DisplayErrorMessage(6044);
+                                MessageClass.DisplayMessage(604);
                                 MessageBox.Show("Query failed! Please, try again later.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             else if (result > 1)
                             {
-                                ErrorMessageClass.DisplayErrorMessage(6044);
-                                MessageBox.Show("Query unexpected behaviour detected! Please contact your data base administrator and let them know about issue.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageClass.DisplayMessage(703);
+                                //MessageBox.Show("Query unexpected behaviour detected! Please contact your data base administrator and let them know about issue.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             else if (result == 1 && this.current_mode == FormMode.add)
-                                MessageBox.Show("New order added successfully!", "Success", MessageBoxButtons.OK);
+                                MessageClass.DisplayMessage(605); //MessageBox.Show("New order added successfully!", "Success", MessageBoxButtons.OK);
                             else if (result == 1 && this.current_mode == FormMode.edit)
-                                MessageBox.Show("Selected order updated successfully!", "Success", MessageBoxButtons.OK);
+                                MessageClass.DisplayMessage(606); //MessageBox.Show("Selected order updated successfully!", "Success", MessageBoxButtons.OK);
                         }
 
                     }
                     this.Close();
                     this.Dispose();
                 }
-                catch (Exception ex)
+                catch (Exception /*ex*/)
                 {
                     if (this.current_mode == FormMode.add)
-                        MessageBox.Show("Failed to save new order's details." + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageClass.DisplayMessage(607); //MessageBox.Show("Failed to save new order's details." + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     else if (this.current_mode == FormMode.edit)
-                        MessageBox.Show("Failed to save changes to selected order.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageClass.DisplayMessage(608); //MessageBox.Show("Failed to save changes to selected order.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.Close();
                     this.Dispose();
                 }
@@ -344,7 +344,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                MessageBox.Show("Failed to add new city during insertion of new order.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(1002);//MessageBox.Show("Failed to add new city during insertion of new order.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return "-";
             }
 
@@ -389,7 +389,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                MessageBox.Show("Failed to add new customer during insertion of new order.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(802); //MessageBox.Show("Failed to add new customer during insertion of new order.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return -1;
             }
         }

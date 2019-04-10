@@ -121,18 +121,32 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             {
                 return true;
             }
-            else
+            else if(result == (int)UserRole.None)
+            {
                 return false;
+            }
+            else
+            {
+                MessageClass.DisplayMessage(2301);
+                return false;
+            }
         }
         public bool IsEmployee()
         {
             int result = UserAuthentication();
-            if (result != (int)UserRole.None)
+            if (result != (int)UserRole.None && result != (int)UserRole.Admin) //postanowiono zablokować dostęp do opcji administratora z aplikacji stosowanej przez innych pracowników.
             {
                 return true;
             }
-            else
+            else if (result == (int)UserRole.Admin) 
+            {
+                MessageClass.DisplayMessage(2303);
                 return false;
+            }
+            else
+            {   
+                return false;
+            }
         }
 
         private void SetUserRole(UserRole role)

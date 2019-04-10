@@ -62,7 +62,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                MessageBox.Show("Could not load pickup states' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(1901); 
             }
         }
 
@@ -105,10 +105,9 @@ namespace TestSQLServerProject01
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
-                //ErrorMessageClass.DisplayErrorMessage(6056);
+                MessageClass.DisplayMessage(1902);
                 this.Close();
                 this.Dispose();
             }
@@ -116,7 +115,7 @@ namespace TestSQLServerProject01
 
         private void UpdatePickupRequestState_button_Click(object sender, EventArgs e)
         {
-            DialogResult dlg_result = MessageBox.Show("Are you sure you want to change state of this pickup request?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dlg_result = MessageClass.DisplayMessage(1903, "");
             if (dlg_result == DialogResult.Yes)
             {
                 try
@@ -136,17 +135,17 @@ namespace TestSQLServerProject01
                         {
                             pickupRequestState_textbox.Text = pickupRequestState_listView.SelectedItems[0].SubItems[1].Text;
                             pickupRequestState_listView.SelectedItems.Clear();
-                            MessageBox.Show("Pickup request has been updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageClass.DisplayMessage(1904); 
                         }
                         else
                         {
-                            MessageBox.Show("Failed to update pickup request's data.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageClass.DisplayMessage(1905); 
                         }
                     }
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Failed to initiate pickup request's update. Error occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageClass.DisplayMessage(1906); 
                 }
             }
         }
@@ -159,7 +158,7 @@ namespace TestSQLServerProject01
 
         private void PickupRequestState_listView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (pickupRequestState_listView.SelectedItems.Count == 1)
+            if (pickupRequestState_listView.SelectedItems.Count == 1 && (MainWindowReference.Current_role == UserClass.UserRole.Admin || MainWindowReference.Current_role == UserClass.UserRole.Dispatcher || MainWindowReference.Current_role == UserClass.UserRole.OrderManager))
             {
                 if (pickupRequestState_listView.SelectedItems[0].SubItems[1].Text.Equals(pickupRequestState_textbox.Text))
                 {
@@ -174,6 +173,16 @@ namespace TestSQLServerProject01
             {
                 updateConsignmentPickupState_button.Enabled = false;
             }
+        }
+
+        private void showRouteOnMapButton_Click(object sender, EventArgs e)
+        {
+            AddInDetailsForm.PickupRequestStartLocation locform = new AddInDetailsForm.PickupRequestStartLocation(MainWindowReference, object_id);
+            locform.ShowDialog();
+            /*CourseMapForm mapForm = new CourseMapForm();
+            mapForm.UserItem = this.MainWindowReference;
+            //mapForm.SendCourseDataToMapControl(Item_id);
+            mapForm.ShowDialog();*/
         }
     }
 }

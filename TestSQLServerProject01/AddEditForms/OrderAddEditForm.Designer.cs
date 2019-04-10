@@ -44,6 +44,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.addNewSender_checkbox = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.apartmentNum_numeric = new System.Windows.Forms.NumericUpDown();
+            this.phoneNumber_textBox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.city_listView = new System.Windows.Forms.ListView();
             this.city_name_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.area_name_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -74,9 +77,6 @@
             this.selectedCourier_label = new System.Windows.Forms.Label();
             this.selectedSender_label = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.phoneNumber_textBox = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.apartmentNum_numeric = new System.Windows.Forms.NumericUpDown();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.apartmentNum_numeric)).BeginInit();
             this.SuspendLayout();
@@ -233,6 +233,37 @@
             this.panel1.Size = new System.Drawing.Size(369, 276);
             this.panel1.TabIndex = 7;
             this.panel1.Visible = false;
+            // 
+            // apartmentNum_numeric
+            // 
+            this.apartmentNum_numeric.Location = new System.Drawing.Point(113, 161);
+            this.apartmentNum_numeric.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.apartmentNum_numeric.Name = "apartmentNum_numeric";
+            this.apartmentNum_numeric.Size = new System.Drawing.Size(122, 20);
+            this.apartmentNum_numeric.TabIndex = 30;
+            // 
+            // phoneNumber_textBox
+            // 
+            this.phoneNumber_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.phoneNumber_textBox.Location = new System.Drawing.Point(6, 204);
+            this.phoneNumber_textBox.Name = "phoneNumber_textBox";
+            this.phoneNumber_textBox.Size = new System.Drawing.Size(196, 20);
+            this.phoneNumber_textBox.TabIndex = 27;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label10.Location = new System.Drawing.Point(3, 184);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(101, 17);
+            this.label10.TabIndex = 26;
+            this.label10.Text = "Phone number";
             // 
             // city_listView
             // 
@@ -444,6 +475,7 @@
             this.courier_FirstName,
             this.courier_LastName});
             this.courier_ListView.FullRowSelect = true;
+            this.courier_ListView.HideSelection = false;
             this.courier_ListView.Location = new System.Drawing.Point(12, 29);
             this.courier_ListView.MultiSelect = false;
             this.courier_ListView.Name = "courier_ListView";
@@ -512,37 +544,6 @@
             this.label14.Size = new System.Drawing.Size(67, 17);
             this.label14.TabIndex = 28;
             this.label14.Text = "Selected:";
-            // 
-            // phoneNumber_textBox
-            // 
-            this.phoneNumber_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.phoneNumber_textBox.Location = new System.Drawing.Point(6, 204);
-            this.phoneNumber_textBox.Name = "phoneNumber_textBox";
-            this.phoneNumber_textBox.Size = new System.Drawing.Size(196, 20);
-            this.phoneNumber_textBox.TabIndex = 27;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label10.Location = new System.Drawing.Point(3, 184);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(101, 17);
-            this.label10.TabIndex = 26;
-            this.label10.Text = "Phone number";
-            // 
-            // apartmentNum_numeric
-            // 
-            this.apartmentNum_numeric.Location = new System.Drawing.Point(113, 161);
-            this.apartmentNum_numeric.Maximum = new decimal(new int[] {
-            300,
-            0,
-            0,
-            0});
-            this.apartmentNum_numeric.Name = "apartmentNum_numeric";
-            this.apartmentNum_numeric.Size = new System.Drawing.Size(122, 20);
-            this.apartmentNum_numeric.TabIndex = 30;
             // 
             // OrderAddEditForm
             // 

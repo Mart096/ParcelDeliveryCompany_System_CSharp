@@ -66,6 +66,12 @@
     <Compile Include="AddInDetailsForm\CourseConsignmentAddForm.Designer.cs">
       <DependentUpon>CourseConsignmentAddForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddInDetailsForm\PickupRequestStartLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddInDetailsForm\PickupRequestStartLocation.Designer.cs">
+      <DependentUpon>PickupRequestStartLocation.cs</DependentUpon>
+    </Compile>
     <Compile Include="CourseMapForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,12 +132,6 @@
     <Compile Include="ManagementControls\CourseConsignmentsManagementControl.Designer.cs">
       <DependentUpon>CourseConsignmentsManagementControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManagementControls\CourseManagementControler.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ManagementControls\CourseManagementControler.Designer.cs">
-      <DependentUpon>CourseManagementControler.cs</DependentUpon>
-    </Compile>
     <Compile Include="AddEditForms\CustomerAddEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,12 +155,6 @@
     </Compile>
     <Compile Include="DetailsForms\ConsignmentDetailsForm.Designer.cs">
       <DependentUpon>ConsignmentDetailsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ManagementControls\ConsignmentManagementControler.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ManagementControls\ConsignmentManagementControler.Designer.cs">
-      <DependentUpon>ConsignmentManagementControler.cs</DependentUpon>
     </Compile>
     <Compile Include="AddEditForms\CustomerAddEditControler.cs">
       <SubType>UserControl</SubType>
@@ -198,23 +192,11 @@
     <Compile Include="ManagementControls\LocationManagementControl_New.Designer.cs">
       <DependentUpon>LocationManagementControl_New.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManagementControls\OrderManagementControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ManagementControls\OrderManagementControl.Designer.cs">
-      <DependentUpon>OrderManagementControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="AddEditForms\CourierAddEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AddEditForms\CourierAddEditForm.Designer.cs">
       <DependentUpon>CourierAddEditForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ManagementControls\CourierManagementControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ManagementControls\CourierManagementControl.Designer.cs">
-      <DependentUpon>CourierManagementControl.cs</DependentUpon>
     </Compile>
     <Compile Include="AddEditForms\DictionaryAddRecordForm.cs">
       <SubType>Form</SubType>
@@ -258,12 +240,6 @@
     <Compile Include="ManagementControls\OrderManagementControl_New.Designer.cs">
       <DependentUpon>OrderManagementControl_New.cs</DependentUpon>
     </Compile>
-    <Compile Include="ManagementControls\ParcelManagementControler.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ManagementControls\ParcelManagementControler.Designer.cs">
-      <DependentUpon>ParcelManagementControler.cs</DependentUpon>
-    </Compile>
     <Compile Include="AddEditForms\PickupRequestAddEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -275,6 +251,12 @@
     </Compile>
     <Compile Include="DetailsForms\PickupRequestDetailsForm.Designer.cs">
       <DependentUpon>PickupRequestDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManagementControls\ParcelManagementControler.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ManagementControls\ParcelManagementControler.Designer.cs">
+      <DependentUpon>ParcelManagementControler.cs</DependentUpon>
     </Compile>
     <Compile Include="ManagementControls\ParcelManagementControl_New.cs">
       <SubType>UserControl</SubType>
@@ -320,6 +302,9 @@
     <EmbeddedResource Include="AddInDetailsForm\CourseConsignmentAddForm.resx">
       <DependentUpon>CourseConsignmentAddForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddInDetailsForm\PickupRequestStartLocation.resx">
+      <DependentUpon>PickupRequestStartLocation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CourseMapForm.resx">
       <DependentUpon>CourseMapForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -335,9 +320,6 @@
     <EmbeddedResource Include="AddEditForms\ConsignmentAddEditUpdateForm.resx">
       <DependentUpon>ConsignmentAddEditUpdateForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManagementControls\ConsignmentManagementControler.resx">
-      <DependentUpon>ConsignmentManagementControler.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AddEditForms\CourseAddEditForm.resx">
       <DependentUpon>CourseAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -349,9 +331,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManagementControls\CourseConsignmentsManagementControl.resx">
       <DependentUpon>CourseConsignmentsManagementControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ManagementControls\CourseManagementControler.resx">
-      <DependentUpon>CourseManagementControler.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddEditForms\CustomerAddEditControler.resx">
       <DependentUpon>CustomerAddEditControler.cs</DependentUpon>
@@ -383,14 +362,8 @@
     <EmbeddedResource Include="ManagementControls\LocationManagementControl_New.resx">
       <DependentUpon>LocationManagementControl_New.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManagementControls\OrderManagementControl.resx">
-      <DependentUpon>OrderManagementControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AddEditForms\CourierAddEditForm.resx">
       <DependentUpon>CourierAddEditForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ManagementControls\CourierManagementControl.resx">
-      <DependentUpon>CourierManagementControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddEditForms\DictionaryAddRecordForm.resx">
       <DependentUpon>DictionaryAddRecordForm.cs</DependentUpon>
@@ -413,14 +386,14 @@
     <EmbeddedResource Include="ManagementControls\OrderManagementControl_New.resx">
       <DependentUpon>OrderManagementControl_New.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ManagementControls\ParcelManagementControler.resx">
-      <DependentUpon>ParcelManagementControler.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AddEditForms\PickupRequestAddEditForm.resx">
       <DependentUpon>PickupRequestAddEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DetailsForms\PickupRequestDetailsForm.resx">
       <DependentUpon>PickupRequestDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\ParcelManagementControler.resx">
+      <DependentUpon>ParcelManagementControler.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ManagementControls\ParcelManagementControl_New.resx">
       <DependentUpon>ParcelManagementControl_New.cs</DependentUpon>

@@ -38,7 +38,7 @@
             this.mark2pos_Y = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.markersList1 = new System.Windows.Forms.ListView();
             this.ID_col = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.parcelID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.consignmentID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.posX_col = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.posY_col = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.routesListLabel = new System.Windows.Forms.Label();
@@ -127,7 +127,7 @@
             this.markersList1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.markersList1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ID_col,
-            this.parcelID,
+            this.consignmentID,
             this.posX_col,
             this.posY_col});
             this.markersList1.FullRowSelect = true;
@@ -146,9 +146,10 @@
             this.ID_col.Text = "ID";
             this.ID_col.Width = 35;
             // 
-            // parcelID
+            // consignmentID
             // 
-            this.parcelID.Text = "Parcel ID";
+            this.consignmentID.Text = "Consignment ID";
+            this.consignmentID.Width = 93;
             // 
             // posX_col
             // 
@@ -415,7 +416,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox SearchLocationTextBox1;
         private GMap.NET.WindowsForms.GMapControl gMapControl1;
-        private System.Windows.Forms.ColumnHeader parcelID;
+        private System.Windows.Forms.ColumnHeader consignmentID;
         private System.Windows.Forms.Button removeMarkerButton;
         private System.Windows.Forms.Button markerUp_button;
         private System.Windows.Forms.Button markerDown_button;

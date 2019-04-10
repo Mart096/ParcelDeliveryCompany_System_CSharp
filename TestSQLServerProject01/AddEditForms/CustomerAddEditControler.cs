@@ -70,9 +70,9 @@ namespace TestSQLServerProject01
                 }
                 
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
-                MessageBox.Show(ex.Message+"Failed to load client's data to edit.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(809); //MessageBox.Show(ex.Message+"Failed to load client's data to edit.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -100,7 +100,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                MessageBox.Show("Failed to add new city during insertion of new order.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(1002); //MessageBox.Show("Failed to add new city during insertion of new order.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return "-";
             }
 
@@ -150,13 +150,13 @@ namespace TestSQLServerProject01
 
                     if(result == 1)
                     {
-                        MessageBox.Show("Modifications to customer's data saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageClass.DisplayMessage(810);//MessageBox.Show("Modifications to customer's data saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
-                MessageBox.Show(ex.Message+"Failed to save changes to customer's data.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(811); //MessageBox.Show(/*ex.Message+*/"Failed to save changes to customer's data.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -214,7 +214,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                MessageBox.Show("Failed to add new customer.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(812); //MessageBox.Show("Failed to add new customer.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return -1;
             }
         }
@@ -245,7 +245,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                ErrorMessageClass.DisplayErrorMessage(6065);
+                MessageClass.DisplayMessage(901);
             }
         }
 
@@ -271,7 +271,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                ErrorMessageClass.DisplayErrorMessage(6065);
+                MessageClass.DisplayMessage(1001);
             }
         }
 

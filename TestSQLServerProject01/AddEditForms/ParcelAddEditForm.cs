@@ -123,10 +123,9 @@ namespace TestSQLServerProject01
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception /*ex-*/)
             {
-                MessageBox.Show(ex.Message);
-                ErrorMessageClass.DisplayErrorMessage(6056);
+                MessageClass.DisplayMessage(1401);
                 this.Close();
                 this.Dispose();
             }
@@ -190,7 +189,8 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                MessageBox.Show("Could not load consignments\' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(706, "consignments\'");
+                //MessageBox.Show("Could not load consignments\' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -218,9 +218,10 @@ namespace TestSQLServerProject01
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
-                MessageBox.Show(ex.Message+"Could not load weight categories' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(706, "weight categories\'");
+                //MessageBox.Show(ex.Message+"Could not load weight categories' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -248,9 +249,10 @@ namespace TestSQLServerProject01
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
-                MessageBox.Show(ex.Message+"Could not load size categories' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(706, "size categories\'");
+                //MessageBox.Show(ex.Message+"Could not load size categories' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -278,9 +280,10 @@ namespace TestSQLServerProject01
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
-                MessageBox.Show(ex.Message+"Could not load properties' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(706, "properties\'");
+                //MessageBox.Show(ex.Message+"Could not load properties' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -359,30 +362,30 @@ namespace TestSQLServerProject01
 
                             if (result == 0)
                             {
-                                ErrorMessageClass.DisplayErrorMessage(6044);
-                                MessageBox.Show("Query failed! Please, try again later.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageClass.DisplayMessage(604);
+                                //MessageBox.Show("Query failed! Please, try again later.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             else if (result > 1)
                             {
-                                ErrorMessageClass.DisplayErrorMessage(6044);
-                                MessageBox.Show("Query unexpected behaviour detected! Please contact your data base administrator and let them know about issue.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageClass.DisplayMessage(703);
+                                //MessageBox.Show("Query unexpected behaviour detected! Please contact your data base administrator and let them know about issue.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             else if (result == 1 && this.current_mode == FormMode.add)
-                                MessageBox.Show("New parcel added successfully!", "Success", MessageBoxButtons.OK);
+                                MessageClass.DisplayMessage(1402); //MessageBox.Show("New parcel added successfully!", "Success", MessageBoxButtons.OK);
                             else if (result == 1 && this.current_mode == FormMode.edit)
-                                MessageBox.Show("Selected parcel has been updated successfully!", "Success", MessageBoxButtons.OK);
+                                MessageClass.DisplayMessage(1403);  //MessageBox.Show("Selected parcel has been updated successfully!", "Success", MessageBoxButtons.OK);
                         }
 
                     }
                     this.Close();
                     this.Dispose();
                 }
-                catch (Exception ex)
+                catch (Exception /*ex*/)
                 {
                     if (this.current_mode == FormMode.add)
-                        MessageBox.Show("Failed to save new order's details." + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageClass.DisplayMessage(1404); //MessageBox.Show("Failed to save new order's details." + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     else if (this.current_mode == FormMode.edit)
-                        MessageBox.Show("Failed to save changes to selected order.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageClass.DisplayMessage(1405); //MessageBox.Show("Failed to save changes to selected order.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.Close();
                     this.Dispose();
                 }

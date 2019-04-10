@@ -27,7 +27,7 @@ namespace TestSQLServerProject01
 
         public ConsignmentDetailsForm()
         {
-            InitializeComponent();
+            InitializeComponent(); 
         }
 
         public ConsignmentDetailsForm(UserClass mW, /*int mode,*/ int object_id)
@@ -39,6 +39,7 @@ namespace TestSQLServerProject01
             parcelManagement_Controler.Load_Parcels_List(object_id);
             consignmentParcelManagement_panel.Item_id = object_id;
             consignmentParcelManagement_panel.MainWindowReference = mW;
+            consignmentParcelManagement_panel.SetUserRole();
             consignmentParcelManagement_panel.LoadItemList();
             
             Load_Pickup_State_List();
@@ -75,7 +76,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                MessageBox.Show("Could not load pickup states' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(1801);
             }
         }
 
@@ -120,10 +121,9 @@ namespace TestSQLServerProject01
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
-                ErrorMessageClass.DisplayErrorMessage(6056);
+                MessageClass.DisplayMessage(1705);
                 this.Close();
                 this.Dispose();
             }
@@ -142,7 +142,7 @@ namespace TestSQLServerProject01
 
         private void UpdateConsignmentPickupState_button_Click(object sender, EventArgs e)
         {
-            DialogResult dlg_result = MessageBox.Show("Are you sure you want to change pickup state of this consignment?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dlg_result = MessageClass.DisplayMessage(1802, "");
             if (dlg_result == DialogResult.Yes)
             {
 
@@ -163,24 +163,25 @@ namespace TestSQLServerProject01
                         {
                             pickupState_textbox.Text = pickupState_listView.SelectedItems[0].SubItems[1].Text;
                             pickupState_listView.SelectedItems.Clear();
-                            MessageBox.Show("Consignment has been updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageClass.DisplayMessage(1803);
                         }
                         else
                         {
-                            MessageBox.Show("Failed to update consignment's data.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageClass.DisplayMessage(1804);
+                            
                         }
                     }
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Failed to initiate consignment's update. Error occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageClass.DisplayMessage(1805);
                 }
             }
         }
 
         private void PickupState_listView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(pickupState_listView.SelectedItems.Count == 1)
+            if(pickupState_listView.SelectedItems.Count == 1 && (MainWindowReference.Current_role == UserClass.UserRole.Admin || MainWindowReference.Current_role == UserClass.UserRole.Dispatcher || MainWindowReference.Current_role == UserClass.UserRole.OrderManager))
             {
                 if (pickupState_listView.SelectedItems[0].SubItems[1].Text.Equals(pickupState_textbox.Text))
                 {

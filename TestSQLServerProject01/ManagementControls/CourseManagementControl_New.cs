@@ -67,9 +67,10 @@ namespace TestSQLServerProject01.ManagementControls
                     CourseDetailsForm courseDetForm = new CourseDetailsForm(MainWindowReference, course_id);
                     courseDetForm.ShowDialog();
                 }
-                catch (Exception)
+                catch (Exception /*ex*/)
                 {
-                    MessageBox.Show("Failed to initialize course's details form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageClass.DisplayMessage(2401);
+                    //MessageBox.Show("Failed to initialize course's details form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 LoadItemList();
             }
@@ -87,7 +88,7 @@ namespace TestSQLServerProject01.ManagementControls
             DataTable dt = new DataTable();
             try
             {
-                if((UserRole)MainWindowReference.Current_role == UserRole.Dispatcher)
+                if((UserRole)MainWindowReference.Current_role == UserRole.Courier)
                 {
                     this.List_refresh_command = "Kursy_kuriera";
                 }
@@ -95,7 +96,7 @@ namespace TestSQLServerProject01.ManagementControls
                 using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
                 using (SqlCommand command = new SqlCommand(this.List_refresh_command, connection))
                 {
-                    if ((UserRole)MainWindowReference.Current_role == UserRole.Dispatcher)
+                    if ((UserRole)MainWindowReference.Current_role == UserRole.Courier)
                     {
                         command.CommandType = CommandType.StoredProcedure;
                     }
@@ -128,15 +129,17 @@ namespace TestSQLServerProject01.ManagementControls
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException /*ex*/)
             {
                 //ErrorMessageClass.DisplayErrorMessage(411);
-                MessageBox.Show("Could not load " + Item_name_plural + " list. Query failed." + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(705, this.Item_name_plural);
+                //MessageBox.Show("Could not load " + Item_name_plural + " list. Query failed." /*+ ex.Message*/, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
                 //ErrorMessageClass.DisplayErrorMessage(410);
-                MessageBox.Show("Could not load " + Item_name_plural + " list. " + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(706, this.Item_name_plural);
+                //MessageBox.Show("Could not load " + Item_name_plural + " list. "/* + ex.Message*/, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

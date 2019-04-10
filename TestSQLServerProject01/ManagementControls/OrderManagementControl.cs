@@ -34,7 +34,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                ErrorMessageClass.DisplayErrorMessage(602);
+                MessageClass.DisplayMessage(602);
             }
         }
 
@@ -64,7 +64,7 @@ namespace TestSQLServerProject01
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                ErrorMessageClass.DisplayErrorMessage(601);
+                MessageClass.DisplayMessage(601);
             }
         }
 
@@ -78,7 +78,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                ErrorMessageClass.DisplayErrorMessage(602);
+                MessageClass.DisplayMessage(602);
             }
         }
 

@@ -51,7 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractControlDescriptionProvider.cs" />
-    <Compile Include="ErrorMessage.cs" />
+    <Compile Include="MessageClass.cs" />
     <Compile Include="LangClass.cs" />
     <Compile Include="MapControler.cs">
       <SubType>UserControl</SubType>

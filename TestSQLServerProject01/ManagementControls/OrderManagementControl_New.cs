@@ -29,7 +29,7 @@ namespace TestSQLServerProject01.ManagementControls
             }
             catch (Exception)
             {
-                ErrorMessageClass.DisplayErrorMessage(602);
+                MessageClass.DisplayMessage(602);
             }
             LoadItemList();
         }
@@ -46,7 +46,7 @@ namespace TestSQLServerProject01.ManagementControls
                 }
                 catch (Exception)
                 {
-                    ErrorMessageClass.DisplayErrorMessage(602);
+                    MessageClass.DisplayMessage(602);
                 }
             }
             LoadItemList();

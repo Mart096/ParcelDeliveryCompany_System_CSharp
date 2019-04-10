@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using ParcelDeliveryCompany_ClassLibrary1;
 
 namespace TestSQLServerProject01
 {
@@ -17,7 +18,7 @@ namespace TestSQLServerProject01
         {
             InitializeComponent();
 
-            SetControlBasicData("SELECT * FROM Zgloszenia_odbioru", "DELETE FROM Zgloszenia_odbioru WHERE Id_zgloszenia_odbioru = @item_id;", "pickup request", "Pickup request");
+            SetControlBasicData("SELECT * FROM Pickup_Request_List_View"/*Zgloszenia_odbioru"*/, "DELETE FROM Zgloszenia_odbioru WHERE Id_zgloszenia_odbioru = @item_id;", "pickup request", "Pickup request");
             Disable_Details_Button(false);
         }
 
@@ -31,7 +32,8 @@ namespace TestSQLServerProject01
             catch
             {
                 //ErrorMessageClass.DisplayErrorMessage(401);
-                MessageBox.Show("Failed to initialize pickup request add/edit form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageClass.DisplayMessage(1510);
+                //MessageBox.Show("Failed to initialize pickup request add/edit form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LoadItemList();
         }
@@ -46,7 +48,8 @@ namespace TestSQLServerProject01
             catch
             {
                 //ErrorMessageClass.DisplayErrorMessage(401);
-                MessageBox.Show("Failed to initialize pickup request add/edit form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageClass.DisplayMessage(1510);
+                //MessageBox.Show("Failed to initialize pickup request add/edit form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LoadItemList();
         }
@@ -61,7 +64,8 @@ namespace TestSQLServerProject01
             catch
             {
                 //ErrorMessageClass.DisplayErrorMessage(401);
-                MessageBox.Show("Failed to initialize pickup request's details form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageClass.DisplayMessage(1511);
+                //MessageBox.Show("Failed to initialize pickup request's details form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LoadItemList();
         }
@@ -82,12 +86,16 @@ namespace TestSQLServerProject01
             }
             else if (user == UserRole.Dispatcher)
             {
-                
+                addItem_button.Enabled = true;
+                addItem_button.Visible = true;
+                editItem_button.Visible = true;
+                itemDetails_button.Visible = true;
                 refreshList_button.Enabled = true;
                 refreshList_button.Visible = true;
             }
             else if (user == UserRole.Courier)
             {
+                itemDetails_button.Visible = true;
                 refreshList_button.Enabled = true;
                 refreshList_button.Visible = true;
             }

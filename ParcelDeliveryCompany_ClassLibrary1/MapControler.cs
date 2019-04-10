@@ -447,7 +447,7 @@ namespace TestGmapProject01
                     MapRoute route = GMap.NET.MapProviders.OpenStreetMapProvider.Instance.GetRoute(point1, point2, false, false, 15);
                     GMapRoute r = new GMapRoute(route.Points, "The best route from marker "+ point_one + " to marker " + point_two);
                     routes.Routes.Add(r);
-                    string[] tempString = { (i+1).ToString(), point_one.ToString(), point_two.ToString(), point1.Lat.ToString(), point1.Lng.ToString(), point2.Lat.ToString(), point2.Lng.ToString() };
+                    string[] tempString = { (i+1).ToString(), (point_one+1).ToString(), (point_two+1).ToString(), point1.Lat.ToString(), point1.Lng.ToString(), point2.Lat.ToString(), point2.Lng.ToString() };
                     routesList1.Items.Add(new ListViewItem(tempString));
                 }
                 gMapControl1.Overlays.Add(routes);
@@ -588,23 +588,7 @@ namespace TestGmapProject01
 
         private void TravelingSalesmanAlternateRoute_button_Click(object sender, EventArgs e)
         {
-            /*int pos, bitmask;
-
-
-            if (bitmask == (1 << (K + 1)) - 1)
-                return dist[pos][0];              // Completing the round trip
-
-            if (memo[pos][bitmask] != -1)
-                return memo[pos][bitmask];
-
-            int answer = INF;
-            for (int i = 0; i <= K; i++)
-            {
-                if (i != pos && (bitmask & (1 << i)) == 0)
-                    answer = Math.min(answer, dist[pos][i] + TSP(i, bitmask | (1 << i)));
-            }
-
-            return memo[pos][bitmask] = answer;*/
+            
         }
 
         public long Factorial_count(int number) {
@@ -674,7 +658,7 @@ namespace TestGmapProject01
             }
         }
 
-        public void InsertConsignmentFromCourseMarkers(string placeKeywords, bool isCompanyPoint)
+        public void InsertConsignmentFromCourseMarkers(string placeKeywords, bool isCompanyPoint, string consignment_number)
         {
             GMap.NET.WindowsForms.Markers.GMarkerGoogleType markertype = new GMarkerGoogleType();
             if( isCompanyPoint == true) //wybór wyglądu znacznika w zależności od typu (tzn. punkt firmy będzie oznaczony niebieską pinezką, a miejsce dostawy przesyłki na zielono)
@@ -711,7 +695,7 @@ namespace TestGmapProject01
                 }
             }
             
-            string[] tempString = { next_id.ToString(), "pID", marker.Position.Lat.ToString(), marker.Position.Lng.ToString() };
+            string[] tempString = { next_id.ToString(), consignment_number, marker.Position.Lat.ToString(), marker.Position.Lng.ToString() };
             markersList1.Items.Add(new ListViewItem(tempString)); //dodanie informacji o markerze do listy
 
             markers.Markers.Add(marker);

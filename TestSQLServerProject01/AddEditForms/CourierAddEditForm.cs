@@ -102,7 +102,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                ErrorMessageClass.DisplayErrorMessage(505);
+                MessageClass.DisplayMessage(505);
                 this.Close();
                 this.Dispose();
             }
@@ -132,13 +132,13 @@ namespace TestSQLServerProject01
             }
             catch (SqlException)
             {
-                ErrorMessageClass.DisplayErrorMessage(411);
+                MessageClass.DisplayMessage(411);
                 this.Close();
                 this.Dispose();
             }
             catch (Exception)
             {
-                ErrorMessageClass.DisplayErrorMessage(410);
+                MessageClass.DisplayMessage(410);
                 this.Close();
                 this.Dispose();
             }
@@ -174,11 +174,11 @@ namespace TestSQLServerProject01
 
                             if (result == 0)
                             {
-                                ErrorMessageClass.DisplayErrorMessage(508);
+                                MessageClass.DisplayMessage(508);
                             }
                             else if (result == 1)
                             {
-                                ErrorMessageClass.DisplayErrorMessage(509);
+                                MessageClass.DisplayMessage(509);
                             }
                         }
                         this.Close();
@@ -186,13 +186,13 @@ namespace TestSQLServerProject01
                     }
                     else
                     {
-                        ErrorMessageClass.DisplayErrorMessage(510);
+                        MessageClass.DisplayMessage(510);
                     }
                 }
-                catch(Exception ex)
+                catch(Exception /*ex*/)
                 {
-                    MessageBox.Show(ex.Message);
-                    ErrorMessageClass.DisplayErrorMessage(506);
+                    //MessageBox.Show(ex.Message);
+                    MessageClass.DisplayMessage(506);
                     this.Close();
                     this.Dispose();
                 }
@@ -225,11 +225,11 @@ namespace TestSQLServerProject01
 
                             if (result == 0)
                             {
-                                ErrorMessageClass.DisplayErrorMessage(508);
+                                MessageClass.DisplayMessage(508);
                             }
                             else if (result == 1)
                             {
-                                ErrorMessageClass.DisplayErrorMessage(509);
+                                MessageClass.DisplayMessage(509);
                             }
                             this.Close();
                             this.Dispose();
@@ -237,13 +237,13 @@ namespace TestSQLServerProject01
                     }
                     else
                     {
-                        ErrorMessageClass.DisplayErrorMessage(510);
+                        MessageClass.DisplayMessage(510);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception /*ex*/)
                 {
-                    MessageBox.Show(ex.Message);
-                    ErrorMessageClass.DisplayErrorMessage(507);
+                    //MessageBox.Show(ex.Message);
+                    MessageClass.DisplayMessage(507);
                     this.Close();
                     this.Dispose();
                 }
@@ -282,7 +282,7 @@ namespace TestSQLServerProject01
             this.Dispose();
         }
 
-        private void vehicle_ListView_SelectedIndexChanged(object sender, EventArgs e)
+        private void Vehicle_ListView_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

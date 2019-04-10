@@ -392,7 +392,8 @@ namespace TestSQLServerProject01
             }
             catch
             {
-                MessageBox.Show("Failed to obtain user's permissions. Access to controls has been denied. Try to log in again.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(2201);
+                //MessageBox.Show("Failed to obtain user's permissions. Access to controls has been denied. Try to log in again.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 DenyAccessToControls();
             }
         }

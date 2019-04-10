@@ -79,7 +79,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                MessageBox.Show("Could not load selected complaint's data.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(1601); 
                 this.Close();
                 this.Dispose();
             }
@@ -126,7 +126,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                MessageBox.Show("Could not load consignments' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(1602);
             }
         }
 
@@ -172,32 +172,32 @@ namespace TestSQLServerProject01
                         if (result == 0)
                         {
                             if (current_mode == FormMode.add)
-                                MessageBox.Show("Failed to add new complaint.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageClass.DisplayMessage(1603); //MessageBox.Show("Failed to add new complaint.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             if (current_mode == FormMode.edit)
-                                MessageBox.Show("Failed to save changes to seleceted complaint.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageClass.DisplayMessage(1604); //MessageBox.Show("Failed to save changes to seleceted complaint.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         if (result == 1)
                         {
                             if (current_mode == FormMode.add)
-                                MessageBox.Show("New complaint has been added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageClass.DisplayMessage(1605); 
                             if (current_mode == FormMode.edit)
-                                MessageBox.Show("Changes to seleceted complaint has been saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageClass.DisplayMessage(1606); 
                         }
                     }
                 }
                 catch
                 {
                     if (current_mode == FormMode.add)
-                        MessageBox.Show("Failed to add new pickup request. Error occured!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageClass.DisplayMessage(1607); 
                     if (current_mode == FormMode.edit)
-                        MessageBox.Show("Failed to save changes to selected pickup request. Error occured!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageClass.DisplayMessage(1608);
                 }
                 this.Close();
                 this.Dispose();
             }
             else
             {
-                MessageBox.Show("Not all data was specified! Check your input for missing information.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageClass.DisplayMessage(1112);//MessageBox.Show("Not all data was specified! Check your input for missing information.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

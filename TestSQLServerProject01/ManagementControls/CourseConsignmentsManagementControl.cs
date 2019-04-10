@@ -59,7 +59,7 @@ namespace TestSQLServerProject01.ManagementControls
             }
             catch (Exception)
             {
-                MessageBox.Show("Error! Could not initialize \"Add consignment to course\" form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageClass.DisplayMessage(1706);//MessageBox.Show("Error! Could not initialize \"Add consignment to course\" form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LoadItemList();
         }
@@ -75,13 +75,14 @@ namespace TestSQLServerProject01.ManagementControls
         protected override void EditItem_button_Click(object sender, EventArgs e)
         {
             //base.EditItem_button_Click(sender, e);
+            //Funkcjonalność zbędna w tej kontrolce
         }
 
         protected override void RemoveItem_button_Click(object sender, EventArgs e)
         {
             if (item_ListView.SelectedItems.Count == 1)
             {
-                DialogResult dlg_result = MessageBox.Show("Are you sure you want to remove selected " + this.Item_name + " from course?", "Attention!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                DialogResult dlg_result = MessageClass.DisplayMessage(1707, this.Item_name);
                 if (dlg_result == DialogResult.Yes)
                 {
                     try
@@ -98,18 +99,18 @@ namespace TestSQLServerProject01.ManagementControls
                             int result = command.ExecuteNonQuery();
                             if (result != 1)
                             {
-                                //ErrorMessageClass.DisplayErrorMessage(407);
+                                MessageClass.DisplayMessage(703);
                             }
                             else
                             {
-                                MessageBox.Show(this.Item_name_capital_letter + " removed from course successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageClass.DisplayMessage(1708, this.Item_name_capital_letter);
+                                //MessageBox.Show(this.Item_name_capital_letter + " removed from course successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception /*ex*/)
                     {
-                        MessageBox.Show(ex.Message);
-                        //ErrorMessageClass.DisplayErrorMessage(408);
+                        MessageClass.DisplayMessage(1709);
                     }
                 }
                 else
@@ -153,13 +154,15 @@ namespace TestSQLServerProject01.ManagementControls
                     }
                 }
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
                 //ErrorMessageClass.DisplayErrorMessage(411);
+                MessageClass.DisplayMessage(1710);
             }
             catch (Exception)
             {
                 //ErrorMessageClass.DisplayErrorMessage(410);
+                MessageClass.DisplayMessage(1711);
             }
         }
 
@@ -175,6 +178,10 @@ namespace TestSQLServerProject01.ManagementControls
             }
             else if (user == UserRole.Dispatcher)
             {
+                addItem_button.Enabled = true;
+                addItem_button.Visible = true;
+                itemDetails_button.Visible = true;
+                removeItem_button.Visible = true;
                 refreshList_button.Enabled = true;
                 refreshList_button.Visible = true;
             }
@@ -186,6 +193,10 @@ namespace TestSQLServerProject01.ManagementControls
             }
             else if (user == UserRole.OrderManager)
             {
+                /*addItem_button.Enabled = true;
+                addItem_button.Visible = true;*/
+                itemDetails_button.Visible = true;
+                //removeItem_button.Visible = true;
                 refreshList_button.Enabled = true;
                 refreshList_button.Visible = true;
             }

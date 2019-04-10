@@ -49,7 +49,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception /*ex*/)
             {
-                MessageBox.Show("Could not load customers' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(802); //MessageBox.Show("Could not load customers' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -87,9 +87,10 @@ namespace TestSQLServerProject01
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
-                MessageBox.Show(ex.Message + "Error occured during an attemmpt to search for\nspecified items in customers' list.");
+                //MessageBox.Show(/*ex.Message + */"Error occured during an attemmpt to search for\nspecified items in customers' list.");
+                MessageClass.DisplayMessage(803);
             }
 
         }
@@ -138,7 +139,8 @@ namespace TestSQLServerProject01
             }
             catch
             {
-                MessageBox.Show("Failed to initialize customer add/edit form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Failed to initialize customer add/edit form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageClass.DisplayMessage(804);
             }
             Load_Customer_List();
         }
@@ -152,7 +154,8 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                MessageBox.Show("Failed to initialize course add/edit form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Failed to initialize customer add/edit form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageClass.DisplayMessage(804);
             }
             Load_Customer_List();
         }
@@ -161,7 +164,7 @@ namespace TestSQLServerProject01
         {
             if (customer_ListView.SelectedItems.Count == 1)
             {
-                DialogResult dlg_result = MessageBox.Show("Are you sure you want to remove this customer?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dlg_result = MessageClass.DisplayMessage(805, "customer"); //MessageBox.Show("Are you sure you want to remove this customer?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (dlg_result == DialogResult.Yes)
                 {
                     try
@@ -177,14 +180,14 @@ namespace TestSQLServerProject01
                             int result = command.ExecuteNonQuery();
 
                             if (result != 1)
-                                MessageBox.Show("Failed to remove selected customer! Check if customer is assigned to orders, consignments, pickup requests and/or complaints.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageClass.DisplayMessage(806);//MessageBox.Show("Failed to remove selected customer! Check if customer is assigned to orders, consignments, pickup requests and/or complaints.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             else if (result == 1)
-                                MessageBox.Show("Customer removed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageClass.DisplayMessage(807); //MessageBox.Show("Customer removed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show("Error occured during an attempt to remove selected customer! .", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageClass.DisplayMessage(808); //MessageBox.Show("Error occured during an attempt to remove selected customer! .", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     Load_Customer_List();
                 }

@@ -94,7 +94,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                MessageBox.Show("Could not load couriers or orders' list.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(1501); //MessageBox.Show("Could not load couriers or orders' list.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.Close();
                 this.Dispose();
             }
@@ -150,7 +150,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                MessageBox.Show("Could not load selected pickup request's data.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(1502);//MessageBox.Show("Could not load selected pickup request's data.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.Close();
                 this.Dispose();
             }
@@ -215,32 +215,32 @@ namespace TestSQLServerProject01
                         if (result == 0)
                         {
                             if (current_mode == FormMode.add)
-                                MessageBox.Show("Failed to add new pickup request.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageClass.DisplayMessage(1503); //MessageBox.Show("Failed to add new pickup request.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             if (current_mode == FormMode.edit)
-                                MessageBox.Show("Failed to save changes to seleceted pickup request.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageClass.DisplayMessage(1504); //MessageBox.Show("Failed to save changes to seleceted pickup request.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         if (result == 1)
                         {
                             if (current_mode == FormMode.add)
-                                MessageBox.Show("New pickup request has been added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageClass.DisplayMessage(1505); //MessageBox.Show("New pickup request has been added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             if (current_mode == FormMode.edit)
-                                MessageBox.Show("Changes to seleceted pickup request has been saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageClass.DisplayMessage(1506); //MessageBox.Show("Changes to seleceted pickup request has been saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                     }
                 }
                 catch
                 {
                     if (current_mode == FormMode.add)
-                        MessageBox.Show("Failed to add new pickup request. Error occured!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageClass.DisplayMessage(1507); //MessageBox.Show("Failed to add new pickup request. Error occured!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     if (current_mode == FormMode.edit)
-                        MessageBox.Show("Failed to save changes to selected pickup request. Error occured!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageClass.DisplayMessage(1508); //MessageBox.Show("Failed to save changes to selected pickup request. Error occured!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 this.Close();
                 this.Dispose();
             }
             else
             {
-                MessageBox.Show("Not all data was specified! Check your input for missing information.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageClass.DisplayMessage(1509); 
             }
         }
 

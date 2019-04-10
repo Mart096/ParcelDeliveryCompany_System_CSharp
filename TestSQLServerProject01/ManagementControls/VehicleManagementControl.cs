@@ -45,7 +45,7 @@ namespace TestSQLServerProject01
             }
             catch
             {
-                ErrorMessageClass.DisplayErrorMessage(401);
+                MessageClass.DisplayMessage(401);
             }
             LoadVehicleList();
         }
@@ -75,12 +75,12 @@ namespace TestSQLServerProject01
             }
             catch (SqlException)
             {
-                ErrorMessageClass.DisplayErrorMessage(411);
+                MessageClass.DisplayMessage(411);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                ErrorMessageClass.DisplayErrorMessage(410);
+                MessageClass.DisplayMessage(410);
             }
         }
 
@@ -97,7 +97,7 @@ namespace TestSQLServerProject01
                 }
                 catch (Exception)
                 {
-                    ErrorMessageClass.DisplayErrorMessage(401);
+                    MessageClass.DisplayMessage(401);
                 }
             }
             LoadVehicleList();
@@ -124,14 +124,14 @@ namespace TestSQLServerProject01
                                 int result = command.ExecuteNonQuery();
                                 if (result < 1)
                                 {
-                                    ErrorMessageClass.DisplayErrorMessage(407);
+                                    MessageClass.DisplayMessage(407);
                                 }
                             }
                         }
                     }
                     catch (Exception)
                     {
-                        ErrorMessageClass.DisplayErrorMessage(408);
+                        MessageClass.DisplayMessage(408);
                     }
                 }
                 else

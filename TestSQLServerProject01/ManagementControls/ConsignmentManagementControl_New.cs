@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ParcelDeliveryCompany_ClassLibrary1;
 
 namespace TestSQLServerProject01.ManagementControls
 {
@@ -28,7 +29,7 @@ namespace TestSQLServerProject01.ManagementControls
             }
             catch (Exception)
             {
-                MessageBox.Show("Error! Could not initialize consignment's add/edit form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageClass.DisplayMessage(1101); //MessageBox.Show("Error! Could not initialize consignment's add/edit form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LoadItemList();
         }
@@ -42,7 +43,7 @@ namespace TestSQLServerProject01.ManagementControls
             }
             catch (Exception)
             {
-                MessageBox.Show("Error! Could not initialize consignment's details form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageClass.DisplayMessage(1102); //MessageBox.Show("Error! Could not initialize consignment's details form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -55,7 +56,7 @@ namespace TestSQLServerProject01.ManagementControls
             }
             catch (Exception)
             {
-                MessageBox.Show("Error! Could not initialize consignment's add/edit form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageClass.DisplayMessage(1101);  //MessageBox.Show("Error! Could not initialize consignment's add/edit form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LoadItemList();
         }

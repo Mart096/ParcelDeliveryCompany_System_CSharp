@@ -30,8 +30,8 @@ namespace TestSQLServerProject01.ManagementControls
             }
             catch
             {
-                //ErrorMessageClass.DisplayErrorMessage(401);
-                MessageBox.Show("Failed to initialize location add/edit form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageClass.DisplayMessage(1303);
+                //MessageBox.Show("Failed to initialize location add/edit form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LoadItemList();
         }
@@ -49,7 +49,8 @@ namespace TestSQLServerProject01.ManagementControls
                 catch (Exception)
                 {
                     //ErrorMessageClass.DisplayErrorMessage(401);
-                    MessageBox.Show("Failed to initialize location add/edit form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageClass.DisplayMessage(1303);
+                    //MessageBox.Show("Failed to initialize location add/edit form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 LoadItemList();
             }

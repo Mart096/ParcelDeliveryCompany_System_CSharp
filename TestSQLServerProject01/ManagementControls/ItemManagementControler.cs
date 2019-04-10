@@ -136,7 +136,7 @@ namespace TestSQLServerProject01
         {
             if (item_ListView.SelectedItems.Count == 1)
             {
-                DialogResult dlg_result = MessageBox.Show("Are you sure you want to remove selected "+ this.Item_name+"?", "Attention!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                DialogResult dlg_result = MessageClass.DisplayMessage(701, this.Item_name);//MessageBox.Show("Are you sure you want to remove selected "+ this.Item_name+"?", "Attention!", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (dlg_result == DialogResult.Yes)
                 {
                     try
@@ -151,18 +151,19 @@ namespace TestSQLServerProject01
                             int result = command.ExecuteNonQuery();
                             if (result != 1)
                             {
-                                //ErrorMessageClass.DisplayErrorMessage(407);
+                                MessageClass.DisplayMessage(703);
                             }
                             else
                             {
-                                MessageBox.Show(this.Item_name_capital_letter+" removed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageClass.DisplayMessage(702, this.Item_name_capital_letter);//MessageBox.Show(this.Item_name_capital_letter+" removed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                     }
-                    catch (Exception ex)
+                    catch (Exception /*ex*/)
                     {
-                        MessageBox.Show(ex.Message);
+                        //MessageBox.Show(ex.Message);
                         //ErrorMessageClass.DisplayErrorMessage(408);
+                        MessageClass.DisplayMessage(704, this.Item_name);
                     }
                 }
                 else
@@ -209,15 +210,15 @@ namespace TestSQLServerProject01
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException /*ex*/)
             {
-                //ErrorMessageClass.DisplayErrorMessage(411);
-                MessageBox.Show("Could not load " + Item_name_plural + " list. Query failed." + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(705, this.Item_name_plural);
+                //MessageBox.Show("Could not load " + Item_name_plural + " list. Query failed."/* + ex.Message*/, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
-                //ErrorMessageClass.DisplayErrorMessage(410);
-                MessageBox.Show("Could not load " + Item_name_plural + " list. "+ ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(706, this.Item_name_plural);
+                //MessageBox.Show("Could not load " + Item_name_plural + " list. "/*+ ex.Message*/, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }
@@ -301,39 +302,7 @@ namespace TestSQLServerProject01
                 removeItem_button.Enabled = false;
                 removeItem_button.Visible = false;
             }*/
-            //metoda powinna być od tego momentu zasłaniana w każdej kontrolce aby dokładnie określić, które przyciski powinny być dostępne
-            /*
-            else if (user == UserRole.OrderManager)
-            {
-                addItem_button.Enabled = true;
-                addItem_button.Visible = true;
-                if (details_button_disabled == false)
-                {
-                    //itemDetails_button.Enabled = true;
-                    itemDetails_button.Visible = true;
-                }
-                refreshList_button.Enabled = true;
-                refreshList_button.Visible = true;
-            }
-            else if (user == UserRole.Dispatcher)
-            {
-                addItem_button.Enabled = true;
-                addItem_button.Visible = true;
-                if(details_button_disabled == false)
-                {
-                    //itemDetails_button.Enabled = true;
-                    itemDetails_button.Visible = true;
-                }
-                //editItem_button.Enabled = true;
-                editItem_button.Visible = true;
-                refreshList_button.Enabled = true;
-                refreshList_button.Visible = true;
-            }
-            else if (user == UserRole.Courier)
-            {
-                refreshList_button.Enabled = true;
-                refreshList_button.Visible = true;
-            }*/
+            //metoda powinna być od tego momentu zasłaniana w każdej kontrolce aby dokładnie określić, które przyciski powinny być dostępne dla danej roli użytkownika
         }
     }
 }

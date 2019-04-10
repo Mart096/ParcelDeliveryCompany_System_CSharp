@@ -62,7 +62,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception)
             {
-                MessageBox.Show("Could not load complaint states' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(1609);
             }
         }
 
@@ -93,10 +93,9 @@ namespace TestSQLServerProject01
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
-                MessageBox.Show(ex.Message);
-                //ErrorMessageClass.DisplayErrorMessage(6056);
+                MessageClass.DisplayMessage(1601);
                 this.Close();
                 this.Dispose();
             }
@@ -104,7 +103,7 @@ namespace TestSQLServerProject01
 
         private void UpdatePickupRequestState_button_Click(object sender, EventArgs e)
         {
-            DialogResult dlg_result = MessageBox.Show("Are you sure you want to change state of this complaint?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dlg_result = MessageClass.DisplayMessage(1614, "");
             if (dlg_result == DialogResult.Yes)
             {
                 try
@@ -124,17 +123,17 @@ namespace TestSQLServerProject01
                         {
                             ComplaintState_textbox.Text = complaintState_listView.SelectedItems[0].SubItems[1].Text;
                             complaintState_listView.SelectedItems.Clear();
-                            MessageBox.Show("Complaint has been updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageClass.DisplayMessage(1611);
                         }
                         else
                         {
-                            MessageBox.Show("Failed to update complaint's data.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageClass.DisplayMessage(1612);
                         }
                     }
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Failed to initiate complaint's update. Error occured.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageClass.DisplayMessage(1613);
                 }
             }
         }

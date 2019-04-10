@@ -30,7 +30,7 @@ namespace TestSQLServerProject01
             }
             catch
             {
-                ErrorMessageClass.DisplayErrorMessage(401);
+                MessageClass.DisplayMessage(401);
             }
             LoadItemList();
         }
@@ -49,7 +49,7 @@ namespace TestSQLServerProject01
                 }
                 catch (Exception)
                 {
-                    ErrorMessageClass.DisplayErrorMessage(401);
+                    MessageClass.DisplayMessage(401);
                 }
             }
             LoadItemList();

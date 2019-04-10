@@ -187,7 +187,7 @@ namespace TestSQLServerProject01
             }
             else
             {
-                ErrorMessageClass.DisplayErrorMessage(401);
+                MessageClass.DisplayMessage(401);
                 this.Close();
                 this.Dispose();
             }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ParcelDeliveryCompany_ClassLibrary1;
 
 namespace TestSQLServerProject01
 {
@@ -33,6 +34,7 @@ namespace TestSQLServerProject01
             catch
             {
                 //ErrorMessageClass.DisplayErrorMessage(401);
+                MessageClass.DisplayMessage(1614);
             }
             LoadItemList();
         }
@@ -46,6 +48,7 @@ namespace TestSQLServerProject01
             }
             catch
             {
+                MessageClass.DisplayMessage(1614);
                 //ErrorMessageClass.DisplayErrorMessage(401);
             }
             LoadItemList();
@@ -60,7 +63,7 @@ namespace TestSQLServerProject01
             }
             catch
             {
-                //ErrorMessageClass.DisplayErrorMessage(401);
+                MessageClass.DisplayMessage(1615);
             }
             LoadItemList();
         }

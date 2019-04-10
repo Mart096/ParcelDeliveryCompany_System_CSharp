@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using ParcelDeliveryCompany_ClassLibrary1;
 
 namespace TestSQLServerProject01.ManagementControls
 {
@@ -36,7 +37,8 @@ namespace TestSQLServerProject01.ManagementControls
             }
             catch (Exception)
             {
-                MessageBox.Show("Failed to initialize parcel add form", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageClass.DisplayMessage(2001);
+                //MessageBox.Show("Failed to initialize parcel add form", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             LoadItemList();
         }
@@ -76,10 +78,12 @@ namespace TestSQLServerProject01.ManagementControls
             catch (SqlException)
             {
                 //ErrorMessageClass.DisplayErrorMessage(411);
+                MessageClass.DisplayMessage(2002);
             }
             catch (Exception)
             {
                 //ErrorMessageClass.DisplayErrorMessage(410);
+                MessageClass.DisplayMessage(2003);
             }
 
         }

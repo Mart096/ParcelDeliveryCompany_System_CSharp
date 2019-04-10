@@ -170,7 +170,7 @@
             this.vehicle_ListView.TabIndex = 13;
             this.vehicle_ListView.UseCompatibleStateImageBehavior = false;
             this.vehicle_ListView.View = System.Windows.Forms.View.Details;
-            this.vehicle_ListView.SelectedIndexChanged += new System.EventHandler(this.vehicle_ListView_SelectedIndexChanged);
+            this.vehicle_ListView.SelectedIndexChanged += new System.EventHandler(this.Vehicle_ListView_SelectedIndexChanged);
             // 
             // vehicleID
             // 

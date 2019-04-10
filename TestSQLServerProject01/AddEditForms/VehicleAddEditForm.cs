@@ -62,7 +62,7 @@ namespace TestSQLServerProject01
             }
             catch (Exception )
             {
-                ErrorMessageClass.DisplayErrorMessage(402);
+                MessageClass.DisplayMessage(402);
             }
         }
 
@@ -95,10 +95,10 @@ namespace TestSQLServerProject01
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
-                MessageBox.Show(ex.Message);
-                ErrorMessageClass.DisplayErrorMessage(403);
+                //MessageBox.Show(ex.Message);
+                MessageClass.DisplayMessage(403);
                 this.Close();
                 this.Dispose();
             }
@@ -122,7 +122,7 @@ namespace TestSQLServerProject01
             }
             else
             {
-                ErrorMessageClass.DisplayErrorMessage(401);
+                MessageClass.DisplayMessage(401);
                 this.Close();
                 this.Dispose();
             }
@@ -174,17 +174,17 @@ namespace TestSQLServerProject01
                 catch (Exception)
                 {
                     if(current_mode == FormMode.add)
-                        ErrorMessageClass.DisplayErrorMessage(404);
+                        MessageClass.DisplayMessage(404);
                     else if (current_mode == FormMode.edit)
-                        ErrorMessageClass.DisplayErrorMessage(406);
+                        MessageClass.DisplayMessage(406);
                 }
             }
             else
             {
                 if(current_mode == FormMode.add)
-                    ErrorMessageClass.DisplayErrorMessage(405); //"You must enter name and choose vehicle type to add new vehicle", "Some data has been left unspecified"
+                    MessageClass.DisplayMessage(405); //"You must enter name and choose vehicle type to add new vehicle", "Some data has been left unspecified"
                 else if (current_mode == FormMode.edit)
-                    ErrorMessageClass.DisplayErrorMessage(415);
+                    MessageClass.DisplayMessage(415);
             }
             //}
             /*else if (this.current_mode == FormMode.edit)

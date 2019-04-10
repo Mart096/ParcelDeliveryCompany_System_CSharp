@@ -101,7 +101,7 @@ namespace TestSQLServerProject01
                 }
                 catch (Exception)
                 {
-                    ErrorMessageClass.DisplayErrorMessage(401);
+                    MessageClass.DisplayMessage(401);
                 }
             }
             LoadLocationList();

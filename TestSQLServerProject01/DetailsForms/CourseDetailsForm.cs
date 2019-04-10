@@ -30,8 +30,9 @@ namespace TestSQLServerProject01.DetailsForms
             InitializeComponent();
             MainWindowReference = mW;
             this.object_id = object_id;
-            courseConsignmentsManagement_panel.MainWindowReference = mW; 
-            courseConsignmentsManagement_panel.LoadItemList();
+            courseConsignmentsManagement_panel.MainWindowReference = mW;
+            courseConsignmentsManagement_panel.SetUserRole();
+            //courseConsignmentsManagement_panel.LoadItemList();
             courseConsignmentsManagement_panel.Item_id = object_id;
             courseConsignmentsManagement_panel.LoadItemList();
             Load_Item_Data(this.object_id);
@@ -66,10 +67,9 @@ namespace TestSQLServerProject01.DetailsForms
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
-                MessageBox.Show(ex.Message);
-                ErrorMessageClass.DisplayErrorMessage(6056);
+                MessageClass.DisplayMessage(1705);
                 this.Close();
                 this.Dispose();
             }

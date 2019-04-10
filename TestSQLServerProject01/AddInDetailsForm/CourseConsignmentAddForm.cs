@@ -64,7 +64,7 @@ namespace TestSQLServerProject01.AddInDetailsForm
             }
             catch (Exception)
             {
-                MessageBox.Show("Could not load consignments' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageClass.DisplayMessage(1701); 
                 this.Close();
                 this.Dispose();
             }
@@ -99,26 +99,26 @@ namespace TestSQLServerProject01.AddInDetailsForm
 
                         if (result == 0)
                         {
-                            MessageBox.Show("Failed to add selected consignment to course.\n" +
-                                "Make sure if consignment is not already added to the same course.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageClass.DisplayMessage(1702);
                         }
                         if (result == 1)
                         {
-                            MessageBox.Show("Consignment has been added to course successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageClass.DisplayMessage(1703); 
                         }
                     }
                 }
-                catch(Exception ex)
+                catch(Exception /*ex*/)
                 {
-                    MessageBox.Show(ex.Message);
-                    MessageBox.Show("Failed to add selected consignment to course. Error occured!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageClass.DisplayMessage(1704);
+                    
                 }
                 this.Close();
                 this.Dispose();
             }
             else
             {
-                MessageBox.Show("Not all data was specified! Check your input for missing information.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageClass.DisplayMessage(1112);
+                //MessageBox.Show("Not all data was specified! Check your input for missing information.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

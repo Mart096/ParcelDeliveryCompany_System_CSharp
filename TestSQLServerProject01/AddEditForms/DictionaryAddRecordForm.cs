@@ -106,7 +106,8 @@ namespace TestSQLServerProject01
             }
             catch
             {
-                MessageBox.Show("Could not load record's data to edit. Error occured!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Could not load record's data to edit. Error occured!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageClass.DisplayMessage(303);
                 this.Close();
                 this.Dispose();
             }
@@ -165,15 +166,15 @@ namespace TestSQLServerProject01
                         Int32 cmd_result = cmd.ExecuteNonQuery();
                         //connection.Close();
                     }
-                    catch (SqlException sqlex)
+                    catch (SqlException /*sqlex*/)
                     {
-                        MessageBox.Show(sqlex.Message);
-                        ErrorMessageClass.DisplayErrorMessage(302, sqlex);
+                        //MessageBox.Show(sqlex.Message);
+                        MessageClass.DisplayMessage(302);
                         connection.Close();
                     }
-                    catch (Exception ex)
+                    catch (Exception /*ex*/)
                     {
-                        ErrorMessageClass.DisplayErrorMessage(301, ex);
+                        MessageClass.DisplayMessage(301/*, ex*/);
                         connection.Close();
                     }
                 }
