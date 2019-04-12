@@ -1,4 +1,4 @@
-﻿namespace TestSQLServerProject01.DetailsForms
+﻿namespace ParcelDeliveryCompanyApplication.DetailsForms
 {
     partial class CourseDetailsForm
     {
@@ -40,8 +40,8 @@
             this.startPointID_textBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.endPointID_textbox = new System.Windows.Forms.TextBox();
-            this.courseConsignmentsManagement_panel = new TestSQLServerProject01.ManagementControls.CourseConsignmentsManagementControl();
-            this.parcelManagement_Controler = new TestSQLServerProject01.ParcelManagementControler();
+            this.courseConsignmentsManagement_panel = new ParcelDeliveryCompanyApplication.ManagementControls.CourseConsignmentsManagementControl();
+            this.parcelManagement_Controler = new ParcelDeliveryCompanyApplication.ParcelManagementControler();
             this.consignmentData_panel.SuspendLayout();
             this.SuspendLayout();
             // 

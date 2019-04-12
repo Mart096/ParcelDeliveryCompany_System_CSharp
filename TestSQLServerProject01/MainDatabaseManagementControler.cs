@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using ParcelDeliveryCompany_ClassLibrary1;
 using static ParcelDeliveryCompany_ClassLibrary1.UserClass;
 
-namespace TestSQLServerProject01
+namespace ParcelDeliveryCompanyApplication
 {
     public partial class MainDatabaseManagementControler : UserControl
     {// kontrolka przeznaczona dla administratorów bazy danych

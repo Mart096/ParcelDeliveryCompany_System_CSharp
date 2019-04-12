@@ -1,4 +1,4 @@
-﻿namespace TestSQLServerProject01
+﻿namespace ParcelDeliveryCompanyApplication
 {
     partial class MainDatabaseManagementControler
     {
@@ -41,17 +41,17 @@
             this.pickupAssignmentManagement_button = new System.Windows.Forms.Button();
             this.complaintManagement_button = new System.Windows.Forms.Button();
             this.display_panel = new System.Windows.Forms.Panel();
-            this.parcelManagementNew_panel = new TestSQLServerProject01.ManagementControls.ParcelManagementControl_New();
-            this.courierManagementNew_panel = new TestSQLServerProject01.ManagementControls.CourierManagementControl_New();
-            this.locationManagementNew_panel = new TestSQLServerProject01.ManagementControls.LocationManagementControl_New();
-            this.consignmentManagementNew_panel = new TestSQLServerProject01.ManagementControls.ConsignmentManagementControl_New();
-            this.orderManagementNew_panel = new TestSQLServerProject01.ManagementControls.OrderManagementControl_New();
-            this.vehicleManagementNew_panel = new TestSQLServerProject01.VehicleManagementControler_New();
-            this.complaintManagement_panel = new TestSQLServerProject01.ComplaintManagementControl();
-            this.pickupRequestManagement_panel = new TestSQLServerProject01.PickupRequestManagementControl();
-            this.courseManagementNew_panel = new TestSQLServerProject01.ManagementControls.CourseManagementControl_New();
-            this.customerManagement_panel = new TestSQLServerProject01.CustomerManagementControler();
-            this.dictionaryManagement_panel = new TestSQLServerProject01.DictionaryManagementControler();
+            this.parcelManagementNew_panel = new ParcelDeliveryCompanyApplication.ManagementControls.ParcelManagementControl_New();
+            this.courierManagementNew_panel = new ParcelDeliveryCompanyApplication.ManagementControls.CourierManagementControl_New();
+            this.locationManagementNew_panel = new ParcelDeliveryCompanyApplication.ManagementControls.LocationManagementControl_New();
+            this.consignmentManagementNew_panel = new ParcelDeliveryCompanyApplication.ManagementControls.ConsignmentManagementControl_New();
+            this.orderManagementNew_panel = new ParcelDeliveryCompanyApplication.ManagementControls.OrderManagementControl_New();
+            this.vehicleManagementNew_panel = new ParcelDeliveryCompanyApplication.VehicleManagementControler_New();
+            this.complaintManagement_panel = new ParcelDeliveryCompanyApplication.ComplaintManagementControl();
+            this.pickupRequestManagement_panel = new ParcelDeliveryCompanyApplication.PickupRequestManagementControl();
+            this.courseManagementNew_panel = new ParcelDeliveryCompanyApplication.ManagementControls.CourseManagementControl_New();
+            this.customerManagement_panel = new ParcelDeliveryCompanyApplication.CustomerManagementControler();
+            this.dictionaryManagement_panel = new ParcelDeliveryCompanyApplication.DictionaryManagementControler();
             menu_panel1 = new System.Windows.Forms.FlowLayoutPanel();
             menu_panel1.SuspendLayout();
             this.display_panel.SuspendLayout();

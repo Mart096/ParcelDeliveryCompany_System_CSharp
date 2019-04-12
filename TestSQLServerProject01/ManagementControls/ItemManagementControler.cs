@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using ParcelDeliveryCompany_ClassLibrary1;
 
-namespace TestSQLServerProject01
+namespace ParcelDeliveryCompanyApplication
 {
     [TypeDescriptionProvider(typeof(AbstractControlDescriptionProvider<ItemManagementControler, UserControl>))]// rozwiązanie stosowane w celu umożliwienia tworzenia kontrolek abstrakcyjnych bez nadmiarowych pośredników (tzw. middlecontrol).
     public partial class ItemManagementControler : UserControl

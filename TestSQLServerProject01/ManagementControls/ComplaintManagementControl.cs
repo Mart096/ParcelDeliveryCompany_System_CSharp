@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ParcelDeliveryCompany_ClassLibrary1;
 
-namespace TestSQLServerProject01
+namespace ParcelDeliveryCompanyApplication
 {
     public partial class ComplaintManagementControl : ItemManagementControler
     {

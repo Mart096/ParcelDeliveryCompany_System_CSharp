@@ -1,4 +1,4 @@
-﻿namespace TestSQLServerProject01
+﻿namespace ParcelDeliveryCompanyApplication
 {
     partial class ConsignmentDetailsForm
     {
@@ -51,8 +51,8 @@
             this.idColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label7 = new System.Windows.Forms.Label();
-            this.parcelManagement_Controler = new TestSQLServerProject01.ParcelManagementControler();
-            this.consignmentParcelManagement_panel = new TestSQLServerProject01.ManagementControls.ConsignmentParcelManagementControl();
+            this.parcelManagement_Controler = new ParcelDeliveryCompanyApplication.ParcelManagementControler();
+            this.consignmentParcelManagement_panel = new ParcelDeliveryCompanyApplication.ManagementControls.ConsignmentParcelManagementControl();
             this.consignmentData_panel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();

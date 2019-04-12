@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TestSQLServerProject01.Properties
+namespace ParcelDeliveryCompanyApplication.Properties
 {
 
 

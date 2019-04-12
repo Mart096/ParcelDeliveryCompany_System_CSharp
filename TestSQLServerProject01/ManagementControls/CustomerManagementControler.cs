@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 using ParcelDeliveryCompany_ClassLibrary1;
 using static ParcelDeliveryCompany_ClassLibrary1.UserClass;
 
-namespace TestSQLServerProject01
+namespace ParcelDeliveryCompanyApplication
 {
     public partial class CustomerManagementControler : UserControl
     {

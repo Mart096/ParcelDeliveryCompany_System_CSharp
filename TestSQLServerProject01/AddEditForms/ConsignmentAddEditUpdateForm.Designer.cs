@@ -1,4 +1,4 @@
-﻿namespace TestSQLServerProject01
+﻿namespace ParcelDeliveryCompanyApplication
 {
     partial class ConsignmentAddEditUpdateForm
     {
@@ -64,7 +64,7 @@
             this.pickupMethod_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.customerAddEdit_controler = new TestSQLServerProject01.CustomerAddEditControler();
+            this.customerAddEdit_controler = new ParcelDeliveryCompanyApplication.CustomerAddEditControler();
             this.panel1.SuspendLayout();
             this.consigneeListView_panel.SuspendLayout();
             this.SuspendLayout();

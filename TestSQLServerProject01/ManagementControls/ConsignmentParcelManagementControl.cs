@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using ParcelDeliveryCompany_ClassLibrary1;
 
-namespace TestSQLServerProject01.ManagementControls
+namespace ParcelDeliveryCompanyApplication.ManagementControls
 {
     public partial class ConsignmentParcelManagementControl : ParcelManagementControl_New
     {

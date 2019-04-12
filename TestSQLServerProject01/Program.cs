@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TestSQLServerProject01
+namespace ParcelDeliveryCompanyApplication
 {
     static class Program
     {
