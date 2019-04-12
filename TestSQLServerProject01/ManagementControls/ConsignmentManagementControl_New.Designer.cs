@@ -1,4 +1,4 @@
-﻿namespace TestSQLServerProject01.ManagementControls
+﻿namespace ParcelDeliveryCompanyApplication.ManagementControls
 {
     partial class ConsignmentManagementControl_New
     {

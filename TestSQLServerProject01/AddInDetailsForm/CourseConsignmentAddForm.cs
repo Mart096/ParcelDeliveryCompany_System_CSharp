@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace TestSQLServerProject01.AddInDetailsForm
+namespace ParcelDeliveryCompanyApplication.AddInDetailsForm
 {
     public partial class CourseConsignmentAddForm : Form
     {

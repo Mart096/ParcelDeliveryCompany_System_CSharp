@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using TestSQLServerProject01.AddInDetailsForm;
+using ParcelDeliveryCompanyApplication.AddInDetailsForm;
 using TestGmapProject01;
 using ParcelDeliveryCompany_ClassLibrary1;
 
-namespace TestSQLServerProject01.ManagementControls
+namespace ParcelDeliveryCompanyApplication.ManagementControls
 {
     public partial class CourseConsignmentsManagementControl : ConsignmentManagementControl_New
     {

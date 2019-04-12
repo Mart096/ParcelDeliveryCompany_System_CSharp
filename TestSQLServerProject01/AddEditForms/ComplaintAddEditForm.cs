@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using ParcelDeliveryCompany_ClassLibrary1;
 
-namespace TestSQLServerProject01
+namespace ParcelDeliveryCompanyApplication
 {
     public partial class ComplaintAddEditForm : Form
     {

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using ParcelDeliveryCompany_ClassLibrary1;
 using System.Data.SqlClient;
 
-namespace TestSQLServerProject01
+namespace ParcelDeliveryCompanyApplication
 {
     public partial class LocationManagementControl : UserControl
     {

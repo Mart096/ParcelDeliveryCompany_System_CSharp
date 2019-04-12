@@ -1,4 +1,4 @@
-﻿namespace TestSQLServerProject01
+﻿namespace ParcelDeliveryCompanyApplication
 {
     partial class VehicleManagementControl
     {

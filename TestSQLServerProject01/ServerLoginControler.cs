@@ -16,7 +16,7 @@ using System.Xml.Linq;
 using ParcelDeliveryCompany_ClassLibrary1;
 using Microsoft.SqlServer.Server;
 
-namespace TestSQLServerProject01
+namespace ParcelDeliveryCompanyApplication
 {
     public partial class ServerLoginControler : UserControl
     {

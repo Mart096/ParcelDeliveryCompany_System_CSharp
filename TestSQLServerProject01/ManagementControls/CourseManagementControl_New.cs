@@ -8,10 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ParcelDeliveryCompany_ClassLibrary1;
-using TestSQLServerProject01.DetailsForms;
+using ParcelDeliveryCompanyApplication.DetailsForms;
 using System.Data.SqlClient;
 
-namespace TestSQLServerProject01.ManagementControls
+namespace ParcelDeliveryCompanyApplication.ManagementControls
 {
     public partial class CourseManagementControl_New : ItemManagementControler
     {

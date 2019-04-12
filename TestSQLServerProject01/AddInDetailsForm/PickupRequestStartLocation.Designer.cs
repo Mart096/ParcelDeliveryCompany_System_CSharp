@@ -1,4 +1,4 @@
-﻿namespace TestSQLServerProject01.AddInDetailsForm
+﻿namespace ParcelDeliveryCompanyApplication.AddInDetailsForm
 {
     partial class PickupRequestStartLocation
     {

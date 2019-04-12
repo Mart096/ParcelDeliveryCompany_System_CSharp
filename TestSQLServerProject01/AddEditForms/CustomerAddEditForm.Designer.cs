@@ -1,4 +1,4 @@
-﻿namespace TestSQLServerProject01
+﻿namespace ParcelDeliveryCompanyApplication
 {
     partial class CustomerAddEditForm
     {
@@ -30,7 +30,7 @@
         {
             this.cancel_button = new System.Windows.Forms.Button();
             this.accept_button = new System.Windows.Forms.Button();
-            this.customerAddEdit_Controler = new TestSQLServerProject01.CustomerAddEditControler();
+            this.customerAddEdit_Controler = new ParcelDeliveryCompanyApplication.CustomerAddEditControler();
             this.SuspendLayout();
             // 
             // cancel_button
