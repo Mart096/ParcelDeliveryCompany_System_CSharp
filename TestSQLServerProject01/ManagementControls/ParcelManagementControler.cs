@@ -12,7 +12,7 @@ using ParcelDeliveryCompany_ClassLibrary1;
 
 namespace ParcelDeliveryCompanyApplication
 {
-    public partial class ParcelManagementControler : UserControl
+    public partial class ParcelManagementControler : UserControl //kontrolka została zachowana, ponieważ posiada potomka ConsignmentParcelManagementControl
     {
         int consignment_id=0;
         private UserClass mainW;
