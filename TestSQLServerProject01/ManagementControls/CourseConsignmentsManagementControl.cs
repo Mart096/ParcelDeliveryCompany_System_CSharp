@@ -154,7 +154,7 @@ namespace ParcelDeliveryCompanyApplication.ManagementControls
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException /*ex*/)
             {
                 //ErrorMessageClass.DisplayErrorMessage(411);
                 MessageClass.DisplayMessage(1710);
