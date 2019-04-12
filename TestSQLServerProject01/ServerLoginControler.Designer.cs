@@ -34,7 +34,6 @@
             this.ipBox = new System.Windows.Forms.TextBox();
             this.passwordBox = new System.Windows.Forms.TextBox();
             this.connectButton1 = new System.Windows.Forms.Button();
-            this.testConnectionButton1 = new System.Windows.Forms.Button();
             this.databaseBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.userLoginBox = new System.Windows.Forms.TextBox();
@@ -102,16 +101,6 @@
             this.connectButton1.Text = "Connect";
             this.connectButton1.UseVisualStyleBackColor = true;
             this.connectButton1.Click += new System.EventHandler(this.ConnectButton1_Click);
-            // 
-            // testConnectionButton1
-            // 
-            this.testConnectionButton1.Location = new System.Drawing.Point(153, 130);
-            this.testConnectionButton1.Name = "testConnectionButton1";
-            this.testConnectionButton1.Size = new System.Drawing.Size(90, 23);
-            this.testConnectionButton1.TabIndex = 7;
-            this.testConnectionButton1.Text = "Test connect";
-            this.testConnectionButton1.UseVisualStyleBackColor = true;
-            this.testConnectionButton1.Click += new System.EventHandler(this.TestConnectionButton1_Click);
             // 
             // databaseBox
             // 
@@ -184,7 +173,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.databaseBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.testConnectionButton1);
             this.Controls.Add(this.connectButton1);
             this.Controls.Add(this.passwordBox);
             this.Controls.Add(this.ipBox);
@@ -207,7 +195,6 @@
         private System.Windows.Forms.TextBox ipBox;
         private System.Windows.Forms.TextBox passwordBox;
         private System.Windows.Forms.Button connectButton1;
-        private System.Windows.Forms.Button testConnectionButton1;
         private System.Windows.Forms.TextBox databaseBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox userLoginBox;
