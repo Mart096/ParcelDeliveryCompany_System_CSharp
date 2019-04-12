@@ -204,7 +204,7 @@ namespace ParcelDeliveryCompanyApplication
                 userLoginBox.ReadOnly = false;
                 passwordBox.ReadOnly = false;
                 connectButton1.Enabled = true;
-                testConnectionButton1.Enabled = true;
+                //testConnectionButton1.Enabled = true;
             }
             else if (buttons_mode == ButtonsEnabled.disabled)
             {
@@ -214,7 +214,7 @@ namespace ParcelDeliveryCompanyApplication
                 userLoginBox.ReadOnly = true;
                 passwordBox.ReadOnly = true;
                 connectButton1.Enabled = false;
-                testConnectionButton1.Enabled = false;
+                //testConnectionButton1.Enabled = false;
             }
         }
 
