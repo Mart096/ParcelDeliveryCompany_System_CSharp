@@ -177,7 +177,8 @@ namespace ParcelDeliveryCompanyApplication
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //AboutForm about_form = new AboutForm();
+            AboutForm about_form = new AboutForm();
+            about_form.ShowDialog();
         }
     }
 }
