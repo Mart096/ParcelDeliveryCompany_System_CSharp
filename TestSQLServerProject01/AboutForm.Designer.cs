@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.close_button = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.licenseRichTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // close_button
@@ -42,15 +42,15 @@
             this.close_button.UseVisualStyleBackColor = true;
             this.close_button.Click += new System.EventHandler(this.Close_button_Click);
             // 
-            // richTextBox1
+            // licenseRichTextBox
             // 
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextBox1.Location = new System.Drawing.Point(12, 12);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(527, 252);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.licenseRichTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.licenseRichTextBox.Location = new System.Drawing.Point(12, 12);
+            this.licenseRichTextBox.Name = "licenseRichTextBox";
+            this.licenseRichTextBox.ReadOnly = true;
+            this.licenseRichTextBox.Size = new System.Drawing.Size(527, 252);
+            this.licenseRichTextBox.TabIndex = 0;
+            this.licenseRichTextBox.Text = "";
             // 
             // AboutForm
             // 
@@ -58,7 +58,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(551, 305);
             this.ControlBox = false;
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.licenseRichTextBox);
             this.Controls.Add(this.close_button);
             this.Name = "AboutForm";
             this.Text = "About";
@@ -69,6 +69,6 @@
         #endregion
 
         private System.Windows.Forms.Button close_button;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox licenseRichTextBox;
     }
 }
