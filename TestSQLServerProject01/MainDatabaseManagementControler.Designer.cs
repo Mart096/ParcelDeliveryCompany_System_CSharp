@@ -114,7 +114,7 @@
             this.locationManagement_button.Location = new System.Drawing.Point(3, 159);
             this.locationManagement_button.Name = "locationManagement_button";
             this.locationManagement_button.Size = new System.Drawing.Size(108, 46);
-            this.locationManagement_button.TabIndex = 8;
+            this.locationManagement_button.TabIndex = 3;
             this.locationManagement_button.Text = "Locations management";
             this.locationManagement_button.UseVisualStyleBackColor = true;
             this.locationManagement_button.Click += new System.EventHandler(this.LocationManagement_button_Click);
@@ -124,7 +124,7 @@
             this.customerManagement_button.Location = new System.Drawing.Point(3, 211);
             this.customerManagement_button.Name = "customerManagement_button";
             this.customerManagement_button.Size = new System.Drawing.Size(108, 46);
-            this.customerManagement_button.TabIndex = 5;
+            this.customerManagement_button.TabIndex = 4;
             this.customerManagement_button.Text = "Customers management";
             this.customerManagement_button.UseVisualStyleBackColor = true;
             this.customerManagement_button.Click += new System.EventHandler(this.CustomerManagement_button_Click);
@@ -134,7 +134,7 @@
             this.orderManagement_button.Location = new System.Drawing.Point(3, 263);
             this.orderManagement_button.Name = "orderManagement_button";
             this.orderManagement_button.Size = new System.Drawing.Size(108, 46);
-            this.orderManagement_button.TabIndex = 3;
+            this.orderManagement_button.TabIndex = 5;
             this.orderManagement_button.Text = "Orders management";
             this.orderManagement_button.UseVisualStyleBackColor = true;
             this.orderManagement_button.Click += new System.EventHandler(this.OrderManagement_button_Click);
@@ -144,7 +144,7 @@
             this.consignmentManagement_button.Location = new System.Drawing.Point(3, 315);
             this.consignmentManagement_button.Name = "consignmentManagement_button";
             this.consignmentManagement_button.Size = new System.Drawing.Size(108, 46);
-            this.consignmentManagement_button.TabIndex = 7;
+            this.consignmentManagement_button.TabIndex = 6;
             this.consignmentManagement_button.Text = "Consignments management";
             this.consignmentManagement_button.UseVisualStyleBackColor = true;
             this.consignmentManagement_button.Click += new System.EventHandler(this.ConsignmentManagement_button_Click);
@@ -154,7 +154,7 @@
             this.parcelManagement_button.Location = new System.Drawing.Point(3, 367);
             this.parcelManagement_button.Name = "parcelManagement_button";
             this.parcelManagement_button.Size = new System.Drawing.Size(108, 46);
-            this.parcelManagement_button.TabIndex = 9;
+            this.parcelManagement_button.TabIndex = 7;
             this.parcelManagement_button.Text = "Parcels management";
             this.parcelManagement_button.UseVisualStyleBackColor = true;
             this.parcelManagement_button.Click += new System.EventHandler(this.ParcelManagement_button_Click);
@@ -164,7 +164,7 @@
             this.courseManagement_button.Location = new System.Drawing.Point(3, 419);
             this.courseManagement_button.Name = "courseManagement_button";
             this.courseManagement_button.Size = new System.Drawing.Size(108, 46);
-            this.courseManagement_button.TabIndex = 10;
+            this.courseManagement_button.TabIndex = 8;
             this.courseManagement_button.Text = "Courses management";
             this.courseManagement_button.UseVisualStyleBackColor = true;
             this.courseManagement_button.Click += new System.EventHandler(this.CourseManagement_button_Click);
@@ -174,7 +174,7 @@
             this.pickupAssignmentManagement_button.Location = new System.Drawing.Point(3, 471);
             this.pickupAssignmentManagement_button.Name = "pickupAssignmentManagement_button";
             this.pickupAssignmentManagement_button.Size = new System.Drawing.Size(108, 46);
-            this.pickupAssignmentManagement_button.TabIndex = 4;
+            this.pickupAssignmentManagement_button.TabIndex = 9;
             this.pickupAssignmentManagement_button.Text = "Pickup requests management";
             this.pickupAssignmentManagement_button.UseVisualStyleBackColor = true;
             this.pickupAssignmentManagement_button.Click += new System.EventHandler(this.PickupAssignmentManagement_button_Click);
@@ -184,7 +184,7 @@
             this.complaintManagement_button.Location = new System.Drawing.Point(3, 523);
             this.complaintManagement_button.Name = "complaintManagement_button";
             this.complaintManagement_button.Size = new System.Drawing.Size(108, 46);
-            this.complaintManagement_button.TabIndex = 6;
+            this.complaintManagement_button.TabIndex = 10;
             this.complaintManagement_button.Text = "Complaint management";
             this.complaintManagement_button.UseVisualStyleBackColor = true;
             this.complaintManagement_button.Click += new System.EventHandler(this.ComplaintManagement_button_Click);
