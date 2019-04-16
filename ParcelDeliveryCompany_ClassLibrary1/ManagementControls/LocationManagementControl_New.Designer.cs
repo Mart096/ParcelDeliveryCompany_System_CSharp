@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.locationTypeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.idColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cityColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.streetColumnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.houseNumberColumnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -43,6 +44,7 @@
             // item_ListView
             // 
             this.item_ListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.idColumn,
             this.locationTypeColumn,
             this.cityColumn,
             this.streetColumnHeader1,
@@ -70,6 +72,10 @@
             // 
             this.locationTypeColumn.Text = "Location type";
             this.locationTypeColumn.Width = 86;
+            // 
+            // idColumn
+            // 
+            this.idColumn.Text = "ID";
             // 
             // cityColumn
             // 
@@ -102,6 +108,7 @@
         #endregion
 
         private System.Windows.Forms.ColumnHeader locationTypeColumn;
+        private System.Windows.Forms.ColumnHeader idColumn;
         private System.Windows.Forms.ColumnHeader cityColumn;
         private System.Windows.Forms.ColumnHeader streetColumnHeader1;
         private System.Windows.Forms.ColumnHeader houseNumberColumnHeader1;
