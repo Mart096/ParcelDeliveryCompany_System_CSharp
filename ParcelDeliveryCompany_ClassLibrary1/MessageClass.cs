@@ -628,6 +628,10 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             {
                 return MessageBox.Show("Are you sure you want to remove this parcel?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
+            else if (message_code == 1411)
+            {
+                return MessageBox.Show("Attention! This is the last parcel assigned to this consignment. Removing this parcel will result in removal of consignment and most likely the order as well. Are you sure you want to remove this parcel?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            }
             else if (message_code == 1614)
             {
                 return MessageBox.Show("Are you sure you want to change state of this complaint?", "Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

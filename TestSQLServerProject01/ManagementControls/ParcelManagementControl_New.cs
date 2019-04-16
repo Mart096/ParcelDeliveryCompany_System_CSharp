@@ -61,7 +61,11 @@ namespace ParcelDeliveryCompanyApplication.ManagementControls
             UserRole user = (UserRole)MainWindowReference.Current_role;
             base.SetUserRole(/*user_role*/);
 
-            if (user == UserRole.CustomerContact)
+            if (user == UserRole.Admin)
+            {
+                removeItem_button.Visible = false; //zablokowano tą funkcjonalność ze względu na ryzyko usunięcia przesyłki i zlecenia. paczkę nadal można usunąć w oknie szczegółów zlecenia.
+            }
+            else if (user == UserRole.CustomerContact)
             {
                 
             }

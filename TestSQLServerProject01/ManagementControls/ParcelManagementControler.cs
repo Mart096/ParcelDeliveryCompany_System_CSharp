@@ -49,24 +49,39 @@ namespace ParcelDeliveryCompanyApplication
         {
             if (parcel_listView.SelectedItems.Count == 1)
             {
-                DialogResult dlg_result = MessageClass.DisplayMessage(1410, ""); //MessageBox.Show("Are you sure you want to remove this parcel?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult dlg_result;
+                /*if (parcel_listView.Items.Count == 1)
+                {*/
+                    dlg_result = MessageClass.DisplayMessage(1410, ""); //MessageBox.Show("Are you sure you want to remove this parcel?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                /*}
+                else
+                {
+                    dlg_result = MessageClass.DisplayMessage(1410, ""); //MessageBox.Show("Are you sure you want to remove this parcel?", "Attention", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                }*/
+                
                 if (dlg_result == DialogResult.Yes)
                 {
                     try
                     {
                         int id_to_remove = Convert.ToInt32(parcel_listView.SelectedItems[0].Text);
+                        string command1 = "DELETE FROM Cecha_paczki WHERE Id_paczki=@parcel_id";
+                        string command2 = "DELETE FROM Paczka WHERE Id_paczki=@parcel_id";
                         using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
-                        using (SqlCommand command = new SqlCommand("DELETE FROM Paczka WHERE Id_paczki=@parcel_id", connection))
+                        using (SqlCommand command = new SqlCommand(command1, connection))
                         {
                             command.Parameters.Add("@parcel_id", SqlDbType.Int);
                             command.Parameters["@parcel_id"].Value = id_to_remove;
 
                             connection.Open();
-                            int result = command.ExecuteNonQuery();
+                            int result1 = command.ExecuteNonQuery(); // usuwanie cech paczki
 
-                            if (result != 1)
+                            command.CommandText = command2;
+
+                            int result2 = command.ExecuteNonQuery();
+
+                            if (result2 != 1)
                                 MessageClass.DisplayMessage(1408); //MessageBox.Show("Failed to remove selected parcel! Check if parcel has assigned properties.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            else if (result == 1)
+                            else if (result2 == 1)
                                 MessageClass.DisplayMessage(1409); //MessageBox.Show("Parcel removed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }

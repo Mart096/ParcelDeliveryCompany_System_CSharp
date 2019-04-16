@@ -43,6 +43,56 @@ namespace ParcelDeliveryCompanyApplication.ManagementControls
             LoadItemList();
         }
 
+        protected override void RemoveItem_button_Click(object sender, EventArgs e)
+        {
+            if (item_ListView.SelectedItems.Count == 1)
+            {
+                DialogResult dlg_result;
+                if (item_ListView.Items.Count == 1)
+                {
+                    dlg_result = MessageClass.DisplayMessage(1411, ""); //ZAGROŻENIE USUNIĘCIA PRZESYŁKI
+                }
+                else
+                {
+                    dlg_result = MessageClass.DisplayMessage(1410, ""); 
+                }
+
+                if (dlg_result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        int id_to_remove = Convert.ToInt32(item_ListView.SelectedItems[0].Text);
+                        string command1 = "DELETE FROM Cecha_paczki WHERE Id_paczki=@parcel_id";
+                        string command2 = "DELETE FROM Paczka WHERE Id_paczki=@parcel_id";
+                        using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
+                        using (SqlCommand command = new SqlCommand(command1, connection))
+                        {
+                            command.Parameters.Add("@parcel_id", SqlDbType.Int);
+                            command.Parameters["@parcel_id"].Value = id_to_remove;
+
+                            connection.Open();
+                            int result1 = command.ExecuteNonQuery(); // usuwanie cech paczki
+
+                            command.CommandText = command2;
+
+                            int result2 = command.ExecuteNonQuery();
+
+                            if (result2 != 1)
+                                MessageClass.DisplayMessage(1408); //MessageBox.Show("Failed to remove selected parcel! Check if parcel has assigned properties.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            else if (result2 == 1)
+                                MessageClass.DisplayMessage(1409); //MessageBox.Show("Parcel removed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        MessageClass.DisplayMessage(1407); //MessageBox.Show("Error occured during an attempt to remove selected parcel! .", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    LoadItemList();
+                }
+            }
+        }
+
         internal override void LoadItemList()
         {
             item_ListView.Items.Clear();
@@ -93,7 +143,11 @@ namespace ParcelDeliveryCompanyApplication.ManagementControls
             UserRole user = (UserRole)MainWindowReference.Current_role;
             base.SetUserRole(/*user_role*/);
 
-            if (user == UserRole.CustomerContact)
+            if (user == UserRole.Admin)
+            {
+                removeItem_button.Visible = true;
+            }
+            else if (user == UserRole.CustomerContact)
             {
                 refreshList_button.Enabled = true;
                 refreshList_button.Visible = true;
