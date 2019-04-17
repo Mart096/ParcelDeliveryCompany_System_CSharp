@@ -60,6 +60,12 @@
     <Compile Include="AboutForm.Designer.cs">
       <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddEditForms\CityAddRecordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\CityAddRecordForm.Designer.cs">
+      <DependentUpon>CityAddRecordForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddEditForms\ComplaintAddEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -304,6 +310,9 @@
     </Compile>
     <EmbeddedResource Include="AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\CityAddRecordForm.resx">
+      <DependentUpon>CityAddRecordForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddEditForms\ComplaintAddEditForm.resx">
       <DependentUpon>ComplaintAddEditForm.cs</DependentUpon>

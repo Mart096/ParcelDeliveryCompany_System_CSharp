@@ -53,6 +53,7 @@
             this.search_textBox = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.dictionaryColumns_listbox = new System.Windows.Forms.ListBox();
+            this.city_button = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -72,7 +73,7 @@
             this.dictionary_listView.TabIndex = 0;
             this.dictionary_listView.UseCompatibleStateImageBehavior = false;
             this.dictionary_listView.View = System.Windows.Forms.View.Details;
-            this.dictionary_listView.SelectedIndexChanged += new System.EventHandler(this.dictionary_listView_SelectedIndexChanged);
+            this.dictionary_listView.SelectedIndexChanged += new System.EventHandler(this.Dictionary_listView_SelectedIndexChanged);
             // 
             // idColumn
             // 
@@ -101,6 +102,7 @@
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Controls.Add(this.vehicleType_button);
             this.flowLayoutPanel1.Controls.Add(this.area__button);
+            this.flowLayoutPanel1.Controls.Add(this.city_button);
             this.flowLayoutPanel1.Controls.Add(this.locationType__button);
             this.flowLayoutPanel1.Controls.Add(this.weightCategory_button);
             this.flowLayoutPanel1.Controls.Add(this.sizeCategory_button);
@@ -127,7 +129,7 @@
             // 
             // locationType__button
             // 
-            this.locationType__button.Location = new System.Drawing.Point(3, 91);
+            this.locationType__button.Location = new System.Drawing.Point(3, 135);
             this.locationType__button.Name = "locationType__button";
             this.locationType__button.Size = new System.Drawing.Size(97, 38);
             this.locationType__button.TabIndex = 3;
@@ -137,7 +139,7 @@
             // 
             // weightCategory_button
             // 
-            this.weightCategory_button.Location = new System.Drawing.Point(3, 135);
+            this.weightCategory_button.Location = new System.Drawing.Point(3, 179);
             this.weightCategory_button.Name = "weightCategory_button";
             this.weightCategory_button.Size = new System.Drawing.Size(97, 38);
             this.weightCategory_button.TabIndex = 4;
@@ -147,7 +149,7 @@
             // 
             // sizeCategory_button
             // 
-            this.sizeCategory_button.Location = new System.Drawing.Point(3, 179);
+            this.sizeCategory_button.Location = new System.Drawing.Point(3, 223);
             this.sizeCategory_button.Name = "sizeCategory_button";
             this.sizeCategory_button.Size = new System.Drawing.Size(97, 38);
             this.sizeCategory_button.TabIndex = 5;
@@ -157,7 +159,7 @@
             // 
             // properties_button
             // 
-            this.properties_button.Location = new System.Drawing.Point(3, 223);
+            this.properties_button.Location = new System.Drawing.Point(3, 267);
             this.properties_button.Name = "properties_button";
             this.properties_button.Size = new System.Drawing.Size(97, 38);
             this.properties_button.TabIndex = 6;
@@ -167,7 +169,7 @@
             // 
             // pickupState_button
             // 
-            this.pickupState_button.Location = new System.Drawing.Point(3, 267);
+            this.pickupState_button.Location = new System.Drawing.Point(3, 311);
             this.pickupState_button.Name = "pickupState_button";
             this.pickupState_button.Size = new System.Drawing.Size(97, 38);
             this.pickupState_button.TabIndex = 7;
@@ -177,7 +179,7 @@
             // 
             // pickupMethod_button
             // 
-            this.pickupMethod_button.Location = new System.Drawing.Point(3, 311);
+            this.pickupMethod_button.Location = new System.Drawing.Point(3, 355);
             this.pickupMethod_button.Name = "pickupMethod_button";
             this.pickupMethod_button.Size = new System.Drawing.Size(97, 38);
             this.pickupMethod_button.TabIndex = 8;
@@ -187,7 +189,7 @@
             // 
             // consignmentType_button
             // 
-            this.consignmentType_button.Location = new System.Drawing.Point(3, 355);
+            this.consignmentType_button.Location = new System.Drawing.Point(3, 399);
             this.consignmentType_button.Name = "consignmentType_button";
             this.consignmentType_button.Size = new System.Drawing.Size(97, 38);
             this.consignmentType_button.TabIndex = 9;
@@ -197,7 +199,7 @@
             // 
             // pickupRequestState_button
             // 
-            this.pickupRequestState_button.Location = new System.Drawing.Point(3, 399);
+            this.pickupRequestState_button.Location = new System.Drawing.Point(3, 443);
             this.pickupRequestState_button.Name = "pickupRequestState_button";
             this.pickupRequestState_button.Size = new System.Drawing.Size(97, 38);
             this.pickupRequestState_button.TabIndex = 10;
@@ -207,7 +209,7 @@
             // 
             // complaintReportState_button
             // 
-            this.complaintReportState_button.Location = new System.Drawing.Point(3, 443);
+            this.complaintReportState_button.Location = new System.Drawing.Point(3, 487);
             this.complaintReportState_button.Name = "complaintReportState_button";
             this.complaintReportState_button.Size = new System.Drawing.Size(97, 38);
             this.complaintReportState_button.TabIndex = 11;
@@ -244,7 +246,7 @@
             this.editRecord_button.TabIndex = 6;
             this.editRecord_button.Text = "Edit selected record";
             this.editRecord_button.UseVisualStyleBackColor = true;
-            this.editRecord_button.Click += new System.EventHandler(this.editRecord_button_Click);
+            this.editRecord_button.Click += new System.EventHandler(this.EditRecord_button_Click);
             // 
             // refresh_button
             // 
@@ -326,6 +328,16 @@
             this.dictionaryColumns_listbox.TabIndex = 12;
             this.dictionaryColumns_listbox.SelectedIndexChanged += new System.EventHandler(this.DictionaryColumns_listbox_SelectedIndexChanged);
             // 
+            // city_button
+            // 
+            this.city_button.Location = new System.Drawing.Point(3, 91);
+            this.city_button.Name = "city_button";
+            this.city_button.Size = new System.Drawing.Size(97, 38);
+            this.city_button.TabIndex = 12;
+            this.city_button.Text = "City";
+            this.city_button.UseVisualStyleBackColor = true;
+            this.city_button.Click += new System.EventHandler(this.City_button_Click);
+            // 
             // DictionaryManagementControler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -375,5 +387,6 @@
         private System.Windows.Forms.TextBox search_textBox;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ListBox dictionaryColumns_listbox;
+        private System.Windows.Forms.Button city_button;
     }
 }

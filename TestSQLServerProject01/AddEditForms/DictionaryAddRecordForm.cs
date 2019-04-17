@@ -38,7 +38,8 @@ namespace ParcelDeliveryCompanyApplication
             pickup_method = 8,
             consignment_type = 9,
             pickup_request_state = 10,
-            complaint_report_state = 11
+            complaint_report_state = 11,
+            city = 12
         };
 
         public DictionaryAddRecordForm()
@@ -91,6 +92,7 @@ namespace ParcelDeliveryCompanyApplication
                     else if (selected_dictionary == (int)DictionariesNames.consignment_type) query_string = "SELECT Typ_przesylki FROM Typ_przesylki WHERE Id_typu_przesylki = @Nazwa";
                     else if (selected_dictionary == (int)DictionariesNames.pickup_request_state) query_string = "SELECT Stan_zgloszenia_odbioru FROM Stan_zgloszenia_odbioru WHERE Id_stanu_zgloszenia_odbioru = @Nazwa";
                     else if (selected_dictionary == (int)DictionariesNames.complaint_report_state) query_string = "SELECT Stan_reklamacji FROM Stan_reklamacji WHERE Id_stanu_reklamacji = @Nazwa";
+                    //else if (selected_dictionary == (int)DictionariesNames.city) query_string = "SELECT Nazwa_miasta, Strefa FROM Miasto WHERE Id_miasta = @Nazwa";
 
                     using (SqlCommand cmd = new SqlCommand(query_string, connection))
                     {

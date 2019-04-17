@@ -77,9 +77,9 @@ namespace ParcelDeliveryCompanyApplication.ManagementControls
 
                             int result2 = command.ExecuteNonQuery();
 
-                            if (result2 != 1)
+                            if (result2 != 0)
                                 MessageClass.DisplayMessage(1408); //MessageBox.Show("Failed to remove selected parcel! Check if parcel has assigned properties.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            else if (result2 == 1)
+                            else if (result2 == 0)
                                 MessageClass.DisplayMessage(1409); //MessageBox.Show("Parcel removed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }

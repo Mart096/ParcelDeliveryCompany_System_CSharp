@@ -717,7 +717,10 @@ namespace TestGmapProject01
             startPoint_to_add.Lat = gMapControl1.Position.Lat; startPoint_to_add.Lng = gMapControl1.Position.Lng;
 
             gMapControl1.SetPositionByKeywords(endPlaceKeywords);
-            endPoint_to_add.Lat = gMapControl1.Position.Lat; startPoint_to_add.Lng = gMapControl1.Position.Lng;
+            endPoint_to_add.Lat = gMapControl1.Position.Lat; endPoint_to_add.Lng = gMapControl1.Position.Lng;
+
+            point_list1.Add(startPoint_to_add);
+            point_list1.Add(endPoint_to_add);
 
             GMap.NET.WindowsForms.GMapMarker marker1 =
                 new GMap.NET.WindowsForms.Markers.GMarkerGoogle(
@@ -741,9 +744,9 @@ namespace TestGmapProject01
                 }
             }
 
-            string[] tempString1 = { next_id.ToString(), "-", marker1.Position.Lat.ToString(), marker1.Position.Lng.ToString() };
+            string[] tempString1 = { next_id.ToString(), "Start point", marker1.Position.Lat.ToString(), marker1.Position.Lng.ToString() };
             next_id += 1;
-            string[] tempString2 = { next_id.ToString(), "-", marker2.Position.Lat.ToString(), marker2.Position.Lng.ToString() };
+            string[] tempString2 = { next_id.ToString(), "End point", marker2.Position.Lat.ToString(), marker2.Position.Lng.ToString() };
             markersList1.Items.Add(new ListViewItem(tempString1)); //dodanie informacji o markerze do listy
             markersList1.Items.Add(new ListViewItem(tempString2)); //dodanie informacji o markerze do listy
 

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using ParcelDeliveryCompany_ClassLibrary1;
+using TestSQLServerProject01.AddEditForms;
 
 namespace ParcelDeliveryCompanyApplication
 {
@@ -40,7 +41,8 @@ namespace ParcelDeliveryCompanyApplication
             pickup_method = 8,
             consignment_type = 9,
             pickup_request_state = 10,
-            complaint_report_state = 11
+            complaint_report_state = 11,
+            city = 12
         };
 
         public DictionaryManagementControler()
@@ -89,6 +91,11 @@ namespace ParcelDeliveryCompanyApplication
                 ErrorMessageClass.DisplayErrorMessage(201, ex);
                 ToggleListAndButtons(ListControlEnable.disabled);
             }*/
+        }
+
+        private void City_button_Click(object sender, EventArgs e)
+        {
+            DictionarySelectButtonOperations(DictionariesNames.city);
         }
 
         private void LocationType__button_Click(object sender, EventArgs e)
@@ -242,6 +249,13 @@ namespace ParcelDeliveryCompanyApplication
                 //ToggleListAndButtons(ListControlEnable.enabled);
                 dictionary_listView.Columns[1].Text = "Complaint request";
             }
+            else if (chosen_dict == DictionariesNames.city)
+            {
+                this.current_selection = DictionariesNames.city;
+                currentSelection_label.Text = "City name";
+                //ToggleListAndButtons(ListControlEnable.enabled);
+                dictionary_listView.Columns[1].Text = "City";
+            }
             else
             {
                 this.current_selection = DictionariesNames.none;
@@ -274,6 +288,7 @@ namespace ParcelDeliveryCompanyApplication
                     else if (current_selection == DictionariesNames.consignment_type) query_string = "SELECT* FROM Typ_przesylki";
                     else if (current_selection == DictionariesNames.pickup_request_state) query_string = "SELECT* FROM Stan_zgloszenia_odbioru";
                     else if (current_selection == DictionariesNames.complaint_report_state) query_string = "SELECT* FROM Stan_reklamacji";
+                    else if (current_selection == DictionariesNames.city) query_string = "SELECT * FROM Miasto";
                     using (SqlCommand cmd = new SqlCommand(query_string, connection))
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                     {
@@ -298,9 +313,15 @@ namespace ParcelDeliveryCompanyApplication
 
         private void AddNewRecord_button_Click(object sender, EventArgs e)
         {
-            if (current_selection != DictionariesNames.none)
+            if (current_selection != DictionariesNames.none && current_selection != DictionariesNames.city)
             {
                 DictionaryAddRecordForm newrecordform = new DictionaryAddRecordForm(this.MainWindowReference, Convert.ToInt32(this.current_selection));
+                newrecordform.ShowDialog();
+                DictionarySelectButtonOperations(current_selection);//odświeżenie listy, aby zobaczyć nowy rekord (jeżeli ten został dodany)
+            }
+            else if (current_selection == DictionariesNames.city)
+            {
+                CityAddRecordForm newrecordform = new CityAddRecordForm(this.MainWindowReference);
                 newrecordform.ShowDialog();
                 DictionarySelectButtonOperations(current_selection);//odświeżenie listy, aby zobaczyć nowy rekord (jeżeli ten został dodany)
             }
@@ -310,11 +331,6 @@ namespace ParcelDeliveryCompanyApplication
             }
 
         }
-
-        /*private void FindRecord_button_Click(object sender, EventArgs e)
-        {
-
-        }*/
 
         private void Search_button_Click(object sender, EventArgs e)
         {
@@ -403,7 +419,7 @@ namespace ParcelDeliveryCompanyApplication
             dictionary_listView.Items.Clear();
         }
 
-        private void dictionary_listView_SelectedIndexChanged(object sender, EventArgs e)
+        private void Dictionary_listView_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(dictionary_listView.SelectedItems.Count == 1)
             {
@@ -415,15 +431,19 @@ namespace ParcelDeliveryCompanyApplication
             }
         }
 
-        private void editRecord_button_Click(object sender, EventArgs e)
+        private void EditRecord_button_Click(object sender, EventArgs e)
         {
             try
             {
-
-
-                if (current_selection != DictionariesNames.none)
+                if (current_selection != DictionariesNames.none && current_selection != DictionariesNames.city)
                 {
                     DictionaryAddRecordForm editRecordform = new DictionaryAddRecordForm(this.MainWindowReference, Convert.ToInt32(this.current_selection), Convert.ToInt32(dictionary_listView.SelectedItems[0].Text));
+                    editRecordform.ShowDialog();
+                    DictionarySelectButtonOperations(current_selection);//odświeżenie listy, aby zobaczyć nowy rekord (jeżeli ten został dodany)
+                }
+                else if (current_selection == DictionariesNames.city)
+                {
+                    CityAddRecordForm editRecordform = new CityAddRecordForm(this.MainWindowReference, Convert.ToInt32(dictionary_listView.SelectedItems[0].Text));
                     editRecordform.ShowDialog();
                     DictionarySelectButtonOperations(current_selection);//odświeżenie listy, aby zobaczyć nowy rekord (jeżeli ten został dodany)
                 }
@@ -438,5 +458,7 @@ namespace ParcelDeliveryCompanyApplication
                 MessageClass.DisplayMessage(205);
             }
         }
+
+       
     }
 }

@@ -35,8 +35,8 @@ namespace ParcelDeliveryCompanyApplication
             InitializeComponent();
             MainWindowReference = mW;
             this.object_id = object_id;
-            parcelManagement_Controler.MainWindowReference = mW;
-            parcelManagement_Controler.Load_Parcels_List(object_id);
+            /*parcelManagement_Controler.MainWindowReference = mW;
+            parcelManagement_Controler.Load_Parcels_List(object_id);*/
             consignmentParcelManagement_panel.Item_id = object_id;
             consignmentParcelManagement_panel.MainWindowReference = mW;
             consignmentParcelManagement_panel.SetUserRole();

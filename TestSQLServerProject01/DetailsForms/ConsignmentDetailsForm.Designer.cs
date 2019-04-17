@@ -51,7 +51,6 @@
             this.idColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label7 = new System.Windows.Forms.Label();
-            this.parcelManagement_Controler = new ParcelDeliveryCompanyApplication.ParcelManagementControler();
             this.consignmentParcelManagement_panel = new ParcelDeliveryCompanyApplication.ManagementControls.ConsignmentParcelManagementControl();
             this.consignmentData_panel.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -286,18 +285,6 @@
             this.label7.TabIndex = 22;
             this.label7.Text = "Update consignment\'s pickup state";
             // 
-            // parcelManagement_Controler
-            // 
-            this.parcelManagement_Controler.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.parcelManagement_Controler.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.parcelManagement_Controler.Location = new System.Drawing.Point(301, 32);
-            this.parcelManagement_Controler.MainWindowReference = null;
-            this.parcelManagement_Controler.Name = "parcelManagement_Controler";
-            this.parcelManagement_Controler.Size = new System.Drawing.Size(576, 252);
-            this.parcelManagement_Controler.TabIndex = 23;
-            // 
             // consignmentParcelManagement_panel
             // 
             this.consignmentParcelManagement_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -322,7 +309,6 @@
             this.ControlBox = false;
             this.Controls.Add(this.consignmentParcelManagement_panel);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.parcelManagement_Controler);
             this.Controls.Add(this.Details_titleLabel);
             this.Controls.Add(this.cancel_button);
             this.Controls.Add(this.consignmentData_panel);
@@ -357,7 +343,6 @@
         private System.Windows.Forms.TextBox consignmentType_textbox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Panel consignmentData_panel;
-        private ParcelManagementControler parcelManagement_Controler;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button updateConsignmentPickupState_button;
