@@ -42,6 +42,8 @@
             this.endPointID_textbox = new System.Windows.Forms.TextBox();
             this.courseConsignmentsManagement_panel = new ParcelDeliveryCompanyApplication.ManagementControls.CourseConsignmentsManagementControl();
             this.parcelManagement_Controler = new ParcelDeliveryCompanyApplication.ParcelManagementControler();
+            this.label5 = new System.Windows.Forms.Label();
+            this.courseMode_textbox = new System.Windows.Forms.TextBox();
             this.consignmentData_panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,6 +73,8 @@
             this.consignmentData_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.consignmentData_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.consignmentData_panel.Controls.Add(this.courseMode_textbox);
+            this.consignmentData_panel.Controls.Add(this.label5);
             this.consignmentData_panel.Controls.Add(this.courierFullName_textBox);
             this.consignmentData_panel.Controls.Add(this.courierID_textbox);
             this.consignmentData_panel.Controls.Add(this.label1);
@@ -123,7 +127,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label2.Location = new System.Drawing.Point(5, 61);
+            this.label2.Location = new System.Drawing.Point(2, 61);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 17);
             this.label2.TabIndex = 10;
@@ -139,7 +143,7 @@
             // 
             // startPointID_textBox
             // 
-            this.startPointID_textBox.Location = new System.Drawing.Point(4, 81);
+            this.startPointID_textBox.Location = new System.Drawing.Point(3, 81);
             this.startPointID_textBox.Name = "startPointID_textBox";
             this.startPointID_textBox.ReadOnly = true;
             this.startPointID_textBox.Size = new System.Drawing.Size(85, 20);
@@ -149,7 +153,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label3.Location = new System.Drawing.Point(5, 118);
+            this.label3.Location = new System.Drawing.Point(2, 118);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 17);
             this.label3.TabIndex = 12;
@@ -157,7 +161,7 @@
             // 
             // endPointID_textbox
             // 
-            this.endPointID_textbox.Location = new System.Drawing.Point(4, 138);
+            this.endPointID_textbox.Location = new System.Drawing.Point(3, 138);
             this.endPointID_textbox.Name = "endPointID_textbox";
             this.endPointID_textbox.ReadOnly = true;
             this.endPointID_textbox.Size = new System.Drawing.Size(85, 20);
@@ -178,6 +182,7 @@
             this.courseConsignmentsManagement_panel.Name = "courseConsignmentsManagement_panel";
             this.courseConsignmentsManagement_panel.Size = new System.Drawing.Size(576, 400);
             this.courseConsignmentsManagement_panel.TabIndex = 29;
+            this.courseConsignmentsManagement_panel.UserItem = null;
             // 
             // parcelManagement_Controler
             // 
@@ -190,6 +195,24 @@
             this.parcelManagement_Controler.Name = "parcelManagement_Controler";
             this.parcelManagement_Controler.Size = new System.Drawing.Size(576, 400);
             this.parcelManagement_Controler.TabIndex = 28;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label5.Location = new System.Drawing.Point(2, 199);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 17);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Course mode";
+            // 
+            // courseMode_textbox
+            // 
+            this.courseMode_textbox.Location = new System.Drawing.Point(3, 220);
+            this.courseMode_textbox.Name = "courseMode_textbox";
+            this.courseMode_textbox.ReadOnly = true;
+            this.courseMode_textbox.Size = new System.Drawing.Size(252, 20);
+            this.courseMode_textbox.TabIndex = 23;
             // 
             // CourseDetailsForm
             // 
@@ -225,5 +248,7 @@
         private System.Windows.Forms.TextBox endPointID_textbox;
         private System.Windows.Forms.TextBox courierFullName_textBox;
         private ManagementControls.CourseConsignmentsManagementControl courseConsignmentsManagement_panel;
+        private System.Windows.Forms.TextBox courseMode_textbox;
+        private System.Windows.Forms.Label label5;
     }
 }

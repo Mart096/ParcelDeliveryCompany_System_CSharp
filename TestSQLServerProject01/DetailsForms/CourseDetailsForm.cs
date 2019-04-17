@@ -63,6 +63,15 @@ namespace ParcelDeliveryCompanyApplication.DetailsForms
                         endPointFullAddress_textbox.Text = dt.Rows[0].ItemArray[4].ToString();
                         courierID_textbox.Text = dt.Rows[0].ItemArray[5].ToString();
                         courierFullName_textBox.Text = dt.Rows[0].ItemArray[6].ToString();
+
+                        if (startPointID_textBox.Text.Equals(endPointID_textbox.Text))
+                        {
+                            courseMode_textbox.Text = "Consignment's delivery mode";
+                        }
+                        else
+                        {
+                            courseMode_textbox.Text = "Consignment's transportation mode";
+                        }
                     }
                 }
 
