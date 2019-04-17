@@ -31,8 +31,7 @@ namespace ParcelDeliveryCompanyApplication.ManagementControls
             List_refresh_command = "SELECT * FROM Consignment_Detailed_List_View WHERE Id_przesylki IN (SELECT Id_przesylki FROM Przesylki_w_kursie WHERE Id_kursu =  @item_id);";
             itemDetails_button.Text = "Show course routes";
             Remove_command = "DELETE FROM Przesylki_w_kursie WHERE Id_przesylki = @consignment_id AND Id_kursu = @item_id;";
-            editItem_button.Enabled = false;
-            editItem_button.Visible = false;
+
             //LoadItemList();
         }
         /*public CourseConsignmentsManagementControl(MainForm mW, int object_id)
@@ -170,6 +169,9 @@ namespace ParcelDeliveryCompanyApplication.ManagementControls
         {
             UserRole user = (UserRole)MainWindowReference.Current_role;
             base.SetUserRole(/*user_role*/);
+
+            editItem_button.Enabled = false;
+            editItem_button.Visible = false;
 
             if (user == UserRole.CustomerContact)
             {
