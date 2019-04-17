@@ -88,8 +88,24 @@ namespace TestGmapProject01
                 new GMap.NET.WindowsForms.Markers.GMarkerGoogle(
                     new GMap.NET.PointLatLng(gMapControl1.Position.Lat, gMapControl1.Position.Lng),
                     GMap.NET.WindowsForms.Markers.GMarkerGoogleType.arrow);
+            int top_id_number = 0;
+            try
+            {
+                foreach (ListViewItem item in markersList1.Items)
+                {
+                    if(Convert.ToInt32(item.Text) > top_id_number)
+                    {
+                        top_id_number = Convert.ToInt32(item.Text);
+                    }
+                }
+                //top_id_number += 1; // Convert.ToInt32(markersList1.Items[markersList1.Items.Count-1].Text);
+            }
+            catch
+            {
+                top_id_number = 1;
+            }
 
-            string[] tempString = { (markersList1.Items.Count+1).ToString(), "Custom marker", marker.Position.Lat.ToString(), marker.Position.Lng.ToString() };
+            string[] tempString = { (top_id_number+1).ToString()/*(markersList1.Items.Count+1).ToString()*/, "Custom marker", marker.Position.Lat.ToString(), marker.Position.Lng.ToString() };
             markersList1.Items.Add(new ListViewItem(tempString)); //dodanie informacji o markerze do listy
 
             markers.Markers.Add(marker);
@@ -122,7 +138,7 @@ namespace TestGmapProject01
                         MapRoute route = GMap.NET.MapProviders.OpenStreetMapProvider.Instance.GetRoute(point1, point2, false, false, 15);
                         GMapRoute r = new GMapRoute(route.Points, "Route between markers: " + markersList1.Items[i].Text + " -> " + markersList1.Items[i + 1].Text);
 
-                        string[] tempString = { (i + 1).ToString(), (i + 1).ToString(), (i + 2).ToString(), point1.Lat.ToString(), point1.Lng.ToString(), point2.Lat.ToString(), point2.Lng.ToString() };
+                        string[] tempString = { (i + 1).ToString(), markersList1.Items[i].Text, markersList1.Items[i+1].Text, point1.Lat.ToString(), point1.Lng.ToString(), point2.Lat.ToString(), point2.Lng.ToString() };
                         routesList1.Items.Add(new ListViewItem(tempString));
                         routes.Routes.Add(r);
                     }
@@ -134,7 +150,7 @@ namespace TestGmapProject01
                         MapRoute route = GMap.NET.MapProviders.OpenStreetMapProvider.Instance.GetRoute(point1, point2, false, false, 15);
                         GMapRoute r = new GMapRoute(route.Points, "Route between set markers");
 
-                        string[] tempString = { (i + 1).ToString(), (i + 1).ToString(), (i + 2).ToString(), point1.Lat.ToString(), point1.Lng.ToString(), point2.Lat.ToString(), point2.Lng.ToString() };
+                        string[] tempString = { (i + 1).ToString(), markersList1.Items[i].Text, markersList1.Items[0].Text, point1.Lat.ToString(), point1.Lng.ToString(), point2.Lat.ToString(), point2.Lng.ToString() };
                         routesList1.Items.Add(new ListViewItem(tempString));
                         routes.Routes.Add(r);
                     }
@@ -219,8 +235,8 @@ namespace TestGmapProject01
             {
                 ListViewItem item_to_remove = markersList1.SelectedItems[0];
                 int item_to_remove_id= markersList1.SelectedItems[0].Index;
-                PointLatLng point_to_remove = new PointLatLng(Convert.ToDouble(item_to_remove.SubItems[2].Text), Convert.ToDouble(item_to_remove.SubItems[3].Text));
-                GMapMarker marker_to_remove = new GMarkerGoogle(point_to_remove, GMarkerGoogleType.arrow);
+                /*PointLatLng point_to_remove = new PointLatLng(Convert.ToDouble(item_to_remove.SubItems[2].Text), Convert.ToDouble(item_to_remove.SubItems[3].Text));
+                GMapMarker marker_to_remove = new GMarkerGoogle(point_to_remove, GMarkerGoogleType.arrow);*/
                 if (markersList1.Items.Contains(item_to_remove))
                 {
                     markersList1.Items.Remove(item_to_remove);
@@ -267,7 +283,7 @@ namespace TestGmapProject01
             MarkerList1_CollectionChanged_Event();
         }
 
-        private void MarkerUp_button_Click(object sender, EventArgs e)
+        private void MarkerUp_button_Click(object sender, EventArgs e) // przesuwanie markera na górę listy (o jedną pozycję w dół z perskpektywy działania listy)
         {
             if (markersList1.SelectedItems.Count == 1)
             {
@@ -285,6 +301,13 @@ namespace TestGmapProject01
                             if (moved_item.SubItems[0].Text == "") { moved_item.SubItems[0].Text = subit.Text; }
                             else { moved_item.SubItems.Add(subit); }
                         }
+                        PointLatLng temp_point = point_list1[selected_id];
+                        point_list1[selected_id] = point_list1[selected_id - 1];
+                        point_list1[selected_id - 1] = temp_point;
+
+                        var temp_marker = markers.Markers[selected_id];
+                        markers.Markers[selected_id] = markers.Markers[selected_id - 1];
+                        markers.Markers[selected_id - 1] = temp_marker;
 
                         markersList1.Items.Insert(selected_id - 1, moved_item);
                         markersList1.Items.RemoveAt(markersList1.SelectedItems[0].Index);
@@ -303,7 +326,7 @@ namespace TestGmapProject01
             }
         }
 
-        private void MarkerDown_button_Click(object sender, EventArgs e)
+        private void MarkerDown_button_Click(object sender, EventArgs e) // przesuwanie markera w dół listy
         {
             if (markersList1.SelectedItems.Count == 1)
             {
@@ -314,7 +337,7 @@ namespace TestGmapProject01
                     int selected_id = markersList1.SelectedItems[0].Index;
                     int item_count = markersList1.Items.Count;
 
-                    if (selected_id <=item_count-1)
+                    if (selected_id <item_count-1)
                     {
                         ListViewItem moved_item = new ListViewItem();
                         foreach (ListViewItem.ListViewSubItem subit in markersList1.SelectedItems[0].SubItems)
@@ -322,6 +345,15 @@ namespace TestGmapProject01
                             if (moved_item.SubItems[0].Text == "") { moved_item.SubItems[0].Text = subit.Text; }
                             else { moved_item.SubItems.Add(subit); }
                         }
+
+                        //aktualizowanie listy point_list1 i kolejności markerów w markers
+                        PointLatLng temp_point = point_list1[selected_id];
+                        point_list1[selected_id] = point_list1[selected_id + 1];
+                        point_list1[selected_id + 1] = temp_point;
+
+                        var temp_marker = markers.Markers[selected_id];
+                        markers.Markers[selected_id] = markers.Markers[selected_id + 1];
+                        markers.Markers[selected_id + 1] = temp_marker;
 
                         markersList1.Items.Insert(selected_id + 2, moved_item);
                         markersList1.Items.RemoveAt(markersList1.SelectedItems[0].Index);

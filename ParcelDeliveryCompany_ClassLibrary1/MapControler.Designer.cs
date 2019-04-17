@@ -54,7 +54,6 @@
             this.markerUp_button = new System.Windows.Forms.Button();
             this.markerDown_button = new System.Windows.Forms.Button();
             this.routePlannerPanel1 = new System.Windows.Forms.Panel();
-            this.travelingSalesmanAlternateRoute_button = new System.Windows.Forms.Button();
             this.travelingSalesmanRoute_button = new System.Windows.Forms.Button();
             this.currentStatus_label = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -315,7 +314,6 @@
             // 
             this.routePlannerPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.routePlannerPanel1.AutoScroll = true;
-            this.routePlannerPanel1.Controls.Add(this.travelingSalesmanAlternateRoute_button);
             this.routePlannerPanel1.Controls.Add(this.travelingSalesmanRoute_button);
             this.routePlannerPanel1.Controls.Add(this.CurrentPosMarker_button1);
             this.routePlannerPanel1.Controls.Add(this.markerDown_button);
@@ -330,17 +328,6 @@
             this.routePlannerPanel1.Name = "routePlannerPanel1";
             this.routePlannerPanel1.Size = new System.Drawing.Size(527, 169);
             this.routePlannerPanel1.TabIndex = 30;
-            // 
-            // travelingSalesmanAlternateRoute_button
-            // 
-            this.travelingSalesmanAlternateRoute_button.Enabled = false;
-            this.travelingSalesmanAlternateRoute_button.Location = new System.Drawing.Point(113, 61);
-            this.travelingSalesmanAlternateRoute_button.Name = "travelingSalesmanAlternateRoute_button";
-            this.travelingSalesmanAlternateRoute_button.Size = new System.Drawing.Size(104, 52);
-            this.travelingSalesmanAlternateRoute_button.TabIndex = 31;
-            this.travelingSalesmanAlternateRoute_button.Text = "Determine the shortest route (faster method)";
-            this.travelingSalesmanAlternateRoute_button.UseVisualStyleBackColor = true;
-            this.travelingSalesmanAlternateRoute_button.Click += new System.EventHandler(this.TravelingSalesmanAlternateRoute_button_Click);
             // 
             // travelingSalesmanRoute_button
             // 
@@ -424,6 +411,5 @@
         private System.Windows.Forms.Button travelingSalesmanRoute_button;
         private System.Windows.Forms.Label currentStatus_label;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button travelingSalesmanAlternateRoute_button;
     }
 }
