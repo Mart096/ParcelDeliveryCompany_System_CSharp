@@ -794,5 +794,29 @@ namespace TestGmapProject01
             gMapControl1.GetPositionByKeywords(endPlaceKeywords, out endPoint_to_add);
             point_list1.Add(endPoint_to_add);*/
         }
+
+        private void ZoomIn_button_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                gMapControl1.Zoom += 1;
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void ZoomOut_button_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                gMapControl1.Zoom -= 1;
+            }
+            catch
+            {
+
+            }
+        }
     }
 }

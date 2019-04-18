@@ -57,6 +57,9 @@
             this.travelingSalesmanRoute_button = new System.Windows.Forms.Button();
             this.currentStatus_label = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.zoomOut_button = new System.Windows.Forms.Button();
+            this.zoomIn_button = new System.Windows.Forms.Button();
             this.routePlannerPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -314,6 +317,8 @@
             // 
             this.routePlannerPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.routePlannerPanel1.AutoScroll = true;
+            this.routePlannerPanel1.Controls.Add(this.zoomOut_button);
+            this.routePlannerPanel1.Controls.Add(this.zoomIn_button);
             this.routePlannerPanel1.Controls.Add(this.travelingSalesmanRoute_button);
             this.routePlannerPanel1.Controls.Add(this.CurrentPosMarker_button1);
             this.routePlannerPanel1.Controls.Add(this.markerDown_button);
@@ -334,7 +339,7 @@
             this.travelingSalesmanRoute_button.Enabled = false;
             this.travelingSalesmanRoute_button.Location = new System.Drawing.Point(3, 61);
             this.travelingSalesmanRoute_button.Name = "travelingSalesmanRoute_button";
-            this.travelingSalesmanRoute_button.Size = new System.Drawing.Size(104, 52);
+            this.travelingSalesmanRoute_button.Size = new System.Drawing.Size(94, 52);
             this.travelingSalesmanRoute_button.TabIndex = 30;
             this.travelingSalesmanRoute_button.Text = "Determine the shortest route";
             this.travelingSalesmanRoute_button.UseVisualStyleBackColor = true;
@@ -342,8 +347,9 @@
             // 
             // currentStatus_label
             // 
+            this.currentStatus_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.currentStatus_label.AutoSize = true;
-            this.currentStatus_label.Location = new System.Drawing.Point(537, 367);
+            this.currentStatus_label.Location = new System.Drawing.Point(537, 376);
             this.currentStatus_label.Name = "currentStatus_label";
             this.currentStatus_label.Size = new System.Drawing.Size(94, 13);
             this.currentStatus_label.TabIndex = 31;
@@ -351,6 +357,7 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(537, 338);
             this.label2.Name = "label2";
@@ -358,10 +365,41 @@
             this.label2.TabIndex = 32;
             this.label2.Text = "Hold right mouse button to move map around";
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(537, 354);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(248, 13);
+            this.label1.TabIndex = 33;
+            this.label1.Text = "Use mouse wheel to zoom in or zoom out map view";
+            // 
+            // zoomOut_button
+            // 
+            this.zoomOut_button.Location = new System.Drawing.Point(103, 60);
+            this.zoomOut_button.Name = "zoomOut_button";
+            this.zoomOut_button.Size = new System.Drawing.Size(104, 53);
+            this.zoomOut_button.TabIndex = 34;
+            this.zoomOut_button.Text = "Zoom out";
+            this.zoomOut_button.UseVisualStyleBackColor = true;
+            this.zoomOut_button.Click += new System.EventHandler(this.ZoomOut_button_Click);
+            // 
+            // zoomIn_button
+            // 
+            this.zoomIn_button.Location = new System.Drawing.Point(213, 61);
+            this.zoomIn_button.Name = "zoomIn_button";
+            this.zoomIn_button.Size = new System.Drawing.Size(96, 52);
+            this.zoomIn_button.TabIndex = 35;
+            this.zoomIn_button.Text = "Zoom in";
+            this.zoomIn_button.UseVisualStyleBackColor = true;
+            this.zoomIn_button.Click += new System.EventHandler(this.ZoomIn_button_Click);
+            // 
             // MapControler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.currentStatus_label);
             this.Controls.Add(this.routePlannerPanel1);
@@ -411,5 +449,8 @@
         private System.Windows.Forms.Button travelingSalesmanRoute_button;
         private System.Windows.Forms.Label currentStatus_label;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button zoomOut_button;
+        private System.Windows.Forms.Button zoomIn_button;
     }
 }
