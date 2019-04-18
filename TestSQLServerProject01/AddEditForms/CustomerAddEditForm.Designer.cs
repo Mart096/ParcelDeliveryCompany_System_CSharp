@@ -71,6 +71,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(550, 442);
+            this.ControlBox = false;
             this.Controls.Add(this.customerAddEdit_Controler);
             this.Controls.Add(this.cancel_button);
             this.Controls.Add(this.accept_button);

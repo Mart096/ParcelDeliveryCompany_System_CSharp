@@ -31,6 +31,8 @@
             this.Details_titleLabel = new System.Windows.Forms.Label();
             this.cancel_button = new System.Windows.Forms.Button();
             this.consignmentData_panel = new System.Windows.Forms.Panel();
+            this.courseMode_textbox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.courierFullName_textBox = new System.Windows.Forms.TextBox();
             this.courierID_textbox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,8 +44,6 @@
             this.endPointID_textbox = new System.Windows.Forms.TextBox();
             this.courseConsignmentsManagement_panel = new ParcelDeliveryCompanyApplication.ManagementControls.CourseConsignmentsManagementControl();
             this.parcelManagement_Controler = new ParcelDeliveryCompanyApplication.ParcelManagementControler();
-            this.label5 = new System.Windows.Forms.Label();
-            this.courseMode_textbox = new System.Windows.Forms.TextBox();
             this.consignmentData_panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,6 +88,24 @@
             this.consignmentData_panel.Name = "consignmentData_panel";
             this.consignmentData_panel.Size = new System.Drawing.Size(283, 400);
             this.consignmentData_panel.TabIndex = 27;
+            // 
+            // courseMode_textbox
+            // 
+            this.courseMode_textbox.Location = new System.Drawing.Point(3, 220);
+            this.courseMode_textbox.Name = "courseMode_textbox";
+            this.courseMode_textbox.ReadOnly = true;
+            this.courseMode_textbox.Size = new System.Drawing.Size(252, 20);
+            this.courseMode_textbox.TabIndex = 23;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label5.Location = new System.Drawing.Point(2, 199);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 17);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Course mode";
             // 
             // courierFullName_textBox
             // 
@@ -196,29 +214,12 @@
             this.parcelManagement_Controler.Size = new System.Drawing.Size(576, 400);
             this.parcelManagement_Controler.TabIndex = 28;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label5.Location = new System.Drawing.Point(2, 199);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 17);
-            this.label5.TabIndex = 22;
-            this.label5.Text = "Course mode";
-            // 
-            // courseMode_textbox
-            // 
-            this.courseMode_textbox.Location = new System.Drawing.Point(3, 220);
-            this.courseMode_textbox.Name = "courseMode_textbox";
-            this.courseMode_textbox.ReadOnly = true;
-            this.courseMode_textbox.Size = new System.Drawing.Size(252, 20);
-            this.courseMode_textbox.TabIndex = 23;
-            // 
             // CourseDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(889, 473);
+            this.ControlBox = false;
             this.Controls.Add(this.courseConsignmentsManagement_panel);
             this.Controls.Add(this.parcelManagement_Controler);
             this.Controls.Add(this.Details_titleLabel);

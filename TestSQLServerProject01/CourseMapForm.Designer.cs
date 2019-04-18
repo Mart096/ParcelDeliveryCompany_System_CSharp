@@ -64,7 +64,7 @@
             this.Controls.Add(this.closeButton);
             this.MinimumSize = new System.Drawing.Size(840, 602);
             this.Name = "CourseMapForm";
-            this.Text = "CourseMapForm";
+            this.Text = "Course map";
             this.ResumeLayout(false);
 
         }
