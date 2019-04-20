@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Diagnostics;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace TestGmapProject01
         private GMap.NET.WindowsForms.GMapOverlay markers = new GMap.NET.WindowsForms.GMapOverlay("markers"); //zbiór markerów, wyświetlanych na mapie
         private GMapOverlay routes = new GMapOverlay("routes"); //zbiór dróg, rysowanych pomiędzy markerami
         private GMapOverlay temp_route = new GMapOverlay("Selected route"); //droga zaznaczona na liście
+
         //private GMapOverlay all_routes = new GMapOverlay("All routes"); //używane w szukaniu optymalnej drogi przy pomocy problemu komiwojażera, przechowuje wszystkie drogi pomiędzy markerami (na podstawie tych danych można obliczyć odległość pomiędzy markerami)
         
         public MapControler()
@@ -495,7 +497,7 @@ namespace TestGmapProject01
             }
             finally
             {
-                GC.Collect();
+                //GC.Collect(); // to powinno pozostać w komentarzu
             }
 
         }
@@ -503,6 +505,10 @@ namespace TestGmapProject01
         private List<int[]> TSP_find_routes(int nodes_number, List<int> possible_numbers_list, double[,] route_distances) { // metoda inicjująca sprawdzanie wszystkich kombinacji dróg i wyznaczanie najkrótszej
             List<int[]> route_list = new List<int[]>();
             List<int> temp_list = new List<int> { 0 };
+
+
+            var stopwatch = new Stopwatch(); //obliczanie czasu wykonywania metody
+            stopwatch.Start();
 
             for (int j = 1; j < nodes_number; j++)
             {
@@ -549,7 +555,11 @@ namespace TestGmapProject01
 
                 //route_list.AddRange(temp_routes);
                 route_list.Add(temp_routes[best_route_id]);
+
+                
             }
+            stopwatch.Stop(); //koniec liczenia czasu
+            calculation_time.Text = "Calculation time: " + stopwatch.ElapsedMilliseconds.ToString(); //wyświetlenie czasu 
 
             return route_list;
         }
@@ -817,6 +827,16 @@ namespace TestGmapProject01
             {
 
             }
+        }
+
+        private void CalculateTime_Start()
+        {
+
+        }
+
+        private void CalculateTime_End()
+        {
+
         }
     }
 }
