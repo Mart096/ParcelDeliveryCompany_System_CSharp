@@ -111,6 +111,7 @@ namespace ParcelDeliveryCompanyApplication
             catch (Exception)
             {
                 //ErrorMessageClass.DisplayErrorMessage(402);
+                MessageClass.DisplayMessage(501);
             }
         }
 
@@ -120,7 +121,7 @@ namespace ParcelDeliveryCompanyApplication
             try
             {
                 using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
-                using (SqlCommand command = new SqlCommand("SELECT * FROM Kurs WHERE Id_kursu = @course_id", connection))
+                using (SqlCommand command = new SqlCommand("SELECT * FROM Course_Details_View WHERE Id_kursu = @course_id", connection))
                 {
                     command.Parameters.Add("@course_id", SqlDbType.Int);
                     command.Parameters["@course_id"].Value = edited_id;
@@ -132,13 +133,13 @@ namespace ParcelDeliveryCompanyApplication
                         int check_list = 0;
                         foreach (ListViewItem item in startLocation_ListView.Items)//startLocation_ListView.FindItemWithText(dt.Rows[0].ItemArray[0].ToString(), false, 0))
                         {
-                            if (item.Text == dt.Rows[0].ItemArray[0].ToString())
+                            if (item.Text.Equals( dt.Rows[0].ItemArray[1].ToString()))
                             {
                                 check_list += 1;
                                 int temp_id = item.Index;
                                 startLocation_ListView.Items[temp_id].Selected = true;
                             }
-                            else if (item.Text == dt.Rows[0].ItemArray[1].ToString())
+                            else if (item.Text.Equals(dt.Rows[0].ItemArray[3].ToString()))
                             {
                                 check_list += 1;
                                 int temp_id = item.Index;
@@ -151,7 +152,7 @@ namespace ParcelDeliveryCompanyApplication
 
                         foreach (ListViewItem item in courier_ListView.Items)
                         {
-                            if (item.Text == dt.Rows[0].ItemArray[0].ToString())
+                            if (item.Text.Equals( dt.Rows[0].ItemArray[5].ToString()))
                             {
                                 check_list += 1;
                                 int temp_id = item.Index;
@@ -162,13 +163,17 @@ namespace ParcelDeliveryCompanyApplication
                     }
                 }
             }
-            catch (SqlException)
+            catch (SqlException sqlex)
             {
                 //ErrorMessageClass.DisplayErrorMessage(411);
+                MessageClass.DisplayMessage(2402);
+                MessageBox.Show(sqlex.Message);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 //ErrorMessageClass.DisplayErrorMessage(410);
+                MessageClass.DisplayMessage(2403);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -241,36 +246,44 @@ namespace ParcelDeliveryCompanyApplication
                         if(result == 0)
                         {
                             if (current_mode == FormMode.add)
-                                MessageBox.Show("Failed to insert new course.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageClass.DisplayMessage(2406);
+                            //MessageBox.Show("Failed to insert new course.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             else if (current_mode == FormMode.edit)
-                                MessageBox.Show("Failed to save changes to selected course.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageClass.DisplayMessage(2407);
+                            //MessageBox.Show("Failed to save changes to selected course.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         else if (result > 1)
                         {
-                            MessageBox.Show("Unexpected behaviour occured. Contact you database administrator and inform him about this issue.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            MessageClass.DisplayMessage(703);
+                            //MessageBox.Show("Unexpected behaviour occured. Contact you database administrator and inform him about this issue.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         }
                         else
                         {
                             if(current_mode == FormMode.add)
-                                MessageBox.Show("New course added successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageClass.DisplayMessage(2408);
+                            //MessageBox.Show("New course added successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             else if(current_mode == FormMode.edit)
-                                MessageBox.Show("Course data was updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageClass.DisplayMessage(2409);
+                            //MessageBox.Show("Course data was updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
                 catch
                 {
                     if (current_mode == FormMode.add)
-                        MessageBox.Show("Failed to insert new course. Error occured!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    else if (current_mode == FormMode.add)
-                        MessageBox.Show("Failed to update selected course. Error occured!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageClass.DisplayMessage(2404);
+                        //MessageBox.Show("Failed to insert new course. Error occured!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else if (current_mode == FormMode.edit)
+                        MessageClass.DisplayMessage(2405);
+                    //MessageBox.Show("Failed to update selected course. Error occured!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 this.Close();
                 this.Dispose();
             }
             else
             {
-                MessageBox.Show("Not all data was specified! Check your input for missing information.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageClass.DisplayMessage(1112);
+                //MessageBox.Show("Not all data was specified! Check your input for missing information.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

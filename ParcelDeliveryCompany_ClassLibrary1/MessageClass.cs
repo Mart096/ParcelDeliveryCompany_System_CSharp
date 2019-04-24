@@ -596,6 +596,38 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             {
                 MessageBox.Show("Failed to initialize course's details form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else if (message_code == 2402)
+            {
+                MessageBox.Show("Could not load courses. Database exception occured!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (message_code == 2403)
+            {
+                MessageBox.Show("Could not load courses.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (message_code == 2404)
+            {
+                MessageBox.Show("Failed to insert new course. Error occured!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (message_code == 2405)
+            {
+                MessageBox.Show("Failed to update selected course. Error occured!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (message_code == 2406)
+            {
+                MessageBox.Show("Failed to insert new course.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (message_code == 2407)
+            {
+                MessageBox.Show("Failed to save changes to selected course.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (message_code == 2408)
+            {
+                MessageBox.Show("New course added successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (message_code == 2409)
+            {
+                MessageBox.Show("Course data was updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         public static DialogResult DisplayMessage(int message_code, string item_name) //metoda stosowana przy zapytaniach
