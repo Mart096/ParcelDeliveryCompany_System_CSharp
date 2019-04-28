@@ -289,9 +289,11 @@ namespace ParcelDeliveryCompanyApplication
 
         private void Accept_button_Click(object sender, EventArgs e)
         {
+            //DataTable dt = new DataTable();
+
             string operation_string= "INSERT INTO Paczka OUTPUT INSERTED.Id_paczki VALUES(@consignment_id, @weight_cat_id, " +
                                 "@size_cat_id);";
-            /*string operation_string2="SELECT * FROM Cecha_Paczki WHERE Id_paczki = @parcel_id;";*/
+            //string operation_string2="SELECT * FROM Cecha_Paczki WHERE Id_paczki = @parcel_id;";
             string operation_string3="INSERT INTO Cecha_Paczki VALUES (@parcel_id, (SELECT Id_cechy FROM Cecha WHERE Cecha = @property_name))";
             string operation_string4 = "DELETE FROM Cecha_Paczki WHERE Id_paczki = @parcel_id";
 
@@ -332,6 +334,8 @@ namespace ParcelDeliveryCompanyApplication
                                 command.Parameters.Add("@parcel_id", SqlDbType.Int);
 
                                 command.Parameters["@parcel_id"].Value = parcel_id;
+
+                                //command.Parameters.Add("@property_id", SqlDbType.Int).Value=1;
                                 command.ExecuteNonQuery();
                             }
                             else
@@ -341,12 +345,17 @@ namespace ParcelDeliveryCompanyApplication
 
 
                             //Aktualizacja tabeli cech paczki
+
+                            /*using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                            {
+
+                            }*/
                             command.Parameters.Clear();
                             command.CommandText = operation_string4;
 
                             command.Parameters.Add("@parcel_id", SqlDbType.Int);
                             command.Parameters["@parcel_id"].Value = parcel_id;
-                            command.ExecuteNonQuery(); //usuwanie wszystkich cech paczki
+                            command.ExecuteNonQuery(); //usuwanie cech paczki, które zostały odznaczone
 
 
                             command.CommandText = operation_string3;
@@ -380,8 +389,9 @@ namespace ParcelDeliveryCompanyApplication
                     this.Close();
                     this.Dispose();
                 }
-                catch (Exception /*ex*/)
+                catch (Exception ex)
                 {
+                    MessageBox.Show(ex.Message);
                     if (this.current_mode == FormMode.add)
                         MessageClass.DisplayMessage(1404); //MessageBox.Show("Failed to save new order's details." + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     else if (this.current_mode == FormMode.edit)
@@ -392,7 +402,8 @@ namespace ParcelDeliveryCompanyApplication
             }
             else
             {
-                MessageBox.Show("Not all data was specified. Check your input for missing information.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageClass.DisplayMessage(1112);
+                //MessageBox.Show("Not all data was specified. Check your input for missing information.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

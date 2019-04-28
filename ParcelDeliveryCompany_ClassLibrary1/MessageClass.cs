@@ -344,7 +344,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             }
             else if (message_code == 1404)
             {
-                MessageBox.Show("Failed to save new order's details." /*+ ex.Message*/, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Failed to save new parcel's details." /*+ ex.Message*/, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else if (message_code == 1405)
             {
@@ -627,6 +627,10 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             else if (message_code == 2409)
             {
                 MessageBox.Show("Course data was updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (message_code == 2501)
+            {
+                MessageBox.Show("You have no permission to update status of this item.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

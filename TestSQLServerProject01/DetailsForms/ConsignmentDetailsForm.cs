@@ -142,40 +142,48 @@ namespace ParcelDeliveryCompanyApplication
 
         private void UpdateConsignmentPickupState_button_Click(object sender, EventArgs e)
         {
-            DialogResult dlg_result = MessageClass.DisplayMessage(1802, "");
-            if (dlg_result == DialogResult.Yes)
+            //sprawdzanie uprawnień użytkownika
+            if(MainWindowReference.Current_role == UserClass.UserRole.Admin || MainWindowReference.Current_role == UserClass.UserRole.Dispatcher || MainWindowReference.Current_role == UserClass.UserRole.OrderManager)
             {
-
-                try
+                DialogResult dlg_result = MessageClass.DisplayMessage(1802, "");
+                if (dlg_result == DialogResult.Yes)
                 {
-                    using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
-                    using (SqlCommand command = new SqlCommand("UPDATE Przesylka SET Id_stanu_odbioru = @pickup_state_id WHERE Id_przesylki = @consignment_id", connection))
+
+                    try
                     {
-                        command.Parameters.Add("@pickup_state_id", SqlDbType.Int);
-                        command.Parameters.Add("@consignment_id", SqlDbType.Int);
-                        command.Parameters["@pickup_state_id"].Value = Convert.ToInt32(pickupState_listView.SelectedItems[0].Text);
-                        command.Parameters["@consignment_id"].Value = this.object_id;
-
-                        connection.Open();
-
-                        int result = command.ExecuteNonQuery();
-                        if (result == 1)
+                        using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
+                        using (SqlCommand command = new SqlCommand("UPDATE Przesylka SET Id_stanu_odbioru = @pickup_state_id WHERE Id_przesylki = @consignment_id", connection))
                         {
-                            pickupState_textbox.Text = pickupState_listView.SelectedItems[0].SubItems[1].Text;
-                            pickupState_listView.SelectedItems.Clear();
-                            MessageClass.DisplayMessage(1803);
-                        }
-                        else
-                        {
-                            MessageClass.DisplayMessage(1804);
-                            
+                            command.Parameters.Add("@pickup_state_id", SqlDbType.Int);
+                            command.Parameters.Add("@consignment_id", SqlDbType.Int);
+                            command.Parameters["@pickup_state_id"].Value = Convert.ToInt32(pickupState_listView.SelectedItems[0].Text);
+                            command.Parameters["@consignment_id"].Value = this.object_id;
+
+                            connection.Open();
+
+                            int result = command.ExecuteNonQuery();
+                            if (result == 1)
+                            {
+                                pickupState_textbox.Text = pickupState_listView.SelectedItems[0].SubItems[1].Text;
+                                pickupState_listView.SelectedItems.Clear();
+                                MessageClass.DisplayMessage(1803);
+                            }
+                            else
+                            {
+                                MessageClass.DisplayMessage(1804);
+
+                            }
                         }
                     }
+                    catch (Exception)
+                    {
+                        MessageClass.DisplayMessage(1805);
+                    }
                 }
-                catch (Exception)
-                {
-                    MessageClass.DisplayMessage(1805);
-                }
+            }
+            else
+            {
+                MessageClass.DisplayMessage(2501);
             }
         }
 

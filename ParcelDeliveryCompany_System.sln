@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParcelDeliveryCompany_Class
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParcelDeliveryCompanyEmployeeApplication", "CourierCompanyEmployeeApplication\ParcelDeliveryCompanyEmployeeApplication.csproj", "{AE2B1B26-DD6B-4061-A57E-92FD9E8CFA23}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{03160370-B7B1-4B26-958E-F9166333B67F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,8 @@ Global
 		{AE2B1B26-DD6B-4061-A57E-92FD9E8CFA23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE2B1B26-DD6B-4061-A57E-92FD9E8CFA23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE2B1B26-DD6B-4061-A57E-92FD9E8CFA23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03160370-B7B1-4B26-958E-F9166333B67F}.Debug|Any CPU.ActiveCfg = Debug
+		{03160370-B7B1-4B26-958E-F9166333B67F}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

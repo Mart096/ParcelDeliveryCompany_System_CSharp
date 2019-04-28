@@ -274,7 +274,7 @@
             this.showRouteOnMapButton.TabIndex = 22;
             this.showRouteOnMapButton.Text = "Show route to consigner on map";
             this.showRouteOnMapButton.UseVisualStyleBackColor = true;
-            this.showRouteOnMapButton.Click += new System.EventHandler(this.showRouteOnMapButton_Click);
+            this.showRouteOnMapButton.Click += new System.EventHandler(this.ShowRouteOnMapButton_Click);
             // 
             // PickupRequestDetailsForm
             // 

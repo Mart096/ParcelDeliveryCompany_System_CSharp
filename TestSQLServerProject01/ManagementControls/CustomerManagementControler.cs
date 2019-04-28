@@ -59,15 +59,19 @@ namespace ParcelDeliveryCompanyApplication
             {
                 Load_Customer_List();
 
-                ListViewItem found_item = null;
+                //ListViewItem found_item = null;
                 List<ListViewItem> items_arr = new List<ListViewItem>();
-                int search_index = 0;
-                do
+                //int search_index = 0;
+
+                //To rozwiązanie tylko wyszukuje rekordy, których wartości zaczynają się od podanego ciągu znaków
+                /*do
                 {
                     found_item = null;
                     if (search_index < customer_ListView.Items.Count)
                     {
                         found_item = customer_ListView.FindItemWithText(searchCustomer_textBox.Text, true, search_index);
+                        //string str1 = customer_ListView.Items[search_index].Text;
+                        //str1.Contains()
                     }
 
                     if (found_item != null)
@@ -84,6 +88,21 @@ namespace ParcelDeliveryCompanyApplication
                     if (item.SubItems[customerColumns_listbox.SelectedIndex].Text.Contains(searchCustomer_textBox.Text))
                     {
                         customer_ListView.Items.Add(item);
+                    }
+                }*/
+
+                //to rozwiązanie powinno wyszukiwać rekordy, których wartości w danej kolumnie posiadają dany ciąg znaków
+
+                foreach (ListViewItem item in customer_ListView.Items)
+                {
+                    if (item.SubItems[customerColumns_listbox.SelectedIndex].Text.Contains(searchCustomer_textBox.Text))
+                    {
+                        //customer_ListView.Items.Add(item);
+                        items_arr.Add(item);
+                    }
+                    else
+                    {
+                        customer_ListView.Items.RemoveAt(item.Index);
                     }
                 }
             }

@@ -103,38 +103,45 @@ namespace ParcelDeliveryCompanyApplication
 
         private void UpdatePickupRequestState_button_Click(object sender, EventArgs e)
         {
-            DialogResult dlg_result = MessageClass.DisplayMessage(1614, "");
-            if (dlg_result == DialogResult.Yes)
+            if (MainWindowReference.Current_role == UserClass.UserRole.Admin || MainWindowReference.Current_role == UserClass.UserRole.OrderManager || MainWindowReference.Current_role == UserClass.UserRole.Dispatcher)
             {
-                try
+                DialogResult dlg_result = MessageClass.DisplayMessage(1614, "");
+                if (dlg_result == DialogResult.Yes)
                 {
-                    using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
-                    using (SqlCommand command = new SqlCommand("UPDATE Zgloszenia_reklamacji SET Id_stanu_reklamacji = @complaint_state_id WHERE Id_zgloszenia_reklamacji = @item_id", connection))
+                    try
                     {
-                        command.Parameters.Add("@complaint_state_id", SqlDbType.Int);
-                        command.Parameters.Add("@item_id", SqlDbType.Int);
-                        command.Parameters["@complaint_state_id"].Value = Convert.ToInt32(complaintState_listView.SelectedItems[0].Text);
-                        command.Parameters["@item_id"].Value = this.object_id;
-
-                        connection.Open();
-
-                        int result = command.ExecuteNonQuery();
-                        if (result == 1)
+                        using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
+                        using (SqlCommand command = new SqlCommand("UPDATE Zgloszenia_reklamacji SET Id_stanu_reklamacji = @complaint_state_id WHERE Id_zgloszenia_reklamacji = @item_id", connection))
                         {
-                            ComplaintState_textbox.Text = complaintState_listView.SelectedItems[0].SubItems[1].Text;
-                            complaintState_listView.SelectedItems.Clear();
-                            MessageClass.DisplayMessage(1611);
-                        }
-                        else
-                        {
-                            MessageClass.DisplayMessage(1612);
+                            command.Parameters.Add("@complaint_state_id", SqlDbType.Int);
+                            command.Parameters.Add("@item_id", SqlDbType.Int);
+                            command.Parameters["@complaint_state_id"].Value = Convert.ToInt32(complaintState_listView.SelectedItems[0].Text);
+                            command.Parameters["@item_id"].Value = this.object_id;
+
+                            connection.Open();
+
+                            int result = command.ExecuteNonQuery();
+                            if (result == 1)
+                            {
+                                ComplaintState_textbox.Text = complaintState_listView.SelectedItems[0].SubItems[1].Text;
+                                complaintState_listView.SelectedItems.Clear();
+                                MessageClass.DisplayMessage(1611);
+                            }
+                            else
+                            {
+                                MessageClass.DisplayMessage(1612);
+                            }
                         }
                     }
+                    catch (Exception)
+                    {
+                        MessageClass.DisplayMessage(1613);
+                    }
                 }
-                catch (Exception)
-                {
-                    MessageClass.DisplayMessage(1613);
-                }
+            }
+            else
+            {
+                MessageClass.DisplayMessage(2501);
             }
         }
 

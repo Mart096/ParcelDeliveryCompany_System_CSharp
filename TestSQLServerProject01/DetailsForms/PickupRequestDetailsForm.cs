@@ -115,38 +115,47 @@ namespace ParcelDeliveryCompanyApplication
 
         private void UpdatePickupRequestState_button_Click(object sender, EventArgs e)
         {
-            DialogResult dlg_result = MessageClass.DisplayMessage(1903, "");
-            if (dlg_result == DialogResult.Yes)
+            if (MainWindowReference.Current_role == UserClass.UserRole.Admin || MainWindowReference.Current_role == UserClass.UserRole.OrderManager || MainWindowReference.Current_role == UserClass.UserRole.Dispatcher)
             {
-                try
+
+
+                DialogResult dlg_result = MessageClass.DisplayMessage(1903, "");
+                if (dlg_result == DialogResult.Yes)
                 {
-                    using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
-                    using (SqlCommand command = new SqlCommand("UPDATE Zgloszenia_odbioru SET Id_stanu_zgloszenia_odbioru = @pickup_request_state_id WHERE Id_zgloszenia_odbioru = @item_id", connection))
+                    try
                     {
-                        command.Parameters.Add("@pickup_request_state_id", SqlDbType.Int);
-                        command.Parameters.Add("@item_id", SqlDbType.Int);
-                        command.Parameters["@pickup_request_state_id"].Value = Convert.ToInt32(pickupRequestState_listView.SelectedItems[0].Text);
-                        command.Parameters["@item_id"].Value = this.object_id;
-
-                        connection.Open();
-
-                        int result = command.ExecuteNonQuery();
-                        if (result == 1)
+                        using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
+                        using (SqlCommand command = new SqlCommand("UPDATE Zgloszenia_odbioru SET Id_stanu_zgloszenia_odbioru = @pickup_request_state_id WHERE Id_zgloszenia_odbioru = @item_id", connection))
                         {
-                            pickupRequestState_textbox.Text = pickupRequestState_listView.SelectedItems[0].SubItems[1].Text;
-                            pickupRequestState_listView.SelectedItems.Clear();
-                            MessageClass.DisplayMessage(1904); 
-                        }
-                        else
-                        {
-                            MessageClass.DisplayMessage(1905); 
+                            command.Parameters.Add("@pickup_request_state_id", SqlDbType.Int);
+                            command.Parameters.Add("@item_id", SqlDbType.Int);
+                            command.Parameters["@pickup_request_state_id"].Value = Convert.ToInt32(pickupRequestState_listView.SelectedItems[0].Text);
+                            command.Parameters["@item_id"].Value = this.object_id;
+
+                            connection.Open();
+
+                            int result = command.ExecuteNonQuery();
+                            if (result == 1)
+                            {
+                                pickupRequestState_textbox.Text = pickupRequestState_listView.SelectedItems[0].SubItems[1].Text;
+                                pickupRequestState_listView.SelectedItems.Clear();
+                                MessageClass.DisplayMessage(1904);
+                            }
+                            else
+                            {
+                                MessageClass.DisplayMessage(1905);
+                            }
                         }
                     }
+                    catch (Exception)
+                    {
+                        MessageClass.DisplayMessage(1906);
+                    }
                 }
-                catch (Exception)
-                {
-                    MessageClass.DisplayMessage(1906); 
-                }
+            }
+            else
+            {
+                MessageClass.DisplayMessage(2501);
             }
         }
 
@@ -175,7 +184,7 @@ namespace ParcelDeliveryCompanyApplication
             }
         }
 
-        private void showRouteOnMapButton_Click(object sender, EventArgs e)
+        private void ShowRouteOnMapButton_Click(object sender, EventArgs e)
         {
             AddInDetailsForm.PickupRequestStartLocation locform = new AddInDetailsForm.PickupRequestStartLocation(MainWindowReference, object_id);
             locform.ShowDialog();
