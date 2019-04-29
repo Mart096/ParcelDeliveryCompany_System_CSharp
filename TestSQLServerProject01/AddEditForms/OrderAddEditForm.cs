@@ -170,7 +170,7 @@ namespace ParcelDeliveryCompanyApplication
             try
             {
                 using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
-                using (SqlCommand command = new SqlCommand("SELECT Id_kuriera, Id_klienta FROM Zlecenie WHERE Id_zlecenia = @order_id", connection))
+                using (SqlCommand command = new SqlCommand("SELECT Id_kuriera, Id_klienta FROM Orders_detailed_list_view WHERE Id_zlecenia = @order_id", connection))
                 {
                     command.Parameters.Add("@order_id", SqlDbType.Int);
                     command.Parameters["@order_id"].Value = edit_id;
