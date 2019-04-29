@@ -377,10 +377,12 @@ namespace ParcelDeliveryCompanyApplication
                                 command.Parameters.Add("@parcel_id", SqlDbType.Int).Value = parcel_id;
                                 //command.Parameters.Add("@property_name", SqlDbType.NVarChar);
                                 command.CommandText = operation_string2;
+
                                 using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                                 {
-                                    adapter.Fill(dt);
+                                    adapter.Fill(dt); //pobieranie listy cech paczki
                                 }
+
                                 command.CommandText = operation_string3;
                                 //command.Parameters.Add("@property_name", SqlDbType.NVarChar);
                                 command.Parameters.Add("@property_id", SqlDbType.Int);
@@ -456,9 +458,9 @@ namespace ParcelDeliveryCompanyApplication
                     this.Close();
                     this.Dispose();
                 }
-                catch (Exception ex)
+                catch (Exception /*ex*/)
                 {
-                    MessageBox.Show(ex.Message);
+                    //MessageBox.Show(ex.Message);
                     if (this.current_mode == FormMode.add)
                         MessageClass.DisplayMessage(1404); //MessageBox.Show("Failed to save new order's details." + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     else if (this.current_mode == FormMode.edit)
