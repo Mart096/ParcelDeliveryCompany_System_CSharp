@@ -77,9 +77,9 @@ namespace ParcelDeliveryCompanyApplication
             {
                 MessageClass.DisplayMessage(411);
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
                 MessageClass.DisplayMessage(410);
             }
         }

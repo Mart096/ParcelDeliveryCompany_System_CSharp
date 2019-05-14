@@ -163,17 +163,17 @@ namespace ParcelDeliveryCompanyApplication
                     }
                 }
             }
-            catch (SqlException sqlex)
+            catch (SqlException /*sqlex*/)
             {
                 //ErrorMessageClass.DisplayErrorMessage(411);
                 MessageClass.DisplayMessage(2402);
-                MessageBox.Show(sqlex.Message);
+                //MessageBox.Show(sqlex.Message);
             }
-            catch (Exception ex)
+            catch (Exception /*ex*/)
             {
                 //ErrorMessageClass.DisplayErrorMessage(410);
                 MessageClass.DisplayMessage(2403);
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
             }
         }
 
@@ -182,12 +182,12 @@ namespace ParcelDeliveryCompanyApplication
             this.current_mode = mode;
             if (mode == FormMode.add)
             {
-                this.Text = "Add location";
-                accept_button.Text = "Add new location";
+                this.Text = "Add course";
+                accept_button.Text = "Add new course";
             }
             else if (mode == FormMode.edit)
             {
-                this.Text = "Edit location";
+                this.Text = "Edit course";
                 accept_button.Text = "Accept changes";
             }
             else

@@ -287,7 +287,7 @@ namespace ParcelDeliveryCompanyApplication
                             if (result == 0)
                             {
                                 MessageClass.DisplayMessage(604);
-                                MessageBox.Show("Query failed! Please, try again later.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                //MessageBox.Show("Query failed! Please, try again later.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             else if (result > 1)
                             {
@@ -316,7 +316,8 @@ namespace ParcelDeliveryCompanyApplication
             }
             else
             {
-                MessageBox.Show("Not all data was specified. Check your input for missing information.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageClass.DisplayMessage(1112);
+                //MessageBox.Show("Not all data was specified. Check your input for missing information.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }    
         }
 
