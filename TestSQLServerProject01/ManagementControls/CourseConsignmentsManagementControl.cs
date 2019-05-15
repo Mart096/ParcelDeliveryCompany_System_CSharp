@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using ParcelDeliveryCompanyApplication.AddInDetailsForm;
-using TestGmapProject01;
+//using TestGmapProject01;
 using ParcelDeliveryCompany_ClassLibrary1;
 
 namespace ParcelDeliveryCompanyApplication.ManagementControls

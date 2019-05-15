@@ -35,7 +35,7 @@
             // 
             this.dictionaryManagement_button.Enabled = false;
             this.dictionaryManagement_button.Visible = false;
-            this.dictionaryManagement_button.EnabledChanged += new System.EventHandler(this.dictionaryManagement_button_EnabledChanged);
+            this.dictionaryManagement_button.EnabledChanged += new System.EventHandler(this.DictionaryManagement_button_EnabledChanged);
             // 
             // DispatcherControl
             // 

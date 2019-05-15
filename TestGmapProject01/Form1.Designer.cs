@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mapControler1 = new TestGmapProject01.MapControler();
+            this.mapControler1 = new ParcelDeliveryCompany_ClassLibrary1.MapControler();
             this.SuspendLayout();
             // 
             // mapControler1
@@ -53,7 +53,7 @@
         }
 
         #endregion
-        private MapControler mapControler1;
+        private ParcelDeliveryCompany_ClassLibrary1.MapControler mapControler1;
     }
 }
 

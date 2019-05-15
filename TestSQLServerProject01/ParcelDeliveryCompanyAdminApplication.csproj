@@ -459,10 +459,6 @@
       <Project>{3c36fe37-13a1-491d-866b-cbf1b64d28b0}</Project>
       <Name>ParcelDeliveryCompany_ClassLibrary1</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TestGmapProject01\TestGmapProject01.csproj">
-      <Project>{8379ebcc-70ad-40ac-9fe5-bfe0b046a4bf}</Project>
-      <Name>TestGmapProject01</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

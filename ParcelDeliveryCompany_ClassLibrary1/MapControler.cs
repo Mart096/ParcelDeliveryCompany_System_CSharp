@@ -13,7 +13,7 @@ using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using GMap.NET.MapProviders;
 
-namespace TestGmapProject01
+namespace ParcelDeliveryCompany_ClassLibrary1
 {
     public partial class MapControler : UserControl
     {

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.closeButton = new System.Windows.Forms.Button();
-            this.mapControler1 = new TestGmapProject01.MapControler();
+            this.mapControler1 = new ParcelDeliveryCompany_ClassLibrary1.MapControler();
             this.SuspendLayout();
             // 
             // closeButton
@@ -72,6 +72,6 @@
         #endregion
 
         private System.Windows.Forms.Button closeButton;
-        private TestGmapProject01.MapControler mapControler1;
+        private ParcelDeliveryCompany_ClassLibrary1.MapControler mapControler1;
     }
 }

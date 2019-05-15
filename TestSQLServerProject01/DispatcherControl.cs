@@ -42,7 +42,7 @@ namespace ParcelDeliveryCompanyApplication
             complaintManagement_panel.SetUserRole();
         }
 
-        private void dictionaryManagement_button_EnabledChanged(object sender, EventArgs e)
+        private void DictionaryManagement_button_EnabledChanged(object sender, EventArgs e)
         {
             dictionaryManagement_button.Enabled = false;
             dictionaryManagement_panel.Enabled = false;
