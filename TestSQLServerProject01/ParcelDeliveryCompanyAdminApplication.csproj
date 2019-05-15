@@ -222,12 +222,6 @@
     <Compile Include="ManagementControls\DictionaryManagementControler.Designer.cs">
       <DependentUpon>DictionaryManagementControler.cs</DependentUpon>
     </Compile>
-    <Compile Include="DispatcherControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DispatcherControl.Designer.cs">
-      <DependentUpon>DispatcherControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -388,9 +382,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ManagementControls\DictionaryManagementControler.resx">
       <DependentUpon>DictionaryManagementControler.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DispatcherControl.resx">
-      <DependentUpon>DispatcherControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
