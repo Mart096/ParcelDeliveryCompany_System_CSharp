@@ -1,4 +1,4 @@
-﻿namespace ParcelDeliveryCompanyApplication
+﻿namespace ParcelDeliveryCompany_ClassLibrary1
 {
     partial class AboutForm
     {

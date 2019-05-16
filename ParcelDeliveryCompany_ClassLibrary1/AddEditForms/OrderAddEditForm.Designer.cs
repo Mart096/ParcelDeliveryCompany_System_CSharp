@@ -1,4 +1,4 @@
-﻿namespace ParcelDeliveryCompanyApplication
+﻿namespace ParcelDeliveryCompany_ClassLibrary1
 {
     partial class OrderAddEditForm
     {
@@ -507,6 +507,7 @@
             // 
             // label
             // 
+            this.label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label.AutoSize = true;
             this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label.Location = new System.Drawing.Point(9, 309);
@@ -517,6 +518,7 @@
             // 
             // selectedCourier_label
             // 
+            this.selectedCourier_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.selectedCourier_label.AutoSize = true;
             this.selectedCourier_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.selectedCourier_label.Location = new System.Drawing.Point(82, 309);
@@ -527,6 +529,7 @@
             // 
             // selectedSender_label
             // 
+            this.selectedSender_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.selectedSender_label.AutoSize = true;
             this.selectedSender_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.selectedSender_label.Location = new System.Drawing.Point(381, 309);
@@ -537,6 +540,7 @@
             // 
             // label14
             // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label14.Location = new System.Drawing.Point(308, 309);

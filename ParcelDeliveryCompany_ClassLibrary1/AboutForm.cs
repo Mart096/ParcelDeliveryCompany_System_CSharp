@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ParcelDeliveryCompanyApplication //ParcelDeliveryCompanyApplication //TestSQLServerProject01
+namespace ParcelDeliveryCompany_ClassLibrary1 //ParcelDeliveryCompanyApplication //TestSQLServerProject01
 {
     public partial class AboutForm : Form
     {

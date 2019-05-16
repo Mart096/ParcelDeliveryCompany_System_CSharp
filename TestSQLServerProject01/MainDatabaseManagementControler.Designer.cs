@@ -51,7 +51,7 @@
             this.pickupRequestManagement_panel = new ParcelDeliveryCompanyApplication.PickupRequestManagementControl();
             this.courseManagementNew_panel = new ParcelDeliveryCompanyApplication.ManagementControls.CourseManagementControl_New();
             this.customerManagement_panel = new ParcelDeliveryCompanyApplication.CustomerManagementControler();
-            this.dictionaryManagement_panel = new ParcelDeliveryCompanyApplication.DictionaryManagementControler();
+            this.dictionaryManagement_panel = new ParcelDeliveryCompany_ClassLibrary1.DictionaryManagementControler();
             menu_panel1 = new System.Windows.Forms.FlowLayoutPanel();
             menu_panel1.SuspendLayout();
             this.display_panel.SuspendLayout();
@@ -406,7 +406,7 @@
         protected internal System.Windows.Forms.Button vehicleManagement_button;
         protected internal System.Windows.Forms.Button dictionaryManagement_button;
         protected internal System.Windows.Forms.Button complaintManagement_button;
-        protected internal DictionaryManagementControler dictionaryManagement_panel;
+        protected internal ParcelDeliveryCompany_ClassLibrary1.DictionaryManagementControler dictionaryManagement_panel;
         protected internal System.Windows.Forms.Button consignmentManagement_button;
         protected internal CustomerManagementControler customerManagement_panel;
         protected internal System.Windows.Forms.Button locationManagement_button;

@@ -1,4 +1,4 @@
-﻿using ParcelDeliveryCompany_ClassLibrary1;
+﻿//using ParcelDeliveryCompany_ClassLibrary1;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ParcelDeliveryCompanyApplication
+namespace ParcelDeliveryCompany_ClassLibrary1
 {
     public partial class OrderAddEditForm : Form
     {
@@ -170,7 +170,7 @@ namespace ParcelDeliveryCompanyApplication
             try
             {
                 using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
-                using (SqlCommand command = new SqlCommand("SELECT Id_kuriera, Id_klienta FROM Zlecenie WHERE Id_zlecenia = @order_id", connection))
+                using (SqlCommand command = new SqlCommand("SELECT Id_kuriera, Id_klienta FROM Orders_detailed_list_view WHERE Id_zlecenia = @order_id", connection))
                 {
                     command.Parameters.Add("@order_id", SqlDbType.Int);
                     command.Parameters["@order_id"].Value = edit_id;
@@ -287,7 +287,7 @@ namespace ParcelDeliveryCompanyApplication
                             if (result == 0)
                             {
                                 MessageClass.DisplayMessage(604);
-                                MessageBox.Show("Query failed! Please, try again later.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                //MessageBox.Show("Query failed! Please, try again later.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
                             else if (result > 1)
                             {
@@ -316,7 +316,8 @@ namespace ParcelDeliveryCompanyApplication
             }
             else
             {
-                MessageBox.Show("Not all data was specified. Check your input for missing information.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageClass.DisplayMessage(1112);
+                //MessageBox.Show("Not all data was specified. Check your input for missing information.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }    
         }
 

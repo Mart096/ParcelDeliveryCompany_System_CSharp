@@ -1,4 +1,4 @@
-﻿using ParcelDeliveryCompany_ClassLibrary1;
+﻿//using ParcelDeliveryCompany_ClassLibrary1;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ParcelDeliveryCompanyApplication
+namespace ParcelDeliveryCompany_ClassLibrary1
 {
     public partial class DictionaryAddRecordForm : Form
     {
@@ -38,7 +38,8 @@ namespace ParcelDeliveryCompanyApplication
             pickup_method = 8,
             consignment_type = 9,
             pickup_request_state = 10,
-            complaint_report_state = 11
+            complaint_report_state = 11,
+            city = 12
         };
 
         public DictionaryAddRecordForm()
@@ -77,7 +78,10 @@ namespace ParcelDeliveryCompanyApplication
                 using (SqlConnection connection = new SqlConnection(mainW.GetConnectionString())) //mainW.Connection01
                 {
                     //DataTable dt = new DataTable();
+                    //string table_name = "";
+                    //string query_string = "Znajdz_lub_stworz";
                     string query_string = "";
+
                     DataTable dt = new DataTable();
                     //przygotowywanie zapytania - parametryzacja zapytania w celu zapobiegania ataku typu SQL injection
                     if (selected_dictionary == (int)DictionariesNames.vehicle_type) query_string = "SELECT Typ_pojazdu FROM Typ_pojazdu WHERE Id_typu_pojazdu = @Nazwa";
@@ -91,9 +95,22 @@ namespace ParcelDeliveryCompanyApplication
                     else if (selected_dictionary == (int)DictionariesNames.consignment_type) query_string = "SELECT Typ_przesylki FROM Typ_przesylki WHERE Id_typu_przesylki = @Nazwa";
                     else if (selected_dictionary == (int)DictionariesNames.pickup_request_state) query_string = "SELECT Stan_zgloszenia_odbioru FROM Stan_zgloszenia_odbioru WHERE Id_stanu_zgloszenia_odbioru = @Nazwa";
                     else if (selected_dictionary == (int)DictionariesNames.complaint_report_state) query_string = "SELECT Stan_reklamacji FROM Stan_reklamacji WHERE Id_stanu_reklamacji = @Nazwa";
+                    //else if (selected_dictionary == (int)DictionariesNames.city) query_string = "SELECT Nazwa_miasta, Strefa FROM Miasto WHERE Id_miasta = @Nazwa";
+
+                    /*if (selected_dictionary == (int)DictionariesNames.vehicle_type) table_name = "Typ_pojazdu";
+                    else if (selected_dictionary == (int)DictionariesNames.area) table_name = "Strefa";
+                    else if (selected_dictionary == (int)DictionariesNames.location_type) table_name = "Typ_budynku";
+                    else if (selected_dictionary == (int)DictionariesNames.weight_category) table_name = "Kategoria_wagowa";
+                    else if (selected_dictionary == (int)DictionariesNames.size_category) table_name = "Gabaryty";
+                    else if (selected_dictionary == (int)DictionariesNames.properties) table_name = "Cecha";
+                    else if (selected_dictionary == (int)DictionariesNames.pickup_state) table_name = "Stan_odbioru";
+                    else if (selected_dictionary == (int)DictionariesNames.pickup_method) table_name = "Forma_odbioru";
+                    else if (selected_dictionary == (int)DictionariesNames.consignment_type) table_name = "Typ_przesylki";
+                    else if (selected_dictionary == (int)DictionariesNames.pickup_request_state) table_name = "Stan_zgloszenia_odbioru";
+                    else if (selected_dictionary == (int)DictionariesNames.complaint_report_state) table_name = "Stan_zgloszenia_reklamacji";*/
 
                     using (SqlCommand cmd = new SqlCommand(query_string, connection))
-                    {
+                    {                        
                         cmd.Parameters.Add("@Nazwa", SqlDbType.Int);
                         cmd.Parameters["@Nazwa"].Value = record_to_edit;
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
@@ -119,11 +136,12 @@ namespace ParcelDeliveryCompanyApplication
             {
                 //DataTable dt = new DataTable();
                 string query_string = "";
+                string table_name = "";
 
                 //przygotowywanie zapytania - parametryzacja zapytania w celu zapobiegania ataku typu SQL injection
                 if(current_mode == FormMode.add)
                 {
-                    if (selected_dictionary == (int)DictionariesNames.vehicle_type) query_string = "INSERT INTO Typ_pojazdu VALUES(@Nazwa)";
+                    /*if (selected_dictionary == (int)DictionariesNames.vehicle_type) query_string = "INSERT INTO Typ_pojazdu VALUES(@Nazwa)";
                     else if (selected_dictionary == (int)DictionariesNames.area) query_string = "INSERT INTO  Strefa VALUES(@Nazwa)";
                     else if (selected_dictionary == (int)DictionariesNames.location_type) query_string = "INSERT INTO Typ_budynku VALUES(@Nazwa)"; // Typ_punktu";
                     else if (selected_dictionary == (int)DictionariesNames.weight_category) query_string = "INSERT INTO  Kategoria_wagowa VALUES(@Nazwa)";
@@ -133,7 +151,20 @@ namespace ParcelDeliveryCompanyApplication
                     else if (selected_dictionary == (int)DictionariesNames.pickup_method) query_string = "INSERT INTO  Forma_odbioru VALUES(@Nazwa)";
                     else if (selected_dictionary == (int)DictionariesNames.consignment_type) query_string = "INSERT INTO  Typ_przesylki VALUES(@Nazwa)";
                     else if (selected_dictionary == (int)DictionariesNames.pickup_request_state) query_string = "INSERT INTO  Stan_zgloszenia_odbioru VALUES(@Nazwa)";
-                    else if (selected_dictionary == (int)DictionariesNames.complaint_report_state) query_string = "INSERT INTO  Stan_reklamacji VALUES(@Nazwa)";
+                    else if (selected_dictionary == (int)DictionariesNames.complaint_report_state) query_string = "INSERT INTO  Stan_reklamacji VALUES(@Nazwa)";*/
+
+                    if (selected_dictionary == (int)DictionariesNames.vehicle_type) table_name = "Typ_pojazdu";
+                    else if (selected_dictionary == (int)DictionariesNames.area) table_name = "Strefa";
+                    else if (selected_dictionary == (int)DictionariesNames.location_type) table_name = "Typ_budynku";
+                    else if (selected_dictionary == (int)DictionariesNames.weight_category) table_name = "Kategoria_wagowa";
+                    else if (selected_dictionary == (int)DictionariesNames.size_category) table_name = "Gabaryty";
+                    else if (selected_dictionary == (int)DictionariesNames.properties) table_name = "Cecha";
+                    else if (selected_dictionary == (int)DictionariesNames.pickup_state) table_name = "Stan_odbioru";
+                    else if (selected_dictionary == (int)DictionariesNames.pickup_method) table_name = "Forma_odbioru";
+                    else if (selected_dictionary == (int)DictionariesNames.consignment_type) table_name = "Typ_przesylki";
+                    else if (selected_dictionary == (int)DictionariesNames.pickup_request_state) table_name = "Stan_zgloszenia_odbioru";
+                    else if (selected_dictionary == (int)DictionariesNames.complaint_report_state) table_name = "Stan_zgloszenia_reklamacji";
+                    query_string = "Znajdz_lub_stworz";
                 }
                 else if(current_mode == FormMode.edit)
                 {
@@ -152,10 +183,18 @@ namespace ParcelDeliveryCompanyApplication
 
                 using (SqlCommand cmd = new SqlCommand(query_string, connection))
                 {
-                    cmd.Parameters.Add("@Nazwa", SqlDbType.NVarChar);
-                    cmd.Parameters["@Nazwa"].Value = newRecordValue_textBox.Text;
-                    if(current_mode == FormMode.edit)
+                    
+                    
+                    if (current_mode == FormMode.add)
                     {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("@Nazwa_tabeli", SqlDbType.NVarChar).Value = table_name;
+                        cmd.Parameters.Add("@Nazwa_przedmiotu", SqlDbType.NVarChar).Value = newRecordValue_textBox.Text;
+                    }
+                    else if(current_mode == FormMode.edit)
+                    {
+                        cmd.Parameters.Add("@Nazwa", SqlDbType.NVarChar);
+                        cmd.Parameters["@Nazwa"].Value = newRecordValue_textBox.Text;
                         cmd.Parameters.Add("@id", SqlDbType.Int);
                         cmd.Parameters["@id"].Value = this.edited_record;
                     }
@@ -163,19 +202,29 @@ namespace ParcelDeliveryCompanyApplication
                     try
                     {
                         connection.Open();
-                        Int32 cmd_result = cmd.ExecuteNonQuery();
-                        //connection.Close();
+
+                        if (current_mode == FormMode.add)
+                        {
+                            var return_param = cmd.Parameters.Add("@ReturnVal", SqlDbType.Int); //wykonywanie procedury zwracającej wartość wymaga użycia dodatkowej zmiennej, aby otrzymać wynik
+                            return_param.Direction = ParameterDirection.ReturnValue;
+
+                            cmd.ExecuteNonQuery();
+                            //int result = (int)return_param.Value;
+                        }
+                        else if (current_mode == FormMode.edit)
+                        {   
+                            Int32 cmd_result = cmd.ExecuteNonQuery();
+                        }
                     }
                     catch (SqlException /*sqlex*/)
                     {
-                        //MessageBox.Show(sqlex.Message);
                         MessageClass.DisplayMessage(302);
-                        connection.Close();
+                        //connection.Close();
                     }
                     catch (Exception /*ex*/)
                     {
                         MessageClass.DisplayMessage(301/*, ex*/);
-                        connection.Close();
+                        //connection.Close();
                     }
                 }
                 

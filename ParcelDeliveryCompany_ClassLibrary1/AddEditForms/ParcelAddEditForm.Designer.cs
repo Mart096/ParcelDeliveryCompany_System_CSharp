@@ -1,4 +1,4 @@
-﻿namespace ParcelDeliveryCompanyApplication
+﻿namespace ParcelDeliveryCompany_ClassLibrary1
 {
     partial class ParcelAddEditForm
     {
@@ -50,6 +50,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cancel_button
@@ -247,6 +248,16 @@
             this.label4.TabIndex = 15;
             this.label4.Text = "Properties";
             // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(397, 459);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(202, 13);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Hold Ctrl to select more than one property";
+            // 
             // ParcelAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,6 +265,7 @@
             this.CancelButton = this.cancel_button;
             this.ClientSize = new System.Drawing.Size(607, 509);
             this.ControlBox = false;
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -295,5 +307,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

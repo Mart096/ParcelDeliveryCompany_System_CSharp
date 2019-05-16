@@ -1,4 +1,4 @@
-﻿namespace ParcelDeliveryCompanyApplication
+﻿namespace ParcelDeliveryCompany_ClassLibrary1
 {
     partial class CustomerAddEditForm
     {
@@ -30,7 +30,7 @@
         {
             this.cancel_button = new System.Windows.Forms.Button();
             this.accept_button = new System.Windows.Forms.Button();
-            this.customerAddEdit_Controler = new ParcelDeliveryCompanyApplication.CustomerAddEditControler();
+            this.customerAddEdit_Controler = new ParcelDeliveryCompany_ClassLibrary1.CustomerAddEditControler();
             this.SuspendLayout();
             // 
             // cancel_button
@@ -57,6 +57,9 @@
             // 
             // customerAddEdit_Controler
             // 
+            this.customerAddEdit_Controler.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.customerAddEdit_Controler.Location = new System.Drawing.Point(12, 12);
             this.customerAddEdit_Controler.MainWindowReference = null;
             this.customerAddEdit_Controler.Name = "customerAddEdit_Controler";
@@ -68,6 +71,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(550, 442);
+            this.ControlBox = false;
             this.Controls.Add(this.customerAddEdit_Controler);
             this.Controls.Add(this.cancel_button);
             this.Controls.Add(this.accept_button);

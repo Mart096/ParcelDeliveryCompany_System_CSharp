@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using ParcelDeliveryCompany_ClassLibrary1;
+//using ParcelDeliveryCompany_ClassLibrary1;
 
-namespace ParcelDeliveryCompanyApplication
+namespace ParcelDeliveryCompany_ClassLibrary1
 {
     public partial class ComplaintAddEditForm : Form
     {

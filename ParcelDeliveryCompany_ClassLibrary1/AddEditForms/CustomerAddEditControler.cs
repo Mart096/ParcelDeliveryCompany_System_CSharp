@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using ParcelDeliveryCompany_ClassLibrary1;
 
-namespace ParcelDeliveryCompanyApplication
+namespace ParcelDeliveryCompany_ClassLibrary1
 {
     public partial class CustomerAddEditControler : UserControl
     {

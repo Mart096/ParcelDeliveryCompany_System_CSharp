@@ -1,4 +1,4 @@
-﻿namespace TestSQLServerProject01.AddEditForms
+﻿namespace ParcelDeliveryCompany_ClassLibrary1.AddEditForms
 {
     partial class CityAddRecordForm
     {

@@ -1,4 +1,4 @@
-﻿using ParcelDeliveryCompany_ClassLibrary1;
+﻿//using ParcelDeliveryCompany_ClassLibrary1;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ParcelDeliveryCompanyApplication
+namespace ParcelDeliveryCompany_ClassLibrary1
 {
     public partial class ParcelAddEditForm : Form
     {
@@ -57,7 +57,7 @@ namespace ParcelDeliveryCompanyApplication
             DataTable dt1 = new DataTable();
 
             string command1 = "SELECT * FROM Paczka WHERE Id_paczki = @parcel_id;";
-            string command2 = "SELECT * FROM Cecha_Paczki WHERE Id_paczki = @parcel_id;";
+            string command2 = "SELECT Id_cechy_paczki FROM Cecha_Paczki WHERE Id_paczki = @parcel_id;";
 
             try
             {
@@ -111,13 +111,20 @@ namespace ParcelDeliveryCompanyApplication
 
                         foreach (ListViewItem property in properties_ListView.Items)
                         {
-                            foreach (var item in dt1.Rows[0].ItemArray)
+                            //foreach (var item in dt1.Rows/*[0].ItemArray*/)
+                            for (int i=0; i<dt1.Rows.Count; i++)
                             {
-                                if (property.Text.Equals(item.ToString()))
+                                if (property.Text.Equals(dt1.Rows[i].ItemArray[0].ToString()))
                                 {
                                     int temp_id = property.Index;
                                     properties_ListView.Items[temp_id].Selected = true;
                                 }
+
+                                /*if (property.Text.Equals(item.ToString()))
+                                {
+                                    int temp_id = property.Index;
+                                    properties_ListView.Items[temp_id].Selected = true;
+                                }*/
                             }
                         }
                     }
@@ -289,11 +296,13 @@ namespace ParcelDeliveryCompanyApplication
 
         private void Accept_button_Click(object sender, EventArgs e)
         {
+            DataTable dt = new DataTable();
+
             string operation_string= "INSERT INTO Paczka OUTPUT INSERTED.Id_paczki VALUES(@consignment_id, @weight_cat_id, " +
                                 "@size_cat_id);";
-            /*string operation_string2="SELECT * FROM Cecha_Paczki WHERE Id_paczki = @parcel_id;";*/
-            string operation_string3="INSERT INTO Cecha_Paczki VALUES (@parcel_id, (SELECT Id_cechy FROM Cecha WHERE Cecha = @property_name))";
-            string operation_string4 = "DELETE FROM Cecha_Paczki WHERE Id_paczki = @parcel_id";
+            string operation_string2="SELECT Id_cechy_paczki FROM Cecha_Paczki WHERE Id_paczki = @parcel_id;";
+            string operation_string3 = "INSERT INTO Cecha_Paczki VALUES (@parcel_id, @property_id);";//(@parcel_id, (SELECT Id_cechy FROM Cecha WHERE Cecha = @property_name))";
+            string operation_string4 = "DELETE FROM Cecha_Paczki WHERE Id_paczki = @parcel_id AND Id_cechy_paczki = @property_id";
 
             if (Check_Input() == true)
             {
@@ -309,14 +318,17 @@ namespace ParcelDeliveryCompanyApplication
                         //!!!
                         //Należy sprawdzić jakie cechy ma paczka i usunąć te cechy, które zostały odznaczone, i dodać nowe, jeszcze nie dodane to tabeli
                         //!!!
-                        using (SqlCommand command = new SqlCommand(operation_string, connection))
+                        /*using (SqlTransaction transaction = connection.BeginTransaction())
+                        {*/
+
+                        using (SqlCommand command = new SqlCommand(operation_string, connection/*, transaction*/))
                         {
                             if (connection.State != ConnectionState.Open)
                             {
                                 connection.Open();
                             }
 
-                            int parcel_id=0;
+                            int parcel_id = 0;
                             command.Parameters.Add("@consignment_id", SqlDbType.Int);
                             command.Parameters.Add("@weight_cat_id", SqlDbType.Int);
                             command.Parameters.Add("@size_cat_id", SqlDbType.Int);
@@ -328,36 +340,101 @@ namespace ParcelDeliveryCompanyApplication
                             if (current_mode == FormMode.edit)
                             {
                                 parcel_id = edited_id;
-                                
+
                                 command.Parameters.Add("@parcel_id", SqlDbType.Int);
 
                                 command.Parameters["@parcel_id"].Value = parcel_id;
+
+                                //command.Parameters.Add("@property_id", SqlDbType.Int).Value=1;
                                 command.ExecuteNonQuery();
                             }
                             else
                             {
-                                parcel_id =(int)command.ExecuteScalar();
+                                parcel_id = (int)command.ExecuteScalar();
                             }
 
 
                             //Aktualizacja tabeli cech paczki
+                            int result = 0;
+
                             command.Parameters.Clear();
-                            command.CommandText = operation_string4;
-
-                            command.Parameters.Add("@parcel_id", SqlDbType.Int);
-                            command.Parameters["@parcel_id"].Value = parcel_id;
-                            command.ExecuteNonQuery(); //usuwanie wszystkich cech paczki
-
-
-                            command.CommandText = operation_string3;
-                            command.Parameters.Add("@property_name", SqlDbType.NVarChar);
-                            int result=0;
-                            foreach (ListViewItem item in properties_ListView.SelectedItems)
+                            if (current_mode == FormMode.add)
                             {
-                                command.Parameters["@property_name"].Value = item.SubItems[1].Text; //przypisanie nazwy cechy
-                                result = (int)command.ExecuteNonQuery();//dodanie cechy paczki
-                                if (result != 1)
-                                    break;
+                                command.CommandText = operation_string3;
+                                command.Parameters.Add("@parcel_id", SqlDbType.Int).Value = parcel_id;
+                                command.Parameters.Add("@property_id", SqlDbType.Int);
+                                result = 0;
+                                foreach (ListViewItem item in properties_ListView.SelectedItems)
+                                {
+                                    command.Parameters["@property_id"].Value = Convert.ToInt32(item.Text); //przypisanie id cechy
+                                    result = (int)command.ExecuteNonQuery();//dodanie cechy paczki
+                                    if (result != 1)
+                                        break;
+                                }
+                            }
+                            else
+                            {
+                                command.Parameters.Add("@parcel_id", SqlDbType.Int).Value = parcel_id;
+                                //command.Parameters.Add("@property_name", SqlDbType.NVarChar);
+                                command.CommandText = operation_string2;
+
+                                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                                {
+                                    adapter.Fill(dt); //pobieranie listy cech paczki
+                                }
+
+                                command.CommandText = operation_string3;
+                                //command.Parameters.Add("@property_name", SqlDbType.NVarChar);
+                                command.Parameters.Add("@property_id", SqlDbType.Int);
+                                foreach (ListViewItem item in properties_ListView.SelectedItems) //dodawanie cech, które nie były zaznaczone
+                                {
+                                    bool found = false;
+                                    for (int i = 0; i < dt.Rows.Count; i++)
+                                    {
+                                        string value = dt.Rows[i].ItemArray[0].ToString();
+                                        if (item.Text.Equals(value))
+                                        {
+                                            found = true;
+                                            break;
+                                        }
+                                    }
+                                    if (found == false)
+                                    {
+                                        command.Parameters["@property_id"].Value = Convert.ToInt32(item.Text);
+                                        command.ExecuteNonQuery();
+                                    }
+                                }
+
+                                //command.Parameters.Clear();
+                                //command.Parameters.Add("@parcel_id", SqlDbType.Int).Value = parcel_id;
+                                //command.Parameters.Add("@property_id", SqlDbType.Int);
+                                command.CommandText = operation_string4;
+                                //usuwanie cech, które zostały odznaczone
+                                for (int i = 0; i < dt.Rows.Count; i++)
+                                {
+                                    bool found = false;
+                                    string value = dt.Rows[i].ItemArray[0].ToString();
+                                    foreach (ListViewItem item in properties_ListView.SelectedItems) //porównanie z każdym zaznaczonym rekordem w liście cech
+                                    {
+
+                                        if (value.Equals(item.Text))
+                                        {
+                                            found = true;
+                                            break;
+                                        }
+                                        /*if (found == false)
+                                        {
+                                            command.Parameters["@property_id"].Value = Convert.ToInt32(value);
+                                            result = (int)command.ExecuteNonQuery();
+                                        }*/
+                                    }
+                                    if (found == false)
+                                    {
+                                        command.Parameters["@property_id"].Value = Convert.ToInt32(value);
+                                        result = (int)command.ExecuteNonQuery();
+                                    }
+                                }
+                                //}
                             }
 
                             if (result == 0)
@@ -365,16 +442,17 @@ namespace ParcelDeliveryCompanyApplication
                                 MessageClass.DisplayMessage(604);
                                 //MessageBox.Show("Query failed! Please, try again later.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
-                            else if (result > 1)
+                            /*else if (result > 1)
                             {
                                 MessageClass.DisplayMessage(703);
                                 //MessageBox.Show("Query unexpected behaviour detected! Please contact your data base administrator and let them know about issue.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            }
-                            else if (result == 1 && this.current_mode == FormMode.add)
+                            }*/
+                            else if (result >= 1 && this.current_mode == FormMode.add)
                                 MessageClass.DisplayMessage(1402); //MessageBox.Show("New parcel added successfully!", "Success", MessageBoxButtons.OK);
-                            else if (result == 1 && this.current_mode == FormMode.edit)
+                            else if (result >= 1 && this.current_mode == FormMode.edit)
                                 MessageClass.DisplayMessage(1403);  //MessageBox.Show("Selected parcel has been updated successfully!", "Success", MessageBoxButtons.OK);
                         }
+                        //}
 
                     }
                     this.Close();
@@ -382,6 +460,7 @@ namespace ParcelDeliveryCompanyApplication
                 }
                 catch (Exception /*ex*/)
                 {
+                    //MessageBox.Show(ex.Message);
                     if (this.current_mode == FormMode.add)
                         MessageClass.DisplayMessage(1404); //MessageBox.Show("Failed to save new order's details." + ex.Message, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     else if (this.current_mode == FormMode.edit)
@@ -392,7 +471,8 @@ namespace ParcelDeliveryCompanyApplication
             }
             else
             {
-                MessageBox.Show("Not all data was specified. Check your input for missing information.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageClass.DisplayMessage(1112);
+                //MessageBox.Show("Not all data was specified. Check your input for missing information.", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

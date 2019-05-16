@@ -50,7 +50,91 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbstractControlDescriptionProvider.cs" />
+    <Compile Include="AddEditForms\CityAddRecordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\CityAddRecordForm.Designer.cs">
+      <DependentUpon>CityAddRecordForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\ComplaintAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\ComplaintAddEditForm.Designer.cs">
+      <DependentUpon>ComplaintAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\ConsignmentAddEditUpdateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\ConsignmentAddEditUpdateForm.Designer.cs">
+      <DependentUpon>ConsignmentAddEditUpdateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\CourierAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\CourierAddEditForm.Designer.cs">
+      <DependentUpon>CourierAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\CourseAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\CourseAddEditForm.Designer.cs">
+      <DependentUpon>CourseAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\CustomerAddEditControler.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\CustomerAddEditControler.Designer.cs">
+      <DependentUpon>CustomerAddEditControler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\CustomerAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\CustomerAddEditForm.Designer.cs">
+      <DependentUpon>CustomerAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\DictionaryAddRecordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\DictionaryAddRecordForm.Designer.cs">
+      <DependentUpon>DictionaryAddRecordForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\LocationAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\LocationAddEditForm.Designer.cs">
+      <DependentUpon>LocationAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\OrderAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\OrderAddEditForm.Designer.cs">
+      <DependentUpon>OrderAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\ParcelAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\ParcelAddEditForm.Designer.cs">
+      <DependentUpon>ParcelAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\PickupRequestAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\PickupRequestAddEditForm.Designer.cs">
+      <DependentUpon>PickupRequestAddEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddEditForms\VehicleAddEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEditForms\VehicleAddEditForm.Designer.cs">
+      <DependentUpon>VehicleAddEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MessageClass.cs" />
     <Compile Include="LangClass.cs" />
     <Compile Include="MapControler.cs">
@@ -63,6 +147,48 @@
     <Compile Include="UserClass.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\CityAddRecordForm.resx">
+      <DependentUpon>CityAddRecordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\ComplaintAddEditForm.resx">
+      <DependentUpon>ComplaintAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\ConsignmentAddEditUpdateForm.resx">
+      <DependentUpon>ConsignmentAddEditUpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\CourierAddEditForm.resx">
+      <DependentUpon>CourierAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\CourseAddEditForm.resx">
+      <DependentUpon>CourseAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\CustomerAddEditControler.resx">
+      <DependentUpon>CustomerAddEditControler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\CustomerAddEditForm.resx">
+      <DependentUpon>CustomerAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\DictionaryAddRecordForm.resx">
+      <DependentUpon>DictionaryAddRecordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\LocationAddEditForm.resx">
+      <DependentUpon>LocationAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\OrderAddEditForm.resx">
+      <DependentUpon>OrderAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\ParcelAddEditForm.resx">
+      <DependentUpon>ParcelAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\PickupRequestAddEditForm.resx">
+      <DependentUpon>PickupRequestAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddEditForms\VehicleAddEditForm.resx">
+      <DependentUpon>VehicleAddEditForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MapControler.resx">
       <DependentUpon>MapControler.cs</DependentUpon>
     </EmbeddedResource>

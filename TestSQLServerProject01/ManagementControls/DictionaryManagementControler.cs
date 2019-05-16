@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using ParcelDeliveryCompany_ClassLibrary1;
-using TestSQLServerProject01.AddEditForms;
+using ParcelDeliveryCompany_ClassLibrary1.AddEditForms;
 
-namespace ParcelDeliveryCompanyApplication
+namespace ParcelDeliveryCompany_ClassLibrary1
 {
     public partial class DictionaryManagementControler : UserControl
     {

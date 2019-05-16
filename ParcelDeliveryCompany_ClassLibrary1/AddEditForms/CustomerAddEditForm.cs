@@ -1,4 +1,4 @@
-﻿using ParcelDeliveryCompany_ClassLibrary1;
+﻿//using ParcelDeliveryCompany_ClassLibrary1;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ParcelDeliveryCompanyApplication
+namespace ParcelDeliveryCompany_ClassLibrary1
 {
     public partial class CustomerAddEditForm : Form
     {
