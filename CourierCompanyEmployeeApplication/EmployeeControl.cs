@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ParcelDeliveryCompanyApplication;
+//using ParcelDeliveryCompanyApplication;
 using ParcelDeliveryCompany_ClassLibrary1;
 using static ParcelDeliveryCompany_ClassLibrary1.UserClass;
 

@@ -102,10 +102,6 @@
       <Project>{3c36fe37-13a1-491d-866b-cbf1b64d28b0}</Project>
       <Name>ParcelDeliveryCompany_ClassLibrary1</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TestSQLServerProject01\ParcelDeliveryCompanyAdminApplication.csproj">
-      <Project>{1022c48e-198a-4d76-a289-850715df7bf9}</Project>
-      <Name>ParcelDeliveryCompanyAdminApplication</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
