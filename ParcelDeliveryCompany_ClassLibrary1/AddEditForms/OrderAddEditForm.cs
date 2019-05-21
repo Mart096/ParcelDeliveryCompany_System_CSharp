@@ -170,7 +170,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             try
             {
                 using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
-                using (SqlCommand command = new SqlCommand("SELECT Id_kuriera, Id_klienta FROM Orders_detailed_list_view WHERE Id_zlecenia = @order_id", connection))
+                using (SqlCommand command = new SqlCommand("SELECT Id_kuriera, Id_klienta, Data_zlecenia FROM Orders_detailed_list_view WHERE Id_zlecenia = @order_id", connection))
                 {
                     command.Parameters.Add("@order_id", SqlDbType.Int);
                     command.Parameters["@order_id"].Value = edit_id;
@@ -206,6 +206,8 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                                     break;
                                 }
                             }
+
+                            orderDate_dateTimePicker.Value = Convert.ToDateTime(row[2].ToString());
                         }
                     }
                 }
@@ -261,9 +263,9 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                         }
 
                         //if (this.current_mode == FormMode.add)
-                        operation_string = "INSERT INTO Zlecenie VALUES(@courier_id, @sender_id)";
+                        operation_string = "INSERT INTO Zlecenie VALUES(@courier_id, @sender_id, @order_date)";
                         if (this.current_mode == FormMode.edit)
-                            operation_string = "UPDATE Zlecenie SET Id_kuriera = @courier_id, Id_klienta = @sender_id WHERE Id_zlecenia = @order_id";
+                            operation_string = "UPDATE Zlecenie SET Id_kuriera = @courier_id, Id_klienta = @sender_id, Data_zlecenia=@order_date WHERE Id_zlecenia = @order_id";
 
                         using (SqlCommand command = new SqlCommand(operation_string, connection))
                         {
@@ -273,6 +275,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                             }
                             command.Parameters.Add("@courier_id", SqlDbType.Int);
                             command.Parameters.Add("@sender_id", SqlDbType.Int);
+                            command.Parameters.Add("@order_date", SqlDbType.Date).Value=orderDate_dateTimePicker.Value.Date;
 
                             command.Parameters["@courier_id"].Value = courier_ListView.SelectedItems[0].Text;
                             command.Parameters["@sender_id"].Value = sender_id;

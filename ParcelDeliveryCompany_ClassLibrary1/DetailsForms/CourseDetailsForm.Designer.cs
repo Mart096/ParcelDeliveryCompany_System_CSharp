@@ -42,6 +42,10 @@
             this.startPointID_textBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.endPointID_textbox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.departureDT_textBox = new System.Windows.Forms.TextBox();
+            this.arrivalDT_textBox = new System.Windows.Forms.TextBox();
             this.courseConsignmentsManagement_panel = new ParcelDeliveryCompany_ClassLibrary1.ManagementControls.CourseConsignmentsManagementControl();
             this.parcelManagement_Controler = new ParcelDeliveryCompany_ClassLibrary1.ParcelManagementControler();
             this.consignmentData_panel.SuspendLayout();
@@ -70,9 +74,13 @@
             // 
             // consignmentData_panel
             // 
-            this.consignmentData_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.consignmentData_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.consignmentData_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.consignmentData_panel.Controls.Add(this.arrivalDT_textBox);
+            this.consignmentData_panel.Controls.Add(this.departureDT_textBox);
+            this.consignmentData_panel.Controls.Add(this.label4);
+            this.consignmentData_panel.Controls.Add(this.label6);
             this.consignmentData_panel.Controls.Add(this.courseMode_textbox);
             this.consignmentData_panel.Controls.Add(this.label5);
             this.consignmentData_panel.Controls.Add(this.courierFullName_textBox);
@@ -185,10 +193,46 @@
             this.endPointID_textbox.Size = new System.Drawing.Size(85, 20);
             this.endPointID_textbox.TabIndex = 13;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(2, 303);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(110, 17);
+            this.label4.TabIndex = 37;
+            this.label4.Text = "Arrival date time";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.Location = new System.Drawing.Point(2, 260);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(134, 17);
+            this.label6.TabIndex = 35;
+            this.label6.Text = "Departure date time";
+            // 
+            // departureDT_textBox
+            // 
+            this.departureDT_textBox.Location = new System.Drawing.Point(3, 280);
+            this.departureDT_textBox.Name = "departureDT_textBox";
+            this.departureDT_textBox.ReadOnly = true;
+            this.departureDT_textBox.Size = new System.Drawing.Size(252, 20);
+            this.departureDT_textBox.TabIndex = 38;
+            // 
+            // arrivalDT_textBox
+            // 
+            this.arrivalDT_textBox.Location = new System.Drawing.Point(3, 323);
+            this.arrivalDT_textBox.Name = "arrivalDT_textBox";
+            this.arrivalDT_textBox.ReadOnly = true;
+            this.arrivalDT_textBox.Size = new System.Drawing.Size(252, 20);
+            this.arrivalDT_textBox.TabIndex = 39;
+            // 
             // courseConsignmentsManagement_panel
             // 
-            this.courseConsignmentsManagement_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.courseConsignmentsManagement_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.courseConsignmentsManagement_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.courseConsignmentsManagement_panel.Details_button_disabled = true;
@@ -204,8 +248,8 @@
             // 
             // parcelManagement_Controler
             // 
-            this.parcelManagement_Controler.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.parcelManagement_Controler.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.parcelManagement_Controler.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.parcelManagement_Controler.Location = new System.Drawing.Point(301, 32);
@@ -251,5 +295,9 @@
         private ManagementControls.CourseConsignmentsManagementControl courseConsignmentsManagement_panel;
         private System.Windows.Forms.TextBox courseMode_textbox;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox arrivalDT_textBox;
+        private System.Windows.Forms.TextBox departureDT_textBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label6;
     }
 }

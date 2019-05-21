@@ -64,6 +64,12 @@ namespace ParcelDeliveryCompany_ClassLibrary1.DetailsForms
                         courierID_textbox.Text = dt.Rows[0].ItemArray[5].ToString();
                         courierFullName_textBox.Text = dt.Rows[0].ItemArray[6].ToString();
 
+                        DateTime temp_departure = Convert.ToDateTime(dt.Rows[0].ItemArray[7].ToString());
+                        DateTime temp_arrival = Convert.ToDateTime(dt.Rows[0].ItemArray[8].ToString());
+
+                        departureDT_textBox.Text = temp_departure.ToString();//temp_departure.Date.ToLongDateString()+", "+temp_departure.Date.Ti
+                        arrivalDT_textBox.Text = temp_arrival.ToLocalTime().ToString();//temp_arrival.Date.ToLongDateString() + ", " + temp_arrival.ToLocalTime();
+
                         if (startPointID_textBox.Text.Equals(endPointID_textbox.Text))
                         {
                             courseMode_textbox.Text = "Consignment's delivery mode";

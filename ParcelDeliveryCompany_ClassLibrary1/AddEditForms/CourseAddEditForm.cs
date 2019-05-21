@@ -30,14 +30,22 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             InitializeComponent();
             this.MainWindowReference = mW;
             ToggleMode((FormMode)mode);
-            LoadLocationList();
-            LoadCourierList();
+            /*LoadLocationList();
+            LoadCourierList();*/
+            LoadData();
 
             if (this.current_mode == FormMode.edit)
             {
                 this.edited_id = id;
                 Load_Course_to_Edit(edited_id);
             }
+        }
+
+        private void LoadData()
+        {
+            LoadLocationList();
+            LoadCourierList();
+            departureDateTimePicker.Value = DateTime.Now;
         }
 
         private void LoadLocationList()
@@ -127,13 +135,20 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                         int check_list = 0;
                         foreach (ListViewItem item in startLocation_ListView.Items)//startLocation_ListView.FindItemWithText(dt.Rows[0].ItemArray[0].ToString(), false, 0))
                         {
-                            if (item.Text.Equals( dt.Rows[0].ItemArray[1].ToString()))
+                            if (item.Text.Equals(dt.Rows[0].ItemArray[1].ToString()) && item.Text.Equals(dt.Rows[0].ItemArray[3].ToString())) //dopasowano punkt początkowy i końcowy (jeżeli dotyczy tego samego punktu)
+                            {
+                                check_list += 1;
+                                int temp_id = item.Index;
+                                startLocation_ListView.Items[temp_id].Selected = true;
+                                endLocation_listView.Items[temp_id].Selected = true;
+                            }
+                            else if (item.Text.Equals( dt.Rows[0].ItemArray[1].ToString())) //dopasowano punkt początkowy
                             {
                                 check_list += 1;
                                 int temp_id = item.Index;
                                 startLocation_ListView.Items[temp_id].Selected = true;
                             }
-                            else if (item.Text.Equals(dt.Rows[0].ItemArray[3].ToString()))
+                            else if (item.Text.Equals(dt.Rows[0].ItemArray[3].ToString())) //dopasowano punkt końcowy
                             {
                                 check_list += 1;
                                 int temp_id = item.Index;
@@ -154,6 +169,9 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                                 break;
                             }
                         }
+
+                        departureDateTimePicker.Value = Convert.ToDateTime(dt.Rows[0].ItemArray[7].ToString());
+                        arrivalDateTimePicker.Value = Convert.ToDateTime(dt.Rows[0].ItemArray[8].ToString());
                     }
                 }
             }
@@ -210,8 +228,8 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             {
                 try
                 {
-                    string insert_command = "INSERT INTO Kurs VALUES (@start_location, @end_location, @courier_id)";
-                    string update_command = "UPDATE Kurs SET Id_punktu = @start_location, Id_punktu_koncowego = @end_location, Id_kuriera = @courier_id WHERE Id_kursu = @course_id;";
+                    string insert_command = "INSERT INTO Kurs VALUES (@start_location, @end_location, @courier_id, @departureDT, @arrivalDT, @delivery_mode)";
+                    string update_command = "UPDATE Kurs SET Id_punktu = @start_location, Id_punktu_koncowego = @end_location, Id_kuriera = @courier_id, Data_czas_wyjazdu=@departureDT, Data_czas_przyjazdu=@arrivalDT WHERE Id_kursu = @course_id;";
                     string executed_command = insert_command;
                     if(current_mode == FormMode.edit)
                     {
@@ -223,10 +241,17 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                         command.Parameters.Add("@start_location", SqlDbType.Int);
                         command.Parameters.Add("@end_location", SqlDbType.Int);
                         command.Parameters.Add("@courier_id", SqlDbType.Int);
+                        command.Parameters.Add("@departureDT", SqlDbType.DateTime).Value=departureDateTimePicker.Value;
+                        command.Parameters.Add("@arrivalDT", SqlDbType.DateTime).Value=arrivalDateTimePicker.Value;
 
                         command.Parameters["@start_location"].Value = Convert.ToInt32(startLocation_ListView.SelectedItems[0].Text);
                         command.Parameters["@end_location"].Value = Convert.ToInt32(endLocation_listView.SelectedItems[0].Text);
                         command.Parameters["@courier_id"].Value = Convert.ToInt32(courier_ListView.SelectedItems[0].Text);
+
+                        if(current_mode == FormMode.add)
+                        {
+                            command.Parameters.Add("@delivery_mode", SqlDbType.Bit).Value = 0;
+                        }
 
                         if(current_mode == FormMode.edit)
                         {
@@ -262,7 +287,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                         }
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
                     if (current_mode == FormMode.add)
                         MessageClass.DisplayMessage(2404);

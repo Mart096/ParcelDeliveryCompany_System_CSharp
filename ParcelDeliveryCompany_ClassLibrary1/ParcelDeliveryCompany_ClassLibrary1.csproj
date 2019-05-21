@@ -369,6 +369,9 @@
     <EmbeddedResource Include="ManagementControls\ConsignmentManagementControl_New.resx">
       <DependentUpon>ConsignmentManagementControl_New.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ManagementControls\ConsignmentParcelManagementControl.resx">
+      <DependentUpon>ConsignmentParcelManagementControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ManagementControls\CourierManagementControl_New.resx">
       <DependentUpon>CourierManagementControl_New.cs</DependentUpon>
     </EmbeddedResource>

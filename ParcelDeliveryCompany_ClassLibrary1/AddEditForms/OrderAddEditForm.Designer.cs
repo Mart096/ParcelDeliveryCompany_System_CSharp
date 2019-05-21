@@ -77,6 +77,8 @@
             this.selectedCourier_label = new System.Windows.Forms.Label();
             this.selectedSender_label = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.orderDate_dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label11 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.apartmentNum_numeric)).BeginInit();
             this.SuspendLayout();
@@ -84,7 +86,7 @@
             // accept_button
             // 
             this.accept_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.accept_button.Location = new System.Drawing.Point(12, 339);
+            this.accept_button.Location = new System.Drawing.Point(12, 362);
             this.accept_button.Name = "accept_button";
             this.accept_button.Size = new System.Drawing.Size(75, 23);
             this.accept_button.TabIndex = 0;
@@ -95,7 +97,7 @@
             // cancel_button
             // 
             this.cancel_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cancel_button.Location = new System.Drawing.Point(93, 339);
+            this.cancel_button.Location = new System.Drawing.Point(93, 362);
             this.cancel_button.Name = "cancel_button";
             this.cancel_button.Size = new System.Drawing.Size(75, 23);
             this.cancel_button.TabIndex = 1;
@@ -549,12 +551,32 @@
             this.label14.TabIndex = 28;
             this.label14.Text = "Selected:";
             // 
+            // orderDate_dateTimePicker
+            // 
+            this.orderDate_dateTimePicker.Location = new System.Drawing.Point(93, 336);
+            this.orderDate_dateTimePicker.Name = "orderDate_dateTimePicker";
+            this.orderDate_dateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.orderDate_dateTimePicker.TabIndex = 30;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label11.Location = new System.Drawing.Point(9, 336);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(81, 17);
+            this.label11.TabIndex = 31;
+            this.label11.Text = "Order date:";
+            // 
             // OrderAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(698, 397);
             this.ControlBox = false;
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.orderDate_dateTimePicker);
             this.Controls.Add(this.selectedSender_label);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.selectedCourier_label);
@@ -629,5 +651,7 @@
         private System.Windows.Forms.TextBox phoneNumber_textBox;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.NumericUpDown apartmentNum_numeric;
+        private System.Windows.Forms.DateTimePicker orderDate_dateTimePicker;
+        private System.Windows.Forms.Label label11;
     }
 }

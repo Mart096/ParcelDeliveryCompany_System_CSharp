@@ -37,12 +37,14 @@
             this.locationID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.locationType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.streetName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cityName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.houseNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.postCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.endLocation_listView = new System.Windows.Forms.ListView();
             this.endID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.endLocationType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.endStreetName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.endCityName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.endHouseNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.endPostCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.courier_ListView = new System.Windows.Forms.ListView();
@@ -52,14 +54,16 @@
             this.courier_LastName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.courier_BirthDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.courier_NationalID_Number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cityName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.endCityName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.departureDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.arrivalDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // cancel_button
             // 
             this.cancel_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cancel_button.Location = new System.Drawing.Point(112, 741);
+            this.cancel_button.Location = new System.Drawing.Point(112, 780);
             this.cancel_button.Name = "cancel_button";
             this.cancel_button.Size = new System.Drawing.Size(82, 36);
             this.cancel_button.TabIndex = 21;
@@ -70,7 +74,7 @@
             // accept_button
             // 
             this.accept_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.accept_button.Location = new System.Drawing.Point(12, 741);
+            this.accept_button.Location = new System.Drawing.Point(12, 780);
             this.accept_button.Name = "accept_button";
             this.accept_button.Size = new System.Drawing.Size(94, 36);
             this.accept_button.TabIndex = 20;
@@ -145,6 +149,11 @@
             this.streetName.Text = "Street";
             this.streetName.Width = 103;
             // 
+            // cityName
+            // 
+            this.cityName.DisplayIndex = 2;
+            this.cityName.Text = "City";
+            // 
             // houseNumber
             // 
             this.houseNumber.Text = "House number";
@@ -192,6 +201,11 @@
             this.endStreetName.Text = "Street";
             this.endStreetName.Width = 103;
             // 
+            // endCityName
+            // 
+            this.endCityName.DisplayIndex = 2;
+            this.endCityName.Text = "City";
+            // 
             // endHouseNumber
             // 
             this.endHouseNumber.Text = "House number";
@@ -219,7 +233,7 @@
             this.courier_ListView.Location = new System.Drawing.Point(12, 510);
             this.courier_ListView.MultiSelect = false;
             this.courier_ListView.Name = "courier_ListView";
-            this.courier_ListView.Size = new System.Drawing.Size(576, 225);
+            this.courier_ListView.Size = new System.Drawing.Size(576, 221);
             this.courier_ListView.TabIndex = 29;
             this.courier_ListView.UseCompatibleStateImageBehavior = false;
             this.courier_ListView.View = System.Windows.Forms.View.Details;
@@ -252,22 +266,58 @@
             this.courier_NationalID_Number.Text = "National Identification Number";
             this.courier_NationalID_Number.Width = 162;
             // 
-            // cityName
+            // departureDateTimePicker
             // 
-            this.cityName.DisplayIndex = 2;
-            this.cityName.Text = "City";
+            this.departureDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.departureDateTimePicker.CustomFormat = "dd-MM-yyyy, HH:mm";
+            this.departureDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.departureDateTimePicker.Location = new System.Drawing.Point(12, 754);
+            this.departureDateTimePicker.Name = "departureDateTimePicker";
+            this.departureDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.departureDateTimePicker.TabIndex = 30;
             // 
-            // endCityName
+            // label4
             // 
-            this.endCityName.DisplayIndex = 2;
-            this.endCityName.Text = "City";
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(9, 734);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(134, 17);
+            this.label4.TabIndex = 31;
+            this.label4.Text = "Departure date time";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Location = new System.Drawing.Point(218, 734);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(110, 17);
+            this.label5.TabIndex = 33;
+            this.label5.Text = "Arrival date time";
+            // 
+            // arrivalDateTimePicker
+            // 
+            this.arrivalDateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.arrivalDateTimePicker.CustomFormat = "dd-MM-yyyy, HH:mm";
+            this.arrivalDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.arrivalDateTimePicker.Location = new System.Drawing.Point(221, 754);
+            this.arrivalDateTimePicker.Name = "arrivalDateTimePicker";
+            this.arrivalDateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.arrivalDateTimePicker.TabIndex = 32;
             // 
             // CourseAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 789);
+            this.ClientSize = new System.Drawing.Size(600, 828);
             this.ControlBox = false;
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.arrivalDateTimePicker);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.departureDateTimePicker);
             this.Controls.Add(this.courier_ListView);
             this.Controls.Add(this.endLocation_listView);
             this.Controls.Add(this.startLocation_ListView);
@@ -311,5 +361,9 @@
         private System.Windows.Forms.ColumnHeader courier_NationalID_Number;
         private System.Windows.Forms.ColumnHeader cityName;
         private System.Windows.Forms.ColumnHeader endCityName;
+        private System.Windows.Forms.DateTimePicker departureDateTimePicker;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker arrivalDateTimePicker;
     }
 }
