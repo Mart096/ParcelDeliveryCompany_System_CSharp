@@ -553,6 +553,7 @@
             // 
             // orderDate_dateTimePicker
             // 
+            this.orderDate_dateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.orderDate_dateTimePicker.Location = new System.Drawing.Point(93, 336);
             this.orderDate_dateTimePicker.Name = "orderDate_dateTimePicker";
             this.orderDate_dateTimePicker.Size = new System.Drawing.Size(200, 20);

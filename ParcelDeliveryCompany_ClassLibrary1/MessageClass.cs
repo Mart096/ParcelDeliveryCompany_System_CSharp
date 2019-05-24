@@ -196,7 +196,8 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             }
             else if (message_code == 803)
             {
-                MessageBox.Show(/*ex.Message + */"Error occured during an attemmpt to search for\nspecified items in customers' list.");
+                MessageBox.Show(/*
+                    .Message + */"Error occured during an attemmpt to search for\nspecified items in customers' list.");
             }
             else if (message_code == 804)
             {

@@ -218,9 +218,10 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                     //SubItems[0].Text), Convert.ToDouble(markersList1.SelectedItems[0].SubItems[1].Text)); //błąd w trakcie wykonywania
                     gMapControl1.Position = new PointLatLng(Convert.ToDouble(markersList1.SelectedItems[0].SubItems[2].Text), Convert.ToDouble(markersList1.SelectedItems[0].SubItems[3].Text));
                 }
-                catch (Exception ex)
+                catch (Exception 
+                )
                 {
-                    MessageBox.Show("Failed to center map on selected marker.\n"+ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Failed to center map on selected marker.\n"/*+ex.Message*/, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -278,9 +279,9 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                     throw new KeyNotFoundException();
                 }
             }
-            catch(Exception ex)
+            catch(Exception /*ex*/)
             {
-                MessageBox.Show("Failed to remove selected marker.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Failed to remove selected marker.\n" /*+ ex.Message*/, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             MarkerList1_CollectionChanged_Event();
         }
@@ -315,10 +316,10 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                         markersList1.Items.RemoveAt(markersList1.SelectedItems[0].Index);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception /*ex*/)
                 {
                     //ERROR!
-                    MessageBox.Show("Failed to move marker up.\n"+ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Failed to move marker up.\n"/*+ex.Message*/, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
             }
@@ -361,10 +362,10 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                         markersList1.Items.RemoveAt(markersList1.SelectedItems[0].Index);
                     }
                 }
-                catch (Exception ex)
+                catch (Exception /*ex*/)
                 {
                     //ERROR!
-                    MessageBox.Show("Failed to move marker up.\n"+ex.Message, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Failed to move marker up.\n"/*+ex.Message*/, "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
             }
@@ -488,9 +489,9 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                 gMapControl1.Refresh();
                 //routes.Routes[0].IsVisible = false;
             }
-            catch(Exception ex)
+            catch(Exception /*ex*/)
             {
-                MessageBox.Show("Could not calculate path.\n"+ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                MessageBox.Show("Could not calculate path.\n"/*+ex.Message*/, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 ClearRoutesMethod();
                 
                 gMapControl1.Refresh();
@@ -675,9 +676,9 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                     this.temp_route.Routes.Add(temp_route_drawing);
                     gMapControl1.Overlays.Add(this.temp_route);
                 }
-                catch (Exception ex)
+                catch (Exception /*ex*/)
                 {
-                    MessageBox.Show("Failed to center map on selected route.\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Failed to center map on selected route.\n" /*+ ex.Message*/, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     gMapControl1.Overlays.Remove(this.temp_route);
                     gMapControl1.Overlays.Remove(routes);
                     gMapControl1.Overlays.Add(routes);

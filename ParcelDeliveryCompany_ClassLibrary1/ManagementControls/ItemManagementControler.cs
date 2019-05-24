@@ -159,7 +159,8 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                             }
                         }
                     }
-                    catch (Exception /*ex*/)
+                    catch (Exception /*
+                    */)
                     {
                         //MessageBox.Show(ex.Message);
                         //ErrorMessageClass.DisplayErrorMessage(408);

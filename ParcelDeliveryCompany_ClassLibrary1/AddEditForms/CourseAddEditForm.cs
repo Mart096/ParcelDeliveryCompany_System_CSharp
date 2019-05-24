@@ -287,7 +287,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                         }
                     }
                 }
-                catch(Exception ex)
+                catch(Exception /*ex*/)
                 {
                     if (current_mode == FormMode.add)
                         MessageClass.DisplayMessage(2404);
