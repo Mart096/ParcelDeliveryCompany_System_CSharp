@@ -34,6 +34,8 @@
             this.newCityArea_listBox = new System.Windows.Forms.ListBox();
             this.newCityName_textBox = new System.Windows.Forms.TextBox();
             this.newCityName_label = new System.Windows.Forms.Label();
+            this.new_area_Checkbox = new System.Windows.Forms.CheckBox();
+            this.new_area_nameTextBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cancel_button
@@ -98,12 +100,35 @@
             this.newCityName_label.TabIndex = 27;
             this.newCityName_label.Text = "City name";
             // 
+            // new_area_Checkbox
+            // 
+            this.new_area_Checkbox.AutoSize = true;
+            this.new_area_Checkbox.Location = new System.Drawing.Point(118, 60);
+            this.new_area_Checkbox.Name = "new_area_Checkbox";
+            this.new_area_Checkbox.Size = new System.Drawing.Size(92, 17);
+            this.new_area_Checkbox.TabIndex = 29;
+            this.new_area_Checkbox.Text = "Add new area";
+            this.new_area_Checkbox.UseVisualStyleBackColor = true;
+            this.new_area_Checkbox.CheckedChanged += new System.EventHandler(this.New_area_Checkbox_CheckedChanged);
+            // 
+            // new_area_nameTextBox1
+            // 
+            this.new_area_nameTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.new_area_nameTextBox1.Location = new System.Drawing.Point(11, 80);
+            this.new_area_nameTextBox1.Name = "new_area_nameTextBox1";
+            this.new_area_nameTextBox1.Size = new System.Drawing.Size(205, 20);
+            this.new_area_nameTextBox1.TabIndex = 30;
+            this.new_area_nameTextBox1.Visible = false;
+            // 
             // CityAddRecordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(228, 221);
             this.ControlBox = false;
+            this.Controls.Add(this.new_area_nameTextBox1);
+            this.Controls.Add(this.new_area_Checkbox);
             this.Controls.Add(this.newCityArea_label);
             this.Controls.Add(this.newCityArea_listBox);
             this.Controls.Add(this.newCityName_textBox);
@@ -112,7 +137,7 @@
             this.Controls.Add(this.accept_button);
             this.MinimumSize = new System.Drawing.Size(244, 200);
             this.Name = "CityAddRecordForm";
-            this.Text = "Add new cty";
+            this.Text = "Add new city";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -125,5 +150,7 @@
         private System.Windows.Forms.ListBox newCityArea_listBox;
         private System.Windows.Forms.TextBox newCityName_textBox;
         private System.Windows.Forms.Label newCityName_label;
+        private System.Windows.Forms.CheckBox new_area_Checkbox;
+        private System.Windows.Forms.TextBox new_area_nameTextBox1;
     }
 }

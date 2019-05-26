@@ -46,6 +46,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.consignmentID_textbox = new System.Windows.Forms.TextBox();
             this.consignmentData_panel = new System.Windows.Forms.Panel();
+            this.new_complaint_state_checkBox = new System.Windows.Forms.CheckBox();
+            this.new_complaint_state_textBox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.consignmentData_panel.SuspendLayout();
             this.SuspendLayout();
@@ -77,6 +79,8 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.new_complaint_state_textBox);
+            this.panel1.Controls.Add(this.new_complaint_state_checkBox);
             this.panel1.Controls.Add(this.updateComplaintState_button);
             this.panel1.Controls.Add(this.complaintState_listView);
             this.panel1.Controls.Add(this.label7);
@@ -120,7 +124,7 @@
             // nameColumn
             // 
             this.nameColumn.Text = "Pickup state";
-            this.nameColumn.Width = 124;
+            this.nameColumn.Width = 167;
             // 
             // label7
             // 
@@ -231,6 +235,27 @@
             this.consignmentData_panel.Size = new System.Drawing.Size(287, 357);
             this.consignmentData_panel.TabIndex = 27;
             // 
+            // new_complaint_state_checkBox
+            // 
+            this.new_complaint_state_checkBox.AutoSize = true;
+            this.new_complaint_state_checkBox.Location = new System.Drawing.Point(173, 0);
+            this.new_complaint_state_checkBox.Name = "new_complaint_state_checkBox";
+            this.new_complaint_state_checkBox.Size = new System.Drawing.Size(52, 17);
+            this.new_complaint_state_checkBox.TabIndex = 27;
+            this.new_complaint_state_checkBox.Text = "Other";
+            this.new_complaint_state_checkBox.UseVisualStyleBackColor = true;
+            this.new_complaint_state_checkBox.CheckedChanged += new System.EventHandler(this.New_complaint_state_checkBox_CheckedChanged);
+            // 
+            // new_complaint_state_textBox
+            // 
+            this.new_complaint_state_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.new_complaint_state_textBox.Location = new System.Drawing.Point(6, 81);
+            this.new_complaint_state_textBox.Name = "new_complaint_state_textBox";
+            this.new_complaint_state_textBox.Size = new System.Drawing.Size(240, 20);
+            this.new_complaint_state_textBox.TabIndex = 28;
+            this.new_complaint_state_textBox.Visible = false;
+            // 
             // ComplaintDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,5 +297,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox consignmentID_textbox;
         private System.Windows.Forms.Panel consignmentData_panel;
+        private System.Windows.Forms.CheckBox new_complaint_state_checkBox;
+        private System.Windows.Forms.TextBox new_complaint_state_textBox;
     }
 }

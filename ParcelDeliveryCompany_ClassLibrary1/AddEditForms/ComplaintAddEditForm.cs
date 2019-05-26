@@ -137,8 +137,8 @@ namespace ParcelDeliveryCompany_ClassLibrary1
 
                 try
                 {
-                    string insert_command = "INSERT INTO Zgloszenia_reklamacji VALUES (@consignment_id, @compl_date, @compl_state_id);";
-                    string update_command = "UPDATE Zgloszenia_reklamacji SET Id_przesylki = @consignment_id WHERE Id_zgloszenia_reklamacji = @item_id;";
+                    string insert_command = "Dodaj_zgloszenie_reklamacji";//"INSERT INTO Zgloszenia_reklamacji VALUES (@Id_przesylki, @Data_zgloszenia_reklamacji, @Stan_reklamacji);";
+                    string update_command = "UPDATE Zgloszenia_reklamacji SET Id_przesylki = @Id_przesylki WHERE Id_zgloszenia_reklamacji = @item_id;";
 
                     string executed_command = insert_command;
                     if (current_mode == FormMode.edit)
@@ -148,15 +148,19 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                     using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
                     using (SqlCommand command = new SqlCommand(executed_command, connection))
                     {
-                        command.Parameters.Add("@consignment_id", SqlDbType.Int);
-                        command.Parameters.Add("@compl_date", SqlDbType.Date);
-                        command.Parameters.Add("@compl_state_id", SqlDbType.Int);
+                        command.Parameters.Add("@Id_przesylki", SqlDbType.Int);
+                        command.Parameters.Add("@Data_zgloszenia_reklamacji", SqlDbType.Date);
+                        command.Parameters.Add("@Stan_reklamacji", SqlDbType.NVarChar); //, SqlDbType.Int);
 
-                        command.Parameters["@consignment_id"].Value = consignment_ListView.SelectedItems[0].Text;
-                        command.Parameters["@compl_date"].Value = DateTime.Today;
-                        command.Parameters["@compl_state_id"].Value = 1;
+                        command.Parameters["@Id_przesylki"].Value = consignment_ListView.SelectedItems[0].Text;
+                        command.Parameters["@Data_zgloszenia_reklamacji"].Value = DateTime.Today;
+                        command.Parameters["@Stan_reklamacji"].Value = "Nowe";//1;
 
-                        if (current_mode == FormMode.edit)
+                        if (current_mode == FormMode.add)
+                        {
+                            command.CommandType = CommandType.StoredProcedure;
+                        }
+                        else if (current_mode == FormMode.edit)
                         {
                             command.Parameters.Add("@item_id", SqlDbType.Int);
                             command.Parameters["@item_id"].Value = edited_id;

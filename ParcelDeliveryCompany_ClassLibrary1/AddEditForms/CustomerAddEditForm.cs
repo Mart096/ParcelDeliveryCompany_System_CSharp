@@ -86,7 +86,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                     }
                 }
             }
-            catch (Exception){
+            catch (Exception /*ex*/){
                 MessageClass.DisplayMessage(813); //MessageBox.Show("Failed to add/edit customer.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.Close();
                 this.Dispose();

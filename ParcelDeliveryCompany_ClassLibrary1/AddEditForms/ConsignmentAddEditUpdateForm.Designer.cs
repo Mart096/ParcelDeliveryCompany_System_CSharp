@@ -46,14 +46,17 @@
             this.postCode_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.phoneNumber_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.new_pickupMethod_checkBox = new System.Windows.Forms.CheckBox();
+            this.add_new_consignment_type_checkBox = new System.Windows.Forms.CheckBox();
+            this.addNewConsignee_checkbox = new System.Windows.Forms.CheckBox();
             this.consigneeListView_panel = new System.Windows.Forms.Panel();
+            this.customerAddEdit_controler = new ParcelDeliveryCompany_ClassLibrary1.CustomerAddEditControler();
             this.clearFilter_button = new System.Windows.Forms.Button();
             this.consigneeSearch_button = new System.Windows.Forms.Button();
             this.searchConsignee_textBox = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.consigneeColumns_listbox = new System.Windows.Forms.ListBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.addNewConsignee_checkbox = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.consignmentType_ListView = new System.Windows.Forms.ListView();
             this.consignmentTypeID_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -64,7 +67,8 @@
             this.pickupMethod_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.customerAddEdit_controler = new ParcelDeliveryCompany_ClassLibrary1.CustomerAddEditControler();
+            this.new_pickup_method_textBox = new System.Windows.Forms.TextBox();
+            this.new_consignment_type_textBox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.consigneeListView_panel.SuspendLayout();
             this.SuspendLayout();
@@ -197,7 +201,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.customerAddEdit_controler);
+            this.panel1.Controls.Add(this.new_consignment_type_textBox);
+            this.panel1.Controls.Add(this.new_pickup_method_textBox);
+            this.panel1.Controls.Add(this.new_pickupMethod_checkBox);
+            this.panel1.Controls.Add(this.add_new_consignment_type_checkBox);
             this.panel1.Controls.Add(this.addNewConsignee_checkbox);
             this.panel1.Controls.Add(this.consigneeListView_panel);
             this.panel1.Controls.Add(this.label4);
@@ -212,8 +219,42 @@
             this.panel1.Size = new System.Drawing.Size(616, 596);
             this.panel1.TabIndex = 6;
             // 
+            // new_pickupMethod_checkBox
+            // 
+            this.new_pickupMethod_checkBox.AutoSize = true;
+            this.new_pickupMethod_checkBox.Location = new System.Drawing.Point(116, 542);
+            this.new_pickupMethod_checkBox.Name = "new_pickupMethod_checkBox";
+            this.new_pickupMethod_checkBox.Size = new System.Drawing.Size(141, 17);
+            this.new_pickupMethod_checkBox.TabIndex = 16;
+            this.new_pickupMethod_checkBox.Text = "Add new pickup method";
+            this.new_pickupMethod_checkBox.UseVisualStyleBackColor = true;
+            this.new_pickupMethod_checkBox.CheckedChanged += new System.EventHandler(this.New_pickupMethod_checkBox_CheckedChanged);
+            // 
+            // add_new_consignment_type_checkBox
+            // 
+            this.add_new_consignment_type_checkBox.AutoSize = true;
+            this.add_new_consignment_type_checkBox.Location = new System.Drawing.Point(435, 542);
+            this.add_new_consignment_type_checkBox.Name = "add_new_consignment_type_checkBox";
+            this.add_new_consignment_type_checkBox.Size = new System.Drawing.Size(100, 17);
+            this.add_new_consignment_type_checkBox.TabIndex = 15;
+            this.add_new_consignment_type_checkBox.Text = "New cons. type";
+            this.add_new_consignment_type_checkBox.UseVisualStyleBackColor = true;
+            this.add_new_consignment_type_checkBox.CheckedChanged += new System.EventHandler(this.Add_new_consignment_type_checkBox_CheckedChanged);
+            // 
+            // addNewConsignee_checkbox
+            // 
+            this.addNewConsignee_checkbox.AutoSize = true;
+            this.addNewConsignee_checkbox.Location = new System.Drawing.Point(107, 265);
+            this.addNewConsignee_checkbox.Name = "addNewConsignee_checkbox";
+            this.addNewConsignee_checkbox.Size = new System.Drawing.Size(114, 17);
+            this.addNewConsignee_checkbox.TabIndex = 13;
+            this.addNewConsignee_checkbox.Text = "Add new customer";
+            this.addNewConsignee_checkbox.UseVisualStyleBackColor = true;
+            this.addNewConsignee_checkbox.CheckedChanged += new System.EventHandler(this.AddNewConsignee_checkbox_CheckedChanged);
+            // 
             // consigneeListView_panel
             // 
+            this.consigneeListView_panel.Controls.Add(this.customerAddEdit_controler);
             this.consigneeListView_panel.Controls.Add(this.clearFilter_button);
             this.consigneeListView_panel.Controls.Add(this.consigneeSearch_button);
             this.consigneeListView_panel.Controls.Add(this.searchConsignee_textBox);
@@ -225,6 +266,17 @@
             this.consigneeListView_panel.Name = "consigneeListView_panel";
             this.consigneeListView_panel.Size = new System.Drawing.Size(544, 243);
             this.consigneeListView_panel.TabIndex = 14;
+            // 
+            // customerAddEdit_controler
+            // 
+            this.customerAddEdit_controler.AutoScroll = true;
+            this.customerAddEdit_controler.Enabled = false;
+            this.customerAddEdit_controler.Location = new System.Drawing.Point(0, -8);
+            this.customerAddEdit_controler.MainWindowReference = null;
+            this.customerAddEdit_controler.Name = "customerAddEdit_controler";
+            this.customerAddEdit_controler.Size = new System.Drawing.Size(563, 251);
+            this.customerAddEdit_controler.TabIndex = 29;
+            this.customerAddEdit_controler.Visible = false;
             // 
             // clearFilter_button
             // 
@@ -293,17 +345,6 @@
             this.label12.Size = new System.Drawing.Size(55, 13);
             this.label12.TabIndex = 6;
             this.label12.Text = "Search by";
-            // 
-            // addNewConsignee_checkbox
-            // 
-            this.addNewConsignee_checkbox.AutoSize = true;
-            this.addNewConsignee_checkbox.Location = new System.Drawing.Point(107, 265);
-            this.addNewConsignee_checkbox.Name = "addNewConsignee_checkbox";
-            this.addNewConsignee_checkbox.Size = new System.Drawing.Size(114, 17);
-            this.addNewConsignee_checkbox.TabIndex = 13;
-            this.addNewConsignee_checkbox.Text = "Add new customer";
-            this.addNewConsignee_checkbox.UseVisualStyleBackColor = true;
-            this.addNewConsignee_checkbox.CheckedChanged += new System.EventHandler(this.AddNewConsignee_checkbox_CheckedChanged);
             // 
             // label4
             // 
@@ -391,16 +432,21 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Order";
             // 
-            // customerAddEdit_controler
+            // new_pickup_method_textBox
             // 
-            this.customerAddEdit_controler.AutoScroll = true;
-            this.customerAddEdit_controler.Enabled = false;
-            this.customerAddEdit_controler.Location = new System.Drawing.Point(15, 296);
-            this.customerAddEdit_controler.MainWindowReference = null;
-            this.customerAddEdit_controler.Name = "customerAddEdit_controler";
-            this.customerAddEdit_controler.Size = new System.Drawing.Size(563, 251);
-            this.customerAddEdit_controler.TabIndex = 29;
-            this.customerAddEdit_controler.Visible = false;
+            this.new_pickup_method_textBox.Location = new System.Drawing.Point(12, 579);
+            this.new_pickup_method_textBox.Name = "new_pickup_method_textBox";
+            this.new_pickup_method_textBox.Size = new System.Drawing.Size(253, 20);
+            this.new_pickup_method_textBox.TabIndex = 17;
+            this.new_pickup_method_textBox.Visible = false;
+            // 
+            // new_consignment_type_textBox
+            // 
+            this.new_consignment_type_textBox.Location = new System.Drawing.Point(310, 579);
+            this.new_consignment_type_textBox.Name = "new_consignment_type_textBox";
+            this.new_consignment_type_textBox.Size = new System.Drawing.Size(253, 20);
+            this.new_consignment_type_textBox.TabIndex = 18;
+            this.new_consignment_type_textBox.Visible = false;
             // 
             // ConsignmentAddEditUpdateForm
             // 
@@ -460,5 +506,9 @@
         private System.Windows.Forms.ColumnHeader pickupMethodID_column;
         private System.Windows.Forms.ColumnHeader pickupMethod_column;
         private CustomerAddEditControler customerAddEdit_controler;
+        private System.Windows.Forms.CheckBox new_pickupMethod_checkBox;
+        private System.Windows.Forms.CheckBox add_new_consignment_type_checkBox;
+        private System.Windows.Forms.TextBox new_consignment_type_textBox;
+        private System.Windows.Forms.TextBox new_pickup_method_textBox;
     }
 }

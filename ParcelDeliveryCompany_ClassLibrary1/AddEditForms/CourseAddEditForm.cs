@@ -228,8 +228,8 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             {
                 try
                 {
-                    string insert_command = "INSERT INTO Kurs VALUES (@start_location, @end_location, @courier_id, @departureDT, @arrivalDT, @delivery_mode)";
-                    string update_command = "UPDATE Kurs SET Id_punktu = @start_location, Id_punktu_koncowego = @end_location, Id_kuriera = @courier_id, Data_czas_wyjazdu=@departureDT, Data_czas_przyjazdu=@arrivalDT WHERE Id_kursu = @course_id;";
+                    string insert_command = "Dodaj_kurs";//"INSERT INTO Kurs VALUES (@Id_punktu, @Id_punktu_koncowego, @Id_kuriera, @Data_czas_wyjazdu, @Data_czas_przyjazdu, @delivery_mode)";
+                    string update_command = "UPDATE Kurs SET Id_punktu = @Id_punktu, Id_punktu_koncowego = @Id_punktu_koncowego, Id_kuriera = @Id_kuriera, Data_czas_wyjazdu=@Data_czas_wyjazdu, Data_czas_przyjazdu=@Data_czas_przyjazdu WHERE Id_kursu = @course_id;";
                     string executed_command = insert_command;
                     if(current_mode == FormMode.edit)
                     {
@@ -238,20 +238,24 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                     using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
                     using (SqlCommand command = new SqlCommand(executed_command, connection))
                     {
-                        command.Parameters.Add("@start_location", SqlDbType.Int);
-                        command.Parameters.Add("@end_location", SqlDbType.Int);
-                        command.Parameters.Add("@courier_id", SqlDbType.Int);
-                        command.Parameters.Add("@departureDT", SqlDbType.DateTime).Value=departureDateTimePicker.Value;
-                        command.Parameters.Add("@arrivalDT", SqlDbType.DateTime).Value=arrivalDateTimePicker.Value;
+                        if (current_mode == FormMode.add)
+                        {
+                            command.CommandType = CommandType.StoredProcedure;
+                        }
+                        command.Parameters.Add("@Id_punktu", SqlDbType.Int);
+                        command.Parameters.Add("@Id_punktu_koncowego", SqlDbType.Int);
+                        command.Parameters.Add("@Id_kuriera", SqlDbType.Int);
+                        command.Parameters.Add("@Data_czas_wyjazdu", SqlDbType.DateTime).Value=departureDateTimePicker.Value;
+                        command.Parameters.Add("@Data_czas_przyjazdu", SqlDbType.DateTime).Value=arrivalDateTimePicker.Value;
 
-                        command.Parameters["@start_location"].Value = Convert.ToInt32(startLocation_ListView.SelectedItems[0].Text);
-                        command.Parameters["@end_location"].Value = Convert.ToInt32(endLocation_listView.SelectedItems[0].Text);
-                        command.Parameters["@courier_id"].Value = Convert.ToInt32(courier_ListView.SelectedItems[0].Text);
+                        command.Parameters["@Id_punktu"].Value = Convert.ToInt32(startLocation_ListView.SelectedItems[0].Text);
+                        command.Parameters["@Id_punktu_koncowego"].Value = Convert.ToInt32(endLocation_listView.SelectedItems[0].Text);
+                        command.Parameters["@Id_kuriera"].Value = Convert.ToInt32(courier_ListView.SelectedItems[0].Text);
 
-                        if(current_mode == FormMode.add)
+                        /*if(current_mode == FormMode.add)
                         {
                             command.Parameters.Add("@delivery_mode", SqlDbType.Bit).Value = 0;
-                        }
+                        }*/
 
                         if(current_mode == FormMode.edit)
                         {

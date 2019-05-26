@@ -154,20 +154,22 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                     if( Check_Input() == true)
                     {
                         //Add courier
+                        string command_string = "Dodaj_kuriera"; //"INSERT INTO Kurier VALUES (@Id_pojazdu, @Imie, @Nazwisko, @Data_urodzenia, @PESEL)";
                         using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
-                        using (SqlCommand command = new SqlCommand("INSERT INTO Kurier VALUES (@id_pojazdu, @imie, @nazwisko, @data_urodzenia, @pesel)", connection))
+                        using (SqlCommand command = new SqlCommand(command_string, connection))
                         {
-                            command.Parameters.Add("@id_pojazdu", SqlDbType.Int);
-                            command.Parameters.Add("@imie", SqlDbType.NVarChar);
-                            command.Parameters.Add("@nazwisko", SqlDbType.NVarChar);
-                            command.Parameters.Add("@data_urodzenia", SqlDbType.Date);
-                            command.Parameters.Add("@pesel", SqlDbType.NVarChar);
+                            command.CommandType = CommandType.StoredProcedure;
+                            command.Parameters.Add("@Id_pojazdu", SqlDbType.Int);
+                            command.Parameters.Add("@Imie", SqlDbType.NVarChar);
+                            command.Parameters.Add("@Nazwisko", SqlDbType.NVarChar);
+                            command.Parameters.Add("@Data_urodzenia", SqlDbType.Date);
+                            command.Parameters.Add("@PESEL", SqlDbType.NVarChar);
 
-                            command.Parameters["@id_pojazdu"].Value = Convert.ToInt32(vehicle_ListView.SelectedItems[0].Text);
-                            command.Parameters["@imie"].Value = firstName_textBox.Text;
-                            command.Parameters["@nazwisko"].Value = lastName_textBox.Text;
-                            command.Parameters["@data_urodzenia"].Value = birthDate_dateTimePicker.Value.Date; //do przerobioenia - powoduje błąd
-                            command.Parameters["@pesel"].Value = nationalIdNumber_textBox.Text;
+                            command.Parameters["@Id_pojazdu"].Value = Convert.ToInt32(vehicle_ListView.SelectedItems[0].Text);
+                            command.Parameters["@Imie"].Value = firstName_textBox.Text;
+                            command.Parameters["@Nazwisko"].Value = lastName_textBox.Text;
+                            command.Parameters["@Data_urodzenia"].Value = birthDate_dateTimePicker.Value.Date; //do przerobioenia - powoduje błąd
+                            command.Parameters["@PESEL"].Value = nationalIdNumber_textBox.Text;
 
                             connection.Open();
                             int result = command.ExecuteNonQuery();
@@ -204,20 +206,20 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                     if (Check_Input() == true)
                     {
                         using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
-                        using (SqlCommand command = new SqlCommand("UPDATE Kurier SET Id_pojazdu = @id_pojazdu, Imie = @imie, Nazwisko = @nazwisko, Data_urodzenia = @data_urodzenia, PESEL = @pesel WHERE Id_kuriera = @id_kuriera", connection))
+                        using (SqlCommand command = new SqlCommand("UPDATE Kurier SET Id_pojazdu = @Id_pojazdu, Imie = @Imie, Nazwisko = @Nazwisko, Data_urodzenia = @Data_urodzenia, PESEL = @PESEL WHERE Id_kuriera = @id_kuriera", connection))
                         {
-                            command.Parameters.Add("@id_pojazdu", SqlDbType.Int);
-                            command.Parameters.Add("@imie", SqlDbType.NVarChar);
-                            command.Parameters.Add("@nazwisko", SqlDbType.NVarChar);
-                            command.Parameters.Add("@data_urodzenia", SqlDbType.Date);
-                            command.Parameters.Add("@pesel", SqlDbType.NVarChar);
+                            command.Parameters.Add("@Id_pojazdu", SqlDbType.Int);
+                            command.Parameters.Add("@Imie", SqlDbType.NVarChar);
+                            command.Parameters.Add("@Nazwisko", SqlDbType.NVarChar);
+                            command.Parameters.Add("@Data_urodzenia", SqlDbType.Date);
+                            command.Parameters.Add("@PESEL", SqlDbType.NVarChar);
                             command.Parameters.Add("@id_kuriera", SqlDbType.Int);
 
-                            command.Parameters["@id_pojazdu"].Value = Convert.ToInt32(vehicle_ListView.SelectedItems[0].Text);
-                            command.Parameters["@imie"].Value = firstName_textBox.Text;
-                            command.Parameters["@nazwisko"].Value = lastName_textBox.Text;
-                            command.Parameters["@data_urodzenia"].Value = birthDate_dateTimePicker.Value.Date;
-                            command.Parameters["@pesel"].Value = nationalIdNumber_textBox.Text;
+                            command.Parameters["@Id_pojazdu"].Value = Convert.ToInt32(vehicle_ListView.SelectedItems[0].Text);
+                            command.Parameters["@Imie"].Value = firstName_textBox.Text;
+                            command.Parameters["@Nazwisko"].Value = lastName_textBox.Text;
+                            command.Parameters["@Data_urodzenia"].Value = birthDate_dateTimePicker.Value.Date;
+                            command.Parameters["@PESEL"].Value = nationalIdNumber_textBox.Text;
                             command.Parameters["@id_kuriera"].Value = this.edit_id;
 
                             connection.Open();

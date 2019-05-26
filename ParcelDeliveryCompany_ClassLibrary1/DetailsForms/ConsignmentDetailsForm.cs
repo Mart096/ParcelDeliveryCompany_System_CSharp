@@ -53,6 +53,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
 
         internal void Load_Pickup_State_List()
         {
+            pickupState_listView.Items.Clear();
             try
             {
                 DataTable dt = new DataTable();
@@ -86,10 +87,10 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             try
             {
                 using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
-                using (SqlCommand command = new SqlCommand("SELECT * FROM Consignment_Details_View WHERE Id_przesylki = @consignment_id", connection))
+                using (SqlCommand command = new SqlCommand("SELECT * FROM Consignment_Details_View WHERE Id_przesylki = @Id_przesylki", connection))
                 {
-                    command.Parameters.Add("@consignment_id", SqlDbType.Int);
-                    command.Parameters["@consignment_id"].Value = consignment_id;
+                    command.Parameters.Add("@Id_przesylki", SqlDbType.Int);
+                    command.Parameters["@Id_przesylki"].Value = consignment_id;
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {
                         if (connection.State != ConnectionState.Open)
@@ -148,36 +149,58 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                 DialogResult dlg_result = MessageClass.DisplayMessage(1802, "");
                 if (dlg_result == DialogResult.Yes)
                 {
-
-                    try
+                    if (Check_Input() == true)
                     {
-                        using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
-                        using (SqlCommand command = new SqlCommand("UPDATE Przesylka SET Id_stanu_odbioru = @pickup_state_id WHERE Id_przesylki = @consignment_id", connection))
+                        try
                         {
-                            command.Parameters.Add("@pickup_state_id", SqlDbType.Int);
-                            command.Parameters.Add("@consignment_id", SqlDbType.Int);
-                            command.Parameters["@pickup_state_id"].Value = Convert.ToInt32(pickupState_listView.SelectedItems[0].Text);
-                            command.Parameters["@consignment_id"].Value = this.object_id;
 
-                            connection.Open();
+                            string command_string= "Aktualizuj_stan_odbioru_przesylki";//"UPDATE Przesylka SET Id_stanu_odbioru = @Stan_odbioru WHERE Id_przesylki = @Id_przesylki"
 
-                            int result = command.ExecuteNonQuery();
-                            if (result == 1)
+                            using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
+                            using (SqlCommand command = new SqlCommand(command_string, connection))
                             {
-                                pickupState_textbox.Text = pickupState_listView.SelectedItems[0].SubItems[1].Text;
-                                pickupState_listView.SelectedItems.Clear();
-                                MessageClass.DisplayMessage(1803);
-                            }
-                            else
-                            {
-                                MessageClass.DisplayMessage(1804);
+                                command.CommandType = CommandType.StoredProcedure;
+                                command.Parameters.Add("@Stan_odbioru", SqlDbType.NVarChar);
+                                command.Parameters.Add("@Id_przesylki", SqlDbType.Int);
 
+                                if (new_consignment_pickup_state_checkBox.Checked == true)
+                                    command.Parameters["@Stan_odbioru"].Value = new_consignment_pickup_state_textBox.Text;//Convert.ToInt32(pickupState_listView.SelectedItems[0].Text);
+                                else
+                                    command.Parameters["@Stan_odbioru"].Value = pickupState_listView.SelectedItems[0].SubItems[1].Text;//Convert.ToInt32(pickupState_listView.SelectedItems[0].Text);
+                                command.Parameters["@Id_przesylki"].Value = this.object_id;
+
+                                connection.Open();
+
+                                int result = command.ExecuteNonQuery();
+                                if (result == (-1))
+                                {
+
+                                    if (new_consignment_pickup_state_checkBox.Checked == false)
+                                        pickupState_textbox.Text = pickupState_listView.SelectedItems[0].SubItems[1].Text;
+                                    else
+                                        pickupState_textbox.Text = new_consignment_pickup_state_textBox.Text;
+
+                                    pickupState_listView.SelectedItems.Clear();
+                                    new_consignment_pickup_state_textBox.Clear();
+                                    new_consignment_pickup_state_checkBox.Checked = false;
+
+                                    MessageClass.DisplayMessage(1803);
+                                }
+                                else
+                                {
+                                    MessageClass.DisplayMessage(1804);
+
+                                }
                             }
                         }
+                        catch (Exception)
+                        {
+                            MessageClass.DisplayMessage(1805);
+                        }
                     }
-                    catch (Exception)
+                    else
                     {
-                        MessageClass.DisplayMessage(1805);
+                        MessageClass.DisplayMessage(1112);
                     }
                 }
             }
@@ -185,6 +208,23 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             {
                 MessageClass.DisplayMessage(2501);
             }
+            Load_Pickup_State_List();
+        }
+
+        private bool Check_Input()
+        {
+            bool result = true;
+
+            if(new_consignment_pickup_state_checkBox.Checked==false && pickupState_listView.SelectedItems.Count != 1)
+            {
+                result = false;
+            }
+            else if ( new_consignment_pickup_state_checkBox.Checked==true && (new_consignment_pickup_state_textBox.Text.Length==0 || new_consignment_pickup_state_textBox.Text.Trim().Length==0))
+            {
+                result = false;
+            }
+
+            return result;
         }
 
         private void PickupState_listView_SelectedIndexChanged(object sender, EventArgs e)
@@ -202,6 +242,23 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             }
             else
             {
+                updateConsignmentPickupState_button.Enabled = false;
+            }
+        }
+
+        private void New_consignment_pickup_state_checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (new_consignment_pickup_state_checkBox.Checked == true)
+            {
+                pickupState_listView.SelectedItems.Clear();
+                pickupState_listView.Enabled = false;
+                new_consignment_pickup_state_textBox.Visible = true;
+                updateConsignmentPickupState_button.Enabled = true;
+            }
+            else
+            {
+                pickupState_listView.Enabled = true;
+                new_consignment_pickup_state_textBox.Visible = false;
                 updateConsignmentPickupState_button.Enabled = false;
             }
         }

@@ -72,10 +72,10 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             try
             {
                 using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
-                using (SqlCommand command = new SqlCommand("SELECT * FROM Pickup_Request_Details_View WHERE Id_zgloszenia_odbioru = @item_id", connection))
+                using (SqlCommand command = new SqlCommand("SELECT * FROM Pickup_Request_Details_View WHERE Id_zgloszenia_odbioru = @Id_zgloszenia_odbioru", connection))
                 {
-                    command.Parameters.Add("@item_id", SqlDbType.Int);
-                    command.Parameters["@item_id"].Value = object_id;
+                    command.Parameters.Add("@Id_zgloszenia_odbioru", SqlDbType.Int);
+                    command.Parameters["@Id_zgloszenia_odbioru"].Value = object_id;
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {
                         if (connection.State != ConnectionState.Open)
@@ -122,34 +122,55 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                 DialogResult dlg_result = MessageClass.DisplayMessage(1903, "");
                 if (dlg_result == DialogResult.Yes)
                 {
-                    try
+                    if (Check_Input() == true)
                     {
-                        using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
-                        using (SqlCommand command = new SqlCommand("UPDATE Zgloszenia_odbioru SET Id_stanu_zgloszenia_odbioru = @pickup_request_state_id WHERE Id_zgloszenia_odbioru = @item_id", connection))
+                        try
                         {
-                            command.Parameters.Add("@pickup_request_state_id", SqlDbType.Int);
-                            command.Parameters.Add("@item_id", SqlDbType.Int);
-                            command.Parameters["@pickup_request_state_id"].Value = Convert.ToInt32(pickupRequestState_listView.SelectedItems[0].Text);
-                            command.Parameters["@item_id"].Value = this.object_id;
-
-                            connection.Open();
-
-                            int result = command.ExecuteNonQuery();
-                            if (result == 1)
+                            string command_string = "Aktualizuj_stan_zgloszenia_odbioru"; //"UPDATE Zgloszenia_odbioru SET Id_stanu_zgloszenia_odbioru = @Stan_zgloszenia_odbioru WHERE Id_zgloszenia_odbioru = @Id_zgloszenia_odbioru"
+                            using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
+                            using (SqlCommand command = new SqlCommand(command_string, connection))
                             {
-                                pickupRequestState_textbox.Text = pickupRequestState_listView.SelectedItems[0].SubItems[1].Text;
-                                pickupRequestState_listView.SelectedItems.Clear();
-                                MessageClass.DisplayMessage(1904);
-                            }
-                            else
-                            {
-                                MessageClass.DisplayMessage(1905);
+                                command.CommandType = CommandType.StoredProcedure;
+
+                                command.Parameters.Add("@Stan_zgloszenia_odbioru", SqlDbType.NVarChar);
+                                command.Parameters.Add("@Id_zgloszenia_odbioru", SqlDbType.Int);
+
+                                if (new_pickup_request_state_checkBox.Checked == true)
+                                    command.Parameters["@Stan_zgloszenia_odbioru"].Value = new_pickup_request_state_textBox.Text;
+                                else
+                                    command.Parameters["@Stan_zgloszenia_odbioru"].Value = pickupRequestState_listView.SelectedItems[0].SubItems[1].Text;//Convert.ToInt32(pickupRequestState_listView.SelectedItems[0].Text);
+                                command.Parameters["@Id_zgloszenia_odbioru"].Value = this.object_id;
+
+                                connection.Open();
+
+                                int result = command.ExecuteNonQuery();
+                                if (result == (-1))
+                                {
+                                    if (new_pickup_request_state_checkBox.Checked == false)
+                                        pickupRequestState_textbox.Text = pickupRequestState_listView.SelectedItems[0].SubItems[1].Text;
+                                    else
+                                        pickupRequestState_textbox.Text = new_pickup_request_state_textBox.Text;
+
+                                    pickupRequestState_listView.SelectedItems.Clear();
+                                    new_pickup_request_state_checkBox.Checked = false;
+                                    new_pickup_request_state_textBox.Clear();
+
+                                    MessageClass.DisplayMessage(1904);
+                                }
+                                else
+                                {
+                                    MessageClass.DisplayMessage(1905);
+                                }
                             }
                         }
+                        catch (Exception)
+                        {
+                            MessageClass.DisplayMessage(1906);
+                        }
                     }
-                    catch (Exception)
+                    else
                     {
-                        MessageClass.DisplayMessage(1906);
+                        MessageClass.DisplayMessage(1112);
                     }
                 }
             }
@@ -157,6 +178,18 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             {
                 MessageClass.DisplayMessage(2501);
             }
+        }
+
+        private bool Check_Input()
+        {
+            bool result = true;
+
+            if (new_pickup_request_state_checkBox.Checked == false && pickupRequestState_listView.SelectedItems.Count != 1)
+                result = false;
+            else if (new_pickup_request_state_checkBox.Checked == true && (new_pickup_request_state_textBox.Text.Length == 0 || new_pickup_request_state_textBox.Text.Trim().Length == 0))
+                result = false;
+
+            return result;
         }
 
         private void Cancel_button_Click(object sender, EventArgs e)
@@ -171,16 +204,16 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             {
                 if (pickupRequestState_listView.SelectedItems[0].SubItems[1].Text.Equals(pickupRequestState_textbox.Text))
                 {
-                    updateConsignmentPickupState_button.Enabled = false;
+                    updatePickupRequestState_button.Enabled = false;
                 }
                 else
                 {
-                    updateConsignmentPickupState_button.Enabled = true;
+                    updatePickupRequestState_button.Enabled = true;
                 }
             }
             else
             {
-                updateConsignmentPickupState_button.Enabled = false;
+                updatePickupRequestState_button.Enabled = false;
             }
         }
 
@@ -192,6 +225,23 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             mapForm.UserItem = this.MainWindowReference;
             //mapForm.SendCourseDataToMapControl(Item_id);
             mapForm.ShowDialog();*/
+        }
+
+        private void New_pickup_request_state_checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (new_pickup_request_state_checkBox.Checked == true)
+            {
+                pickupRequestState_listView.SelectedItems.Clear();
+                pickupRequestState_listView.Visible = false;
+                new_pickup_request_state_textBox.Visible = true;
+                updatePickupRequestState_button.Enabled = true;
+            }
+            else
+            {
+                pickupRequestState_listView.Visible = true;
+                new_pickup_request_state_textBox.Visible = false;
+                updatePickupRequestState_button.Enabled = false;
+            }
         }
     }
 }

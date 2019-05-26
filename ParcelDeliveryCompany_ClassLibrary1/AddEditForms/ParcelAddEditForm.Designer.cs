@@ -51,6 +51,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.new_weight_category_checkBox = new System.Windows.Forms.CheckBox();
+            this.new_size_category_checkBox = new System.Windows.Forms.CheckBox();
+            this.new_property_checkBox = new System.Windows.Forms.CheckBox();
+            this.new_weight_category_textBox = new System.Windows.Forms.TextBox();
+            this.new_size_category_textBox = new System.Windows.Forms.TextBox();
+            this.new_property_textBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // cancel_button
@@ -258,6 +264,69 @@
             this.label5.TabIndex = 16;
             this.label5.Text = "Hold Ctrl to select more than one property";
             // 
+            // new_weight_category_checkBox
+            // 
+            this.new_weight_category_checkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.new_weight_category_checkBox.AutoSize = true;
+            this.new_weight_category_checkBox.Location = new System.Drawing.Point(125, 267);
+            this.new_weight_category_checkBox.Name = "new_weight_category_checkBox";
+            this.new_weight_category_checkBox.Size = new System.Drawing.Size(68, 17);
+            this.new_weight_category_checkBox.TabIndex = 17;
+            this.new_weight_category_checkBox.Text = "Add new";
+            this.new_weight_category_checkBox.UseVisualStyleBackColor = true;
+            this.new_weight_category_checkBox.CheckedChanged += new System.EventHandler(this.New_weight_category_checkBox_CheckedChanged);
+            // 
+            // new_size_category_checkBox
+            // 
+            this.new_size_category_checkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.new_size_category_checkBox.AutoSize = true;
+            this.new_size_category_checkBox.Location = new System.Drawing.Point(311, 267);
+            this.new_size_category_checkBox.Name = "new_size_category_checkBox";
+            this.new_size_category_checkBox.Size = new System.Drawing.Size(68, 17);
+            this.new_size_category_checkBox.TabIndex = 18;
+            this.new_size_category_checkBox.Text = "Add new";
+            this.new_size_category_checkBox.UseVisualStyleBackColor = true;
+            this.new_size_category_checkBox.CheckedChanged += new System.EventHandler(this.New_size_category_checkBox_CheckedChanged);
+            // 
+            // new_property_checkBox
+            // 
+            this.new_property_checkBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.new_property_checkBox.AutoSize = true;
+            this.new_property_checkBox.Location = new System.Drawing.Point(476, 267);
+            this.new_property_checkBox.Name = "new_property_checkBox";
+            this.new_property_checkBox.Size = new System.Drawing.Size(68, 17);
+            this.new_property_checkBox.TabIndex = 19;
+            this.new_property_checkBox.Text = "Add new";
+            this.new_property_checkBox.UseVisualStyleBackColor = true;
+            this.new_property_checkBox.CheckedChanged += new System.EventHandler(this.New_property_checkBox_CheckedChanged);
+            // 
+            // new_weight_category_textBox
+            // 
+            this.new_weight_category_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.new_weight_category_textBox.Location = new System.Drawing.Point(10, 299);
+            this.new_weight_category_textBox.Name = "new_weight_category_textBox";
+            this.new_weight_category_textBox.Size = new System.Drawing.Size(195, 20);
+            this.new_weight_category_textBox.TabIndex = 20;
+            this.new_weight_category_textBox.Visible = false;
+            // 
+            // new_size_category_textBox
+            // 
+            this.new_size_category_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.new_size_category_textBox.Location = new System.Drawing.Point(211, 299);
+            this.new_size_category_textBox.Name = "new_size_category_textBox";
+            this.new_size_category_textBox.Size = new System.Drawing.Size(183, 20);
+            this.new_size_category_textBox.TabIndex = 21;
+            this.new_size_category_textBox.Visible = false;
+            // 
+            // new_property_textBox
+            // 
+            this.new_property_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.new_property_textBox.Location = new System.Drawing.Point(400, 299);
+            this.new_property_textBox.Name = "new_property_textBox";
+            this.new_property_textBox.Size = new System.Drawing.Size(195, 20);
+            this.new_property_textBox.TabIndex = 22;
+            this.new_property_textBox.Visible = false;
+            // 
             // ParcelAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,6 +334,12 @@
             this.CancelButton = this.cancel_button;
             this.ClientSize = new System.Drawing.Size(607, 509);
             this.ControlBox = false;
+            this.Controls.Add(this.new_property_textBox);
+            this.Controls.Add(this.new_size_category_textBox);
+            this.Controls.Add(this.new_weight_category_textBox);
+            this.Controls.Add(this.new_property_checkBox);
+            this.Controls.Add(this.new_size_category_checkBox);
+            this.Controls.Add(this.new_weight_category_checkBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -308,5 +383,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox new_weight_category_checkBox;
+        private System.Windows.Forms.CheckBox new_size_category_checkBox;
+        private System.Windows.Forms.CheckBox new_property_checkBox;
+        private System.Windows.Forms.TextBox new_weight_category_textBox;
+        private System.Windows.Forms.TextBox new_size_category_textBox;
+        private System.Windows.Forms.TextBox new_property_textBox;
     }
 }

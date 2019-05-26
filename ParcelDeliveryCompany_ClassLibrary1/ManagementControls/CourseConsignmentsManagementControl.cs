@@ -63,6 +63,21 @@ namespace ParcelDeliveryCompany_ClassLibrary1.ManagementControls
             LoadItemList();
         }
 
+        /* //kopia na wszelki wypadek
+        protected override void AddItem_button_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CourseConsignmentAddForm addform = new CourseConsignmentAddForm(MainWindowReference, this.Item_id);
+                addform.ShowDialog();
+            }
+            catch (Exception)
+            {
+                MessageClass.DisplayMessage(1706);//MessageBox.Show("Error! Could not initialize \"Add consignment to course\" form.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            LoadItemList();
+        }*/
+
         protected override void ItemDetails_button_Click(object sender, EventArgs e)
         {
             CourseMapForm mapForm = new CourseMapForm();
@@ -70,6 +85,16 @@ namespace ParcelDeliveryCompany_ClassLibrary1.ManagementControls
             mapForm.SendCourseDataToMapControl(Item_id);
             mapForm.ShowDialog();
         }
+        /*
+        //kopia na wszelki wypadek
+        protected override void ItemDetails_button_Click(object sender, EventArgs e)
+        {
+            CourseMapForm mapForm = new CourseMapForm();
+            mapForm.UserItem = this.MainWindowReference;
+            mapForm.SendCourseDataToMapControl(Item_id);
+            mapForm.ShowDialog();
+        }*/
+
 
         protected override void EditItem_button_Click(object sender, EventArgs e)
         {
@@ -120,6 +145,52 @@ namespace ParcelDeliveryCompany_ClassLibrary1.ManagementControls
                 LoadItemList();
             }
         }
+
+        /* kopia na wszelki wypadek
+         protected override void RemoveItem_button_Click(object sender, EventArgs e)
+        {
+            if (item_ListView.SelectedItems.Count == 1)
+            {
+                DialogResult dlg_result = MessageClass.DisplayMessage(1707, this.Item_name);
+                if (dlg_result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
+                        using (SqlCommand command = new SqlCommand(this.Remove_command, connection))
+                        {
+                            connection.Open();
+                            command.Parameters.Add("@consignment_id", SqlDbType.Int);
+                            command.Parameters.Add("@item_id", SqlDbType.Int);
+                            command.Parameters["@consignment_id"].Value = Convert.ToInt32(item_ListView.SelectedItems[0].Text);
+                            command.Parameters["@item_id"].Value = this.Item_id;
+
+                            int result = command.ExecuteNonQuery();
+                            if (result != 1)
+                            {
+                                MessageClass.DisplayMessage(703);
+                            }
+                            else
+                            {
+                                MessageClass.DisplayMessage(1708, this.Item_name_capital_letter);
+                                //MessageBox.Show(this.Item_name_capital_letter + " removed from course successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                    }
+                    catch (Exception /*ex*//*)
+                    {
+                        MessageClass.DisplayMessage(1709);
+                    }
+}
+                else
+                {
+                    item_ListView.SelectedItems.Clear();
+                }
+                item_ListView.SelectedItems.Clear();
+                LoadItemList();
+            }
+        }
+        */
 
         internal override void LoadItemList()
         {

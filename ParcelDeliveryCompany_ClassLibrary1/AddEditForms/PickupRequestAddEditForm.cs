@@ -178,8 +178,8 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                 
                 try
                 {
-                    string insert_command = "INSERT INTO Zgloszenia_odbioru VALUES (@order_id, @pckreq_date, @pckreq_state_id, @courier_id);";
-                    string update_command = "UPDATE Zgloszenia_odbioru SET Id_zlecenia = @order_id, Data_zlecenia_odbioru = @pckreq_date, Id_kuriera = @courier_id WHERE Id_zgloszenia_odbioru = @item_id;";
+                    string insert_command = "Dodaj_zgloszenie_odbioru";//"INSERT INTO Zgloszenia_odbioru VALUES (@Id_zlecenia, @Data_zlecenia_odbioru, @Stan_zgloszenia_odbioru, @Id_kuriera);";
+                    string update_command = "UPDATE Zgloszenia_odbioru SET Id_zlecenia = @Id_zlecenia, Data_zlecenia_odbioru = @Data_zlecenia_odbioru, Id_kuriera = @Id_kuriera WHERE Id_zgloszenia_odbioru = @item_id;";
 
                     string executed_command = insert_command;
                     if (current_mode == FormMode.edit)
@@ -189,15 +189,20 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                     using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
                     using (SqlCommand command = new SqlCommand(executed_command, connection))
                     {
-                        command.Parameters.Add("@order_id", SqlDbType.Int);
-                        command.Parameters.Add("@pckreq_date", SqlDbType.DateTime);
-                        command.Parameters.Add("@pckreq_state_id", SqlDbType.Int);
-                        command.Parameters.Add("@courier_id", SqlDbType.Int);
+                        if (current_mode == FormMode.add)
+                        {
+                            command.CommandType = CommandType.StoredProcedure;
+                        }
 
-                        command.Parameters["@order_id"].Value = orders_ListView.SelectedItems[0].Text;
-                        command.Parameters["@pckreq_date"].Value = dateTimePicker1.Value;
-                        command.Parameters["@pckreq_state_id"].Value = 1;
-                        command.Parameters["@courier_id"].Value = courier_ListView.SelectedItems[0].Text;
+                        command.Parameters.Add("@Id_zlecenia", SqlDbType.Int);
+                        command.Parameters.Add("@Data_zlecenia_odbioru", SqlDbType.DateTime);
+                        command.Parameters.Add("@Stan_zgloszenia_odbioru", SqlDbType.NVarChar);
+                        command.Parameters.Add("@Id_kuriera", SqlDbType.Int);
+
+                        command.Parameters["@Id_zlecenia"].Value = orders_ListView.SelectedItems[0].Text;
+                        command.Parameters["@Data_zlecenia_odbioru"].Value = dateTimePicker1.Value;
+                        command.Parameters["@Stan_zgloszenia_odbioru"].Value = "Nowe";
+                        command.Parameters["@Id_kuriera"].Value = courier_ListView.SelectedItems[0].Text;
 
                         if (current_mode == FormMode.edit)
                         {

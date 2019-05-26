@@ -46,6 +46,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.consignmentData_panel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.new_consignment_pickup_state_textBox = new System.Windows.Forms.TextBox();
+            this.new_consignment_pickup_state_checkBox = new System.Windows.Forms.CheckBox();
             this.updateConsignmentPickupState_button = new System.Windows.Forms.Button();
             this.pickupState_listView = new System.Windows.Forms.ListView();
             this.idColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -230,6 +232,8 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.new_consignment_pickup_state_textBox);
+            this.panel1.Controls.Add(this.new_consignment_pickup_state_checkBox);
             this.panel1.Controls.Add(this.updateConsignmentPickupState_button);
             this.panel1.Controls.Add(this.pickupState_listView);
             this.panel1.Controls.Add(this.label7);
@@ -237,6 +241,25 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(576, 121);
             this.panel1.TabIndex = 24;
+            // 
+            // new_consignment_pickup_state_textBox
+            // 
+            this.new_consignment_pickup_state_textBox.Location = new System.Drawing.Point(6, 87);
+            this.new_consignment_pickup_state_textBox.Name = "new_consignment_pickup_state_textBox";
+            this.new_consignment_pickup_state_textBox.Size = new System.Drawing.Size(218, 20);
+            this.new_consignment_pickup_state_textBox.TabIndex = 28;
+            this.new_consignment_pickup_state_textBox.Visible = false;
+            // 
+            // new_consignment_pickup_state_checkBox
+            // 
+            this.new_consignment_pickup_state_checkBox.AutoSize = true;
+            this.new_consignment_pickup_state_checkBox.Location = new System.Drawing.Point(6, 63);
+            this.new_consignment_pickup_state_checkBox.Name = "new_consignment_pickup_state_checkBox";
+            this.new_consignment_pickup_state_checkBox.Size = new System.Drawing.Size(129, 17);
+            this.new_consignment_pickup_state_checkBox.TabIndex = 27;
+            this.new_consignment_pickup_state_checkBox.Text = "Add new pickup state";
+            this.new_consignment_pickup_state_checkBox.UseVisualStyleBackColor = true;
+            this.new_consignment_pickup_state_checkBox.CheckedChanged += new System.EventHandler(this.New_consignment_pickup_state_checkBox_CheckedChanged);
             // 
             // updateConsignmentPickupState_button
             // 
@@ -350,5 +373,7 @@
         private System.Windows.Forms.ColumnHeader idColumn;
         private System.Windows.Forms.ColumnHeader nameColumn;
         private ParcelDeliveryCompany_ClassLibrary1.ManagementControls.ConsignmentParcelManagementControl consignmentParcelManagement_panel;
+        private System.Windows.Forms.TextBox new_consignment_pickup_state_textBox;
+        private System.Windows.Forms.CheckBox new_consignment_pickup_state_checkBox;
     }
 }

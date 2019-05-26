@@ -38,6 +38,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.vehicleRegistrationPlate = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.new_vehicle_type_checkBox = new System.Windows.Forms.CheckBox();
+            this.new_vehicle_type_textBox = new System.Windows.Forms.TextBox();
+            this.vehicleTypes_listView = new System.Windows.Forms.ListView();
+            this.veh_type_id_col = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.veh_type_name_col = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // accept_button
@@ -93,6 +98,7 @@
             this.vehicleTypes_listbox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.vehicleTypes_listbox.Size = new System.Drawing.Size(321, 199);
             this.vehicleTypes_listbox.TabIndex = 4;
+            this.vehicleTypes_listbox.Visible = false;
             // 
             // label2
             // 
@@ -144,12 +150,64 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Vehicle\'s registration plate";
             // 
+            // new_vehicle_type_checkBox
+            // 
+            this.new_vehicle_type_checkBox.AutoSize = true;
+            this.new_vehicle_type_checkBox.Location = new System.Drawing.Point(101, 148);
+            this.new_vehicle_type_checkBox.Name = "new_vehicle_type_checkBox";
+            this.new_vehicle_type_checkBox.Size = new System.Drawing.Size(128, 17);
+            this.new_vehicle_type_checkBox.TabIndex = 10;
+            this.new_vehicle_type_checkBox.Text = "Add new vehicle type";
+            this.new_vehicle_type_checkBox.UseVisualStyleBackColor = true;
+            this.new_vehicle_type_checkBox.CheckedChanged += new System.EventHandler(this.New_vehicle_type_checkBox_CheckedChanged);
+            // 
+            // new_vehicle_type_textBox
+            // 
+            this.new_vehicle_type_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.new_vehicle_type_textBox.Location = new System.Drawing.Point(12, 172);
+            this.new_vehicle_type_textBox.Name = "new_vehicle_type_textBox";
+            this.new_vehicle_type_textBox.Size = new System.Drawing.Size(321, 20);
+            this.new_vehicle_type_textBox.TabIndex = 11;
+            this.new_vehicle_type_textBox.Visible = false;
+            // 
+            // vehicleTypes_listView
+            // 
+            this.vehicleTypes_listView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.vehicleTypes_listView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.veh_type_id_col,
+            this.veh_type_name_col});
+            this.vehicleTypes_listView.FullRowSelect = true;
+            this.vehicleTypes_listView.HideSelection = false;
+            this.vehicleTypes_listView.Location = new System.Drawing.Point(12, 172);
+            this.vehicleTypes_listView.MultiSelect = false;
+            this.vehicleTypes_listView.Name = "vehicleTypes_listView";
+            this.vehicleTypes_listView.Size = new System.Drawing.Size(321, 198);
+            this.vehicleTypes_listView.TabIndex = 12;
+            this.vehicleTypes_listView.UseCompatibleStateImageBehavior = false;
+            this.vehicleTypes_listView.View = System.Windows.Forms.View.Details;
+            // 
+            // veh_type_id_col
+            // 
+            this.veh_type_id_col.Text = "ID";
+            this.veh_type_id_col.Width = 45;
+            // 
+            // veh_type_name_col
+            // 
+            this.veh_type_name_col.Text = "Name";
+            this.veh_type_name_col.Width = 134;
+            // 
             // VehicleAddEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(345, 417);
             this.ControlBox = false;
+            this.Controls.Add(this.new_vehicle_type_textBox);
+            this.Controls.Add(this.vehicleTypes_listView);
+            this.Controls.Add(this.new_vehicle_type_checkBox);
             this.Controls.Add(this.vehicleRegistrationPlate);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.vehicleModelName_textBox);
@@ -179,5 +237,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox vehicleRegistrationPlate;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox new_vehicle_type_checkBox;
+        private System.Windows.Forms.TextBox new_vehicle_type_textBox;
+        private System.Windows.Forms.ListView vehicleTypes_listView;
+        private System.Windows.Forms.ColumnHeader veh_type_id_col;
+        private System.Windows.Forms.ColumnHeader veh_type_name_col;
     }
 }

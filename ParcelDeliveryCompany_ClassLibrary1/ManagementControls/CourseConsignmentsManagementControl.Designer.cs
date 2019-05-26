@@ -28,8 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // CourseConsignmentsManagementControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Name = "CourseConsignmentsManagementControl";
+            this.Controls.SetChildIndex(this.item_ListView, 0);
+            this.Controls.SetChildIndex(this.itemTitle_label, 0);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

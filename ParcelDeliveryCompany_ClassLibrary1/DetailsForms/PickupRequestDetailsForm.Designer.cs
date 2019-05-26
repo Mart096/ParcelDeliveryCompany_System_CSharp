@@ -31,12 +31,15 @@
             this.Details_titleLabel = new System.Windows.Forms.Label();
             this.cancel_button = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.updateConsignmentPickupState_button = new System.Windows.Forms.Button();
+            this.new_pickup_request_state_textBox = new System.Windows.Forms.TextBox();
+            this.new_pickup_request_state_checkBox = new System.Windows.Forms.CheckBox();
+            this.updatePickupRequestState_button = new System.Windows.Forms.Button();
             this.pickupRequestState_listView = new System.Windows.Forms.ListView();
             this.idColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label7 = new System.Windows.Forms.Label();
             this.consignmentData_panel = new System.Windows.Forms.Panel();
+            this.showRouteOnMapButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.courierFullName_textBox = new System.Windows.Forms.TextBox();
             this.courierID_textBox = new System.Windows.Forms.TextBox();
@@ -49,7 +52,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pickupRequestState_textbox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.showRouteOnMapButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.consignmentData_panel.SuspendLayout();
             this.SuspendLayout();
@@ -82,7 +84,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.updateConsignmentPickupState_button);
+            this.panel1.Controls.Add(this.new_pickup_request_state_textBox);
+            this.panel1.Controls.Add(this.new_pickup_request_state_checkBox);
+            this.panel1.Controls.Add(this.updatePickupRequestState_button);
             this.panel1.Controls.Add(this.pickupRequestState_listView);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Location = new System.Drawing.Point(304, 43);
@@ -90,16 +94,37 @@
             this.panel1.Size = new System.Drawing.Size(251, 296);
             this.panel1.TabIndex = 25;
             // 
-            // updateConsignmentPickupState_button
+            // new_pickup_request_state_textBox
             // 
-            this.updateConsignmentPickupState_button.Enabled = false;
-            this.updateConsignmentPickupState_button.Location = new System.Drawing.Point(6, 21);
-            this.updateConsignmentPickupState_button.Name = "updateConsignmentPickupState_button";
-            this.updateConsignmentPickupState_button.Size = new System.Drawing.Size(240, 35);
-            this.updateConsignmentPickupState_button.TabIndex = 26;
-            this.updateConsignmentPickupState_button.Text = "Update pickup request state";
-            this.updateConsignmentPickupState_button.UseVisualStyleBackColor = true;
-            this.updateConsignmentPickupState_button.Click += new System.EventHandler(this.UpdatePickupRequestState_button_Click);
+            this.new_pickup_request_state_textBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.new_pickup_request_state_textBox.Location = new System.Drawing.Point(6, 63);
+            this.new_pickup_request_state_textBox.Name = "new_pickup_request_state_textBox";
+            this.new_pickup_request_state_textBox.Size = new System.Drawing.Size(240, 20);
+            this.new_pickup_request_state_textBox.TabIndex = 28;
+            this.new_pickup_request_state_textBox.Visible = false;
+            // 
+            // new_pickup_request_state_checkBox
+            // 
+            this.new_pickup_request_state_checkBox.AutoSize = true;
+            this.new_pickup_request_state_checkBox.Location = new System.Drawing.Point(196, 0);
+            this.new_pickup_request_state_checkBox.Name = "new_pickup_request_state_checkBox";
+            this.new_pickup_request_state_checkBox.Size = new System.Drawing.Size(52, 17);
+            this.new_pickup_request_state_checkBox.TabIndex = 27;
+            this.new_pickup_request_state_checkBox.Text = "Other";
+            this.new_pickup_request_state_checkBox.UseVisualStyleBackColor = true;
+            this.new_pickup_request_state_checkBox.CheckedChanged += new System.EventHandler(this.New_pickup_request_state_checkBox_CheckedChanged);
+            // 
+            // updatePickupRequestState_button
+            // 
+            this.updatePickupRequestState_button.Enabled = false;
+            this.updatePickupRequestState_button.Location = new System.Drawing.Point(6, 21);
+            this.updatePickupRequestState_button.Name = "updatePickupRequestState_button";
+            this.updatePickupRequestState_button.Size = new System.Drawing.Size(240, 35);
+            this.updatePickupRequestState_button.TabIndex = 26;
+            this.updatePickupRequestState_button.Text = "Update pickup request state";
+            this.updatePickupRequestState_button.UseVisualStyleBackColor = true;
+            this.updatePickupRequestState_button.Click += new System.EventHandler(this.UpdatePickupRequestState_button_Click);
             // 
             // pickupRequestState_listView
             // 
@@ -159,6 +184,16 @@
             this.consignmentData_panel.Name = "consignmentData_panel";
             this.consignmentData_panel.Size = new System.Drawing.Size(283, 296);
             this.consignmentData_panel.TabIndex = 26;
+            // 
+            // showRouteOnMapButton
+            // 
+            this.showRouteOnMapButton.Location = new System.Drawing.Point(4, 259);
+            this.showRouteOnMapButton.Name = "showRouteOnMapButton";
+            this.showRouteOnMapButton.Size = new System.Drawing.Size(251, 23);
+            this.showRouteOnMapButton.TabIndex = 22;
+            this.showRouteOnMapButton.Text = "Show route to consigner on map";
+            this.showRouteOnMapButton.UseVisualStyleBackColor = true;
+            this.showRouteOnMapButton.Click += new System.EventHandler(this.ShowRouteOnMapButton_Click);
             // 
             // label3
             // 
@@ -266,16 +301,6 @@
             this.label4.TabIndex = 14;
             this.label4.Text = "Pickup request state";
             // 
-            // showRouteOnMapButton
-            // 
-            this.showRouteOnMapButton.Location = new System.Drawing.Point(4, 259);
-            this.showRouteOnMapButton.Name = "showRouteOnMapButton";
-            this.showRouteOnMapButton.Size = new System.Drawing.Size(251, 23);
-            this.showRouteOnMapButton.TabIndex = 22;
-            this.showRouteOnMapButton.Text = "Show route to consigner on map";
-            this.showRouteOnMapButton.UseVisualStyleBackColor = true;
-            this.showRouteOnMapButton.Click += new System.EventHandler(this.ShowRouteOnMapButton_Click);
-            // 
             // PickupRequestDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -305,7 +330,7 @@
         private System.Windows.Forms.Label Details_titleLabel;
         private System.Windows.Forms.Button cancel_button;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button updateConsignmentPickupState_button;
+        private System.Windows.Forms.Button updatePickupRequestState_button;
         private System.Windows.Forms.ListView pickupRequestState_listView;
         private System.Windows.Forms.ColumnHeader idColumn;
         private System.Windows.Forms.ColumnHeader nameColumn;
@@ -324,5 +349,7 @@
         private System.Windows.Forms.TextBox pickupDateTime_textbox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button showRouteOnMapButton;
+        private System.Windows.Forms.TextBox new_pickup_request_state_textBox;
+        private System.Windows.Forms.CheckBox new_pickup_request_state_checkBox;
     }
 }

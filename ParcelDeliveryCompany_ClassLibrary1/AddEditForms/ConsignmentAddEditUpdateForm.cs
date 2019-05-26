@@ -45,6 +45,8 @@ namespace ParcelDeliveryCompany_ClassLibrary1
 
             if (this.current_mode == FormMode.edit)
             {
+                add_new_consignment_type_checkBox.Enabled = false;
+                new_pickupMethod_checkBox.Enabled = false;
                 this.edit_id = id_to_edit;
                 Load_Edited_Consignment_Data(this.edit_id);
             }
@@ -282,11 +284,36 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                     result = false;
                 }
             }
-            
-            if(pickupMethodlistView.SelectedItems.Count !=1  || consignmentType_ListView.SelectedItems.Count != 1)
+
+            if (new_pickupMethod_checkBox.Checked == false)
             {
-                result = false;
+                if (pickupMethodlistView.SelectedItems.Count != 1)
+                {
+                    result = false;
+                }
             }
+            else
+            {
+                if (new_pickup_method_textBox.Text.Length==0 || new_pickup_method_textBox.Text.Trim().Length == 0)
+                {
+                    result = false;
+                }
+            }
+            if (add_new_consignment_type_checkBox.Checked==false)
+            {
+                if (consignmentType_ListView.SelectedItems.Count != 1)
+                {
+                    result = false;
+                }
+            }
+            else
+            {
+                if (new_consignment_type_textBox.Text.Length == 0 || new_consignment_type_textBox.Text.Trim().Length == 0)
+                {
+                    result = false;
+                }
+            }
+            
 
             return result;
         }
@@ -294,7 +321,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
         private void Accept_button_Click(object sender, EventArgs e)
         {
             string operation_string;
-            int pickup_state;
+            //int pickup_state;
             if (Check_Input() == true)
             {
                 try
@@ -311,15 +338,15 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                         {
                             consignee_id = Convert.ToInt32(consignee_ListView.SelectedItems[0].Text);
                         }
-                        
-                        operation_string = "INSERT INTO Przesylka VALUES(@order_id, @consignee_id, " +
-                                "@pickup_state_id, @pickup_method_id, @consignment_type_id)";
-                        pickup_state = 1;
+
+                        operation_string = "Dodaj_przesylke";/*"INSERT INTO Przesylka VALUES(@Id_zlecenia, @Id_klienta, " +
+                                "@pickup_state_id, @pickup_method_id, @consignment_type_id)";*/
+                        //pickup_state = 1;
 
                         if (this.current_mode == FormMode.edit)
                         {
-                            operation_string = "UPDATE Przesylka SET Id_zlecenia = @order_id, " +
-                                "Id_klienta = @consignee_id, Id_formy_odbioru = @pickup_method_id, " +
+                            operation_string = "UPDATE Przesylka SET Id_zlecenia = @Id_zlecenia, " +
+                                "Id_klienta = @Id_klienta, Id_formy_odbioru = @pickup_method_id, " +
                                 "Id_typu_przesylki = @consignment_type_id WHERE Id_przesylki = @consignment_id";
                         }
                             
@@ -330,29 +357,63 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                             {
                                 connection.Open();
                             }
-                            command.Parameters.Add("@order_id", SqlDbType.Int);
-                            command.Parameters.Add("@consignee_id", SqlDbType.Int);
-                            command.Parameters.Add("@pickup_method_id", SqlDbType.Int);
-                            command.Parameters.Add("@consignment_type_id", SqlDbType.Int);
 
-                            command.Parameters["@order_id"].Value = Convert.ToInt32(order_ListView.SelectedItems[0].Text);
-                            command.Parameters["@consignee_id"].Value = consignee_id;
-                            command.Parameters["@pickup_method_id"].Value = Convert.ToInt32(pickupMethodlistView.SelectedItems[0].Text);
-                            command.Parameters["@consignment_type_id"].Value = Convert.ToInt32(consignmentType_ListView.SelectedItems[0].Text);
+                            command.Parameters.Add("@Id_zlecenia", SqlDbType.Int);
+                            command.Parameters.Add("@Id_klienta", SqlDbType.Int);
+
+                            command.Parameters["@Id_zlecenia"].Value = Convert.ToInt32(order_ListView.SelectedItems[0].Text);
+                            command.Parameters["@Id_klienta"].Value = consignee_id;
+                            
 
                             if (this.current_mode == FormMode.add)
                             {
-                                command.Parameters.Add("@pickup_state_id", SqlDbType.Int);
-                                command.Parameters["@pickup_state_id"].Value = pickup_state;
+                                command.CommandType = CommandType.StoredProcedure;
+                                /*command.Parameters.Add("@pickup_state_id", SqlDbType.Int);
+                                command.Parameters["@pickup_state_id"].Value = pickup_state;*/
+                                command.Parameters.AddWithValue("@Stan_odbioru", "Nowe");
+
+                                if (new_pickupMethod_checkBox.Checked == true)
+                                {
+                                    command.Parameters.AddWithValue("@Forma_odbioru", new_pickup_method_textBox.Text);
+                                }
+                                else
+                                {
+                                    command.Parameters.AddWithValue("@Forma_odbioru", pickupMethodlistView.SelectedItems[0].SubItems[1].Text);
+                                }
+                                
+                                if (add_new_consignment_type_checkBox.Checked == true)
+                                {
+                                    command.Parameters.AddWithValue("@Typ_przesylki", new_consignment_type_textBox.Text);
+                                }
+                                else
+                                {
+                                    command.Parameters.AddWithValue("@Typ_przesylki", consignmentType_ListView.SelectedItems[0].SubItems[1].Text);
+                                }
+                                
                             }
 
                             if (this.current_mode == FormMode.edit)
                             {
+                                command.Parameters.Add("@pickup_method_id", SqlDbType.Int);
+                                command.Parameters.Add("@consignment_type_id", SqlDbType.Int);
                                 command.Parameters.Add("@consignment_id", SqlDbType.Int);
+
+                                command.Parameters["@pickup_method_id"].Value = Convert.ToInt32(pickupMethodlistView.SelectedItems[0].Text);
+                                command.Parameters["@consignment_type_id"].Value = Convert.ToInt32(consignmentType_ListView.SelectedItems[0].Text);
                                 command.Parameters["@consignment_id"].Value = this.edit_id;
                             }
 
-                            int result = command.ExecuteNonQuery();
+                            int result = 0;
+
+                            if (current_mode == FormMode.add)
+                            {
+                                result = command.ExecuteNonQuery();
+                            }
+                            else 
+                            {
+                                result=command.ExecuteNonQuery();
+                            }
+                                
 
                             if (result == 0)
                             {
@@ -488,6 +549,37 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             {
                 consigneeSearch_button.Enabled = false;
                 clearFilter_button.Enabled = false;
+            }
+        }
+
+        private void New_pickupMethod_checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (new_pickupMethod_checkBox.Checked == true)
+            {
+                pickupMethodlistView.SelectedItems.Clear();
+                pickupMethodlistView.Visible = false;
+                new_pickup_method_textBox.Visible = true;
+            }
+            else
+            {
+                pickupMethodlistView.Visible = true;
+                new_pickup_method_textBox.Visible = false;
+            }
+            
+        }
+
+        private void Add_new_consignment_type_checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (add_new_consignment_type_checkBox.Checked == true)
+            {
+                consignmentType_ListView.SelectedItems.Clear();
+                consignmentType_ListView.Visible = false;
+                new_consignment_type_textBox.Visible = true;
+            }
+            else
+            {
+                consignmentType_ListView.Visible = true;
+                new_consignment_type_textBox.Visible = false;
             }
         }
     }

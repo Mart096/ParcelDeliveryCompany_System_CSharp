@@ -39,24 +39,29 @@ namespace ParcelDeliveryCompany_ClassLibrary1
 
             if (this.current_mode == FormMode.edit)
             {
+                new_vehicle_type_checkBox.Enabled = false;
                 LoadVehicle_to_Edit(id);
             }
         }
 
         private void LoadVehicleTypes()
         {
-            vehicleTypes_listbox.Items.Clear();
+            //vehicleTypes_listbox.Items.Clear();
+            vehicleTypes_listView.Items.Clear();
             try
             {
                 DataTable dt = new DataTable();
                 using (SqlConnection connection = new SqlConnection(MainW.GetConnectionString()))
-                using (SqlCommand command = new SqlCommand("SELECT Typ_pojazdu FROM Typ_pojazdu", connection))
+                using (SqlCommand command = new SqlCommand("SELECT * FROM Typ_pojazdu", connection))
                 using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                 {
                     adapter.Fill(dt);
                     foreach (DataRow row in dt.Rows)
                     {
-                        vehicleTypes_listbox.Items.Add(row[0].ToString());
+                        //vehicleTypes_listbox.Items.Add(row[0].ToString());
+                        ListViewItem new_item = new ListViewItem(row.ItemArray[0].ToString());
+                        new_item.SubItems.Add(row.ItemArray[1].ToString());
+                        vehicleTypes_listView.Items.Add(new_item);
                     }
                 }
             }
@@ -83,11 +88,12 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                     {
                         dat_adapter.Fill(dt);
 
-                        foreach (String vehicle_type in vehicleTypes_listbox.Items)
+                        foreach (ListViewItem vehicle_type in vehicleTypes_listView.Items) //String vehicle_type in vehicleTypes_listbox.Items)
                         {    //sprawdź jakiego typu jest edytowany pojazd
-                            if (vehicle_type.Equals(dt.Rows[0].ItemArray[0].ToString()))
+                            if (vehicle_type.SubItems[1].Text.Equals(dt.Rows[0].ItemArray[0].ToString())) //vehicle_type.Equals(dt.Rows[0].ItemArray[0].ToString()))
                             {
-                                vehicleTypes_listbox.SelectedIndex = vehicleTypes_listbox.Items.IndexOf(vehicle_type);
+                                //vehicleTypes_listbox.SelectedIndex = vehicleTypes_listbox.Items.IndexOf(vehicle_type);
+                                vehicleTypes_listView.Items[vehicle_type.Index].Selected = true;
                                 break;
                             }
                         }
@@ -138,40 +144,59 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             {
                 try
                 {
-                    string execute_command = "INSERT INTO Pojazd VALUES(@vehicle_type_id, @brand_name, @model_name, @registration_plate)"; //"INSERT INTO Pojazd VALUES((SELECT Id_typu_pojazdu FROM Typ_pojazdu WHERE Typ_pojazdu = @vehicle_type), @brand_name, @model_name, @registration_plate)";
+                    string execute_command = "Dodaj_pojazd";//"INSERT INTO Pojazd VALUES(@Typ_pojazdu_id, @Nazwa_marki, @Nazwa_modelu, @Rejestracja)"; //"INSERT INTO Pojazd VALUES((SELECT Id_typu_pojazdu FROM Typ_pojazdu WHERE Typ_pojazdu = @Typ_pojazdu), @Nazwa_marki, @Nazwa_modelu, @Rejestracja)";
                     if (current_mode == (FormMode.edit))
                     {
-                        execute_command = "UPDATE Pojazd SET Id_typu_pojazdu = @vehicle_type_id, Nazwa_marki = @brand_name, Nazwa_modelu = @model_name, Rejestracja = @registration_plate" +
+                        execute_command = "UPDATE Pojazd SET Id_typu_pojazdu = @Typ_pojazdu_id, Nazwa_marki = @Nazwa_marki, Nazwa_modelu = @Nazwa_modelu, Rejestracja = @Rejestracja" +
                         " WHERE Id_pojazdu = @Edited_id";
-                        /*"UPDATE Pojazd SET Id_typu_pojazdu = (SELECT Id_typu_pojazdu FROM Typ_pojazdu WHERE Typ_pojazdu = @vehicle_type), Nazwa_marki = @brand_name, Nazwa_modelu = @model_name, Rejestracja = @registration_plate" +
+                        /*"UPDATE Pojazd SET Id_typu_pojazdu = (SELECT Id_typu_pojazdu FROM Typ_pojazdu WHERE Typ_pojazdu = @Typ_pojazdu), Nazwa_marki = @Nazwa_marki, Nazwa_modelu = @Nazwa_modelu, Rejestracja = @Rejestracja" +
                         " WHERE Id_pojazdu = @Edited_id";*/
                     }
                     using (SqlConnection connection = new SqlConnection(MainW.GetConnectionString()))
                     using (SqlCommand command = new SqlCommand(execute_command, connection)) //"INSERT INTO Pojazd VALUES ((SELECT Id_typu_pojazdu FROM Typ_pojazdu WHERE Typ_pojazdu=@Typ_pojazdu))", connection))
                     {
                         connection.Open();
-                        //command.Parameters.Add("@vehicle_type", SqlDbType.NVarChar);
-                        command.Parameters.Add("@vehicle_type_id", SqlDbType.Int);
-                        command.Parameters.Add("@brand_name", SqlDbType.NVarChar);
-                        command.Parameters.Add("@model_name", SqlDbType.NVarChar);
-                        command.Parameters.Add("@registration_plate", SqlDbType.NVarChar);
+
+                        if (current_mode == FormMode.add)
+                        {
+                            command.CommandType = CommandType.StoredProcedure;
+                            if (new_vehicle_type_checkBox.Checked == true)
+                            {
+                                command.Parameters.AddWithValue("@Typ_pojazdu", new_vehicle_type_textBox.Text);
+                            }
+                            else
+                            {
+                                command.Parameters.AddWithValue("@Typ_pojazdu", vehicleTypes_listView.SelectedItems[0].SubItems[1].Text);
+                            }
+                        }
+                        //command.Parameters.Add("@Typ_pojazdu", SqlDbType.NVarChar);
+                        //command.Parameters.Add("@Typ_pojazdu_id", SqlDbType.Int);
+                        command.Parameters.Add("@Nazwa_marki", SqlDbType.NVarChar);
+                        command.Parameters.Add("@Nazwa_modelu", SqlDbType.NVarChar);
+                        command.Parameters.Add("@Rejestracja", SqlDbType.NVarChar);
                         
-                        //command.Parameters["@vehicle_type"].Value = vehicleTypes_listbox.SelectedItem.ToString();
-                        command.Parameters["@vehicle_type_id"].Value = Get_Vehicle_Type_Id(vehicleTypes_listbox.SelectedItem.ToString());
-                        command.Parameters["@brand_name"].Value = vehicleBrandName_textbox.Text;
-                        command.Parameters["@model_name"].Value = vehicleModelName_textBox.Text;
-                        command.Parameters["@registration_plate"].Value = vehicleRegistrationPlate.Text;
+                        //command.Parameters["@Typ_pojazdu"].Value = vehicleTypes_listbox.SelectedItem.ToString();
+                        //command.Parameters["@Typ_pojazdu_id"].Value = Get_Vehicle_Type_Id(vehicleTypes_listbox.SelectedItem.ToString());
+                        command.Parameters["@Nazwa_marki"].Value = vehicleBrandName_textbox.Text;
+                        command.Parameters["@Nazwa_modelu"].Value = vehicleModelName_textBox.Text;
+                        command.Parameters["@Rejestracja"].Value = vehicleRegistrationPlate.Text;
 
                         if (current_mode == (FormMode.edit))
                         {
+                            command.Parameters.AddWithValue("@Typ_pojazdu_id", vehicleTypes_listView.SelectedItems[0].Text);
                             command.Parameters.Add("@Edited_id", SqlDbType.Int);
                             command.Parameters["@Edited_id"].Value = this.edited_id.ToString();
                         }
 
                         int result = command.ExecuteNonQuery();
-                        if (result != 1)
+
+                        if (current_mode==FormMode.add && result!=(-1))
                         {
-                            throw (new Exception("Failed to add new vehicle!"));
+                            throw (new Exception("Failed to add new vehicle"));
+                        }
+                        else if (current_mode==FormMode.edit && result != 1)
+                        {
+                            throw (new Exception("Failed to edit selected vehicle!"));
                         }
                     }
                     this.Close();
@@ -200,19 +225,19 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                     try
                     {
                         using (SqlConnection connection = new SqlConnection(MainW.GetConnectionString()))
-                        using (SqlCommand command = new SqlCommand("UPDATE Pojazd SET Id_typu_pojazdu = (SELECT Id_typu_pojazdu FROM Typ_pojazdu WHERE Typ_pojazdu = @vehicle_type), Nazwa_marki = @brand_name, Nazwa_modelu = @model_name, Rejestracja = @registration_plate" +
+                        using (SqlCommand command = new SqlCommand("UPDATE Pojazd SET Id_typu_pojazdu = (SELECT Id_typu_pojazdu FROM Typ_pojazdu WHERE Typ_pojazdu = @Typ_pojazdu), Nazwa_marki = @Nazwa_marki, Nazwa_modelu = @Nazwa_modelu, Rejestracja = @Rejestracja" +
                             " WHERE Id_pojazdu = @Edited_id", connection))
                         {
                             connection.Open();
-                            command.Parameters.Add("@vehicle_type", SqlDbType.NVarChar);
-                            command.Parameters.Add("@brand_name", SqlDbType.NVarChar);
-                            command.Parameters.Add("@model_name", SqlDbType.NVarChar);
-                            command.Parameters.Add("@registration_plate", SqlDbType.NVarChar);
+                            command.Parameters.Add("@Typ_pojazdu", SqlDbType.NVarChar);
+                            command.Parameters.Add("@Nazwa_marki", SqlDbType.NVarChar);
+                            command.Parameters.Add("@Nazwa_modelu", SqlDbType.NVarChar);
+                            command.Parameters.Add("@Rejestracja", SqlDbType.NVarChar);
                             command.Parameters.Add("@Edited_id", SqlDbType.Int);
-                            command.Parameters["@vehicle_type"].Value = vehicleTypes_listbox.SelectedItem.ToString();
-                            command.Parameters["@brand_name"].Value = vehicleBrandName_textbox.Text;
-                            command.Parameters["@model_name"].Value = vehicleModelName_textBox.Text;
-                            command.Parameters["@registration_plate"].Value = vehicleRegistrationPlate.Text;
+                            command.Parameters["@Typ_pojazdu"].Value = vehicleTypes_listbox.SelectedItem.ToString();
+                            command.Parameters["@Nazwa_marki"].Value = vehicleBrandName_textbox.Text;
+                            command.Parameters["@Nazwa_modelu"].Value = vehicleModelName_textBox.Text;
+                            command.Parameters["@Rejestracja"].Value = vehicleRegistrationPlate.Text;
                             command.Parameters["@Edited_id"].Value = this.edited_id.ToString();
 
                             int result = command.ExecuteNonQuery();
@@ -259,6 +284,8 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             catch(Exception /*ex*/)
             {
                 //MessageBox.Show(ex.Message);
+                this.Close();
+                this.Dispose();
             }
             return 0;
         }
@@ -272,10 +299,15 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             {
                 result = false;
             }
-            if (vehicleTypes_listbox.SelectedItems.Count != 1)
+            if (new_vehicle_type_checkBox.Checked==false && vehicleTypes_listView.SelectedItems.Count != 1)
             {
                 result = false;
             }
+            else if (new_vehicle_type_checkBox.Checked==true && (new_vehicle_type_textBox.Text.Length==0 || new_vehicle_type_textBox.Text.Trim().Length==0))
+            {
+                result = false;
+            }
+
             return result;
         }
 
@@ -283,6 +315,21 @@ namespace ParcelDeliveryCompany_ClassLibrary1
         {
             this.Close();
             this.Dispose();
+        }
+
+        private void New_vehicle_type_checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (new_vehicle_type_checkBox.Checked == true)
+            {
+                vehicleTypes_listView.SelectedItems.Clear();
+                vehicleTypes_listView.Visible = false;
+                new_vehicle_type_textBox.Visible = true;
+            }
+            else
+            {
+                vehicleTypes_listView.Visible = true;
+                new_vehicle_type_textBox.Visible = false;
+            }
         }
     }
 }

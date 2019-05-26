@@ -62,11 +62,13 @@ namespace ParcelDeliveryCompany_ClassLibrary1
         private void VehicleType_button_Click(object sender, EventArgs e)
         {
             DictionarySelectButtonOperations(DictionariesNames.vehicle_type);
+            addNewRecord_button.Enabled = false;
         }
 
         private void Area__button_Click(object sender, EventArgs e)
         {
             DictionarySelectButtonOperations(DictionariesNames.area);
+            addNewRecord_button.Enabled = false;
             /*ClearDictionaryListViewItems();
             DataTable query_result = new DataTable();
             try
@@ -96,51 +98,61 @@ namespace ParcelDeliveryCompany_ClassLibrary1
         private void City_button_Click(object sender, EventArgs e)
         {
             DictionarySelectButtonOperations(DictionariesNames.city);
+            addNewRecord_button.Enabled = true;
         }
 
         private void LocationType__button_Click(object sender, EventArgs e)
         {
             DictionarySelectButtonOperations(DictionariesNames.location_type);
+            addNewRecord_button.Enabled = false;
         }
 
         private void WeightCategory_button_Click(object sender, EventArgs e)
         {
             DictionarySelectButtonOperations(DictionariesNames.weight_category);
+            addNewRecord_button.Enabled = false;
         }
 
         private void SizeCategory_button_Click(object sender, EventArgs e)
         {
             DictionarySelectButtonOperations(DictionariesNames.size_category);
+            addNewRecord_button.Enabled = false;
         }
 
         private void Properties_button_Click(object sender, EventArgs e)
         {
             DictionarySelectButtonOperations(DictionariesNames.properties);
+            addNewRecord_button.Enabled = false;
         }
 
         private void PickupState_button_Click(object sender, EventArgs e)
         {
             DictionarySelectButtonOperations(DictionariesNames.pickup_state);
+            addNewRecord_button.Enabled = false;
         }
 
         private void PickupMethod_button_Click(object sender, EventArgs e)
         {
             DictionarySelectButtonOperations(DictionariesNames.pickup_method);
+            addNewRecord_button.Enabled = false;
         }
 
         private void ConsignmentType_button_Click(object sender, EventArgs e) //typ przesyłki
         {
             DictionarySelectButtonOperations(DictionariesNames.consignment_type);
+            addNewRecord_button.Enabled = false;
         }
 
         private void PickupRequestState_button_Click(object sender, EventArgs e)
         {
             DictionarySelectButtonOperations(DictionariesNames.pickup_request_state);
+            addNewRecord_button.Enabled = false;
         }
 
         private void ComplaintReportState_button_Click(object sender, EventArgs e)
         {
             DictionarySelectButtonOperations(DictionariesNames.complaint_report_state);
+            addNewRecord_button.Enabled = false;
         }
 
         /*internal void MainWReference(MainForm mainW)

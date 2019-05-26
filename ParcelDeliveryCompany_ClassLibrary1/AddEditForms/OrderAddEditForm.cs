@@ -263,9 +263,9 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                         }
 
                         //if (this.current_mode == FormMode.add)
-                        operation_string = "INSERT INTO Zlecenie VALUES(@courier_id, @sender_id, @order_date)";
+                        operation_string = "Dodaj_zlecenie";//"INSERT INTO Zlecenie VALUES(@Id_kuriera, @Id_klienta, @Data_zlecenia)";
                         if (this.current_mode == FormMode.edit)
-                            operation_string = "UPDATE Zlecenie SET Id_kuriera = @courier_id, Id_klienta = @sender_id, Data_zlecenia=@order_date WHERE Id_zlecenia = @order_id";
+                            operation_string = "UPDATE Zlecenie SET Id_kuriera = @Id_kuriera, Id_klienta = @Id_klienta, Data_zlecenia=@Data_zlecenia WHERE Id_zlecenia = @order_id";
 
                         using (SqlCommand command = new SqlCommand(operation_string, connection))
                         {
@@ -273,12 +273,17 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                             {
                                 connection.Open();
                             }
-                            command.Parameters.Add("@courier_id", SqlDbType.Int);
-                            command.Parameters.Add("@sender_id", SqlDbType.Int);
-                            command.Parameters.Add("@order_date", SqlDbType.Date).Value=orderDate_dateTimePicker.Value.Date;
 
-                            command.Parameters["@courier_id"].Value = courier_ListView.SelectedItems[0].Text;
-                            command.Parameters["@sender_id"].Value = sender_id;
+                            if (current_mode == FormMode.add)
+                            {
+                                command.CommandType = CommandType.StoredProcedure;
+                            }
+                            command.Parameters.Add("@Id_kuriera", SqlDbType.Int);
+                            command.Parameters.Add("@Id_klienta", SqlDbType.Int);
+                            command.Parameters.Add("@Data_zlecenia", SqlDbType.Date).Value=orderDate_dateTimePicker.Value.Date;
+
+                            command.Parameters["@Id_kuriera"].Value = courier_ListView.SelectedItems[0].Text;
+                            command.Parameters["@Id_klienta"].Value = sender_id;
                             if (this.current_mode == FormMode.edit)
                             {
                                 command.Parameters.Add("@order_id", SqlDbType.Int);
@@ -287,20 +292,24 @@ namespace ParcelDeliveryCompany_ClassLibrary1
 
                             int result = command.ExecuteNonQuery();
 
-                            if (result == 0)
+                            if (result == 0 && current_mode!=FormMode.add)
                             {
                                 MessageClass.DisplayMessage(604);
                                 //MessageBox.Show("Query failed! Please, try again later.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
-                            else if (result > 1)
+                            else if (result > 1 && current_mode != FormMode.add)
                             {
                                 MessageClass.DisplayMessage(703);
                                 //MessageBox.Show("Query unexpected behaviour detected! Please contact your data base administrator and let them know about issue.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
-                            else if (result == 1 && this.current_mode == FormMode.add)
+                            else if (result == (-1) && this.current_mode == FormMode.add)
                                 MessageClass.DisplayMessage(605); //MessageBox.Show("New order added successfully!", "Success", MessageBoxButtons.OK);
                             else if (result == 1 && this.current_mode == FormMode.edit)
                                 MessageClass.DisplayMessage(606); //MessageBox.Show("Selected order updated successfully!", "Success", MessageBoxButtons.OK);
+                            else
+                            {
+                                MessageClass.DisplayMessage(604);
+                            }
                         }
 
                     }
@@ -328,8 +337,8 @@ namespace ParcelDeliveryCompany_ClassLibrary1
         {
             try
             {
-                string command2_string = "INSERT INTO Miasto OUTPUT INSERTED.Nazwa_miasta VALUES(@city_name, " +
-                                "(SELECT Id_strefy FROM Strefa WHERE Nazwa_strefy = @area));";
+                string command2_string = "Dodaj_miasto";/*"INSERT INTO Miasto OUTPUT INSERTED.Nazwa_miasta VALUES(@Nazwa_miasta, " +
+                                "(SELECT Id_strefy FROM Strefa WHERE Nazwa_strefy = @area));";*/
 
                 using (SqlCommand command02 = new SqlCommand(command2_string, connection))
                 {
@@ -337,10 +346,11 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                     {
                         connection.Open();
                     }
-                    command02.Parameters.Add("@city_name", SqlDbType.NVarChar);
-                    command02.Parameters.Add("@area", SqlDbType.NVarChar);
-                    command02.Parameters["@city_name"].Value = newCityName_textBox.Text;
-                    command02.Parameters["@area"].Value = newCityArea_listBox.SelectedItems[0].ToString();
+                    command02.CommandType = CommandType.StoredProcedure;
+                    command02.Parameters.Add("@Nazwa_miasta", SqlDbType.NVarChar);
+                    command02.Parameters.Add("@Strefa", SqlDbType.NVarChar);
+                    command02.Parameters["@Nazwa_miasta"].Value = newCityName_textBox.Text;
+                    command02.Parameters["@Strefa"].Value = newCityArea_listBox.SelectedItems[0].ToString();
 
                     string added_city = (string)command02.ExecuteScalar();
                     return added_city;
@@ -357,9 +367,10 @@ namespace ParcelDeliveryCompany_ClassLibrary1
         private int Insert_New_Sender(SqlConnection connection, string city_name)
         {
             int sender_id = 0;
-            string command_string = "INSERT INTO Klient OUTPUT INSERTED.Id_klienta VALUES " +
-                                "(@firstname, @lastname, @street, (SELECT Id_miasta FROM Miasto WHERE Nazwa_miasta = @city_name), " +
-                                "@house_number, @apartment_number, @postal_code, @phone_number);";
+            string command_string = "Dodaj_klienta";/*"INSERT INTO Klient OUTPUT INSERTED.Id_klienta VALUES " +
+                                "(@firstname, @lastname, @street, (SELECT Id_miasta FROM Miasto WHERE Nazwa_miasta = @Nazwa_miasta), " +
+                                "@house_number, @apartment_number, @postal_code, @phone_number);";*/
+            int city_id = Get_City_Id_By_Name(connection, city_name);
             try
             {
                 using (SqlCommand command01 = new SqlCommand(command_string, connection))
@@ -368,10 +379,12 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                     {
                         connection.Open();
                     }
-                    command01.Parameters.Add("@firstname", SqlDbType.NVarChar);
+                    command01.CommandType = CommandType.StoredProcedure;
+                    /*command01.Parameters.Add("@firstname", SqlDbType.NVarChar);
                     command01.Parameters.Add("@lastname", SqlDbType.NVarChar);
                     command01.Parameters.Add("@street", SqlDbType.NVarChar);
-                    command01.Parameters.Add("@city_name", SqlDbType.NVarChar);
+                    //command01.Parameters.Add("@Nazwa_miasta", SqlDbType.NVarChar);
+                    command01.Parameters.Add("@Id_miasta", SqlDbType.Int);
                     command01.Parameters.Add("@house_number", SqlDbType.NChar);
                     command01.Parameters.Add("@apartment_number", SqlDbType.Int);
                     command01.Parameters.Add("@postal_code", SqlDbType.NChar);
@@ -380,11 +393,21 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                     command01.Parameters["@firstname"].Value = firstName_textBox.Text;
                     command01.Parameters["@lastname"].Value = lastName_textBox.Text;
                     command01.Parameters["@street"].Value = street_TextBox.Text;
-                    command01.Parameters["@city_name"].Value = city_name;//city_listView.SelectedItems[0].ToString();
+                    //command01.Parameters["@Nazwa_miasta"].Value = city_name;//city_listView.SelectedItems[0].ToString();
+                    command01.Parameters["@Id_miasta"].Value = city_id;
                     command01.Parameters["@house_number"].Value = houseNumber_textBox.Text;
                     command01.Parameters["@apartment_number"].Value = apartmentNum_numeric.Value;
                     command01.Parameters["@postal_code"].Value = postalCode_textbox.Text;
-                    command01.Parameters["@phone_number"].Value = phoneNumber_textBox.Text;
+                    command01.Parameters["@phone_number"].Value = phoneNumber_textBox.Text;*/
+
+                    command01.Parameters.AddWithValue("@Imie", firstName_textBox.Text);
+                    command01.Parameters.AddWithValue("@Nazwisko", lastName_textBox.Text);
+                    command01.Parameters.AddWithValue("@Ulica", street_TextBox.Text);
+                    command01.Parameters.AddWithValue("@Id_Miasta", city_id);
+                    command01.Parameters.AddWithValue("@Nr_domu", houseNumber_textBox.Text);
+                    command01.Parameters.AddWithValue("@Nr_mieszkania", apartmentNum_numeric.Value);
+                    command01.Parameters.AddWithValue("@Kod_pocztowy", postalCode_textbox.Text);
+                    command01.Parameters.AddWithValue("@Numer_telefonu", phoneNumber_textBox.Text);
 
                     //string sender_id_string = (string)command01.ExecuteScalar();
                     sender_id = Convert.ToInt32(command01.ExecuteScalar());
@@ -435,6 +458,24 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             }
 
             return result;
+        }
+
+        private int Get_City_Id_By_Name(SqlConnection connection, string city_name)
+        {
+            using (SqlCommand command02 = new SqlCommand("SELECT TOP 1 Id_miasta FROM Miasto WHERE Nazwa_miasta=@Nazwa_Miasta ORDER BY Id_miasta DESC", connection))
+            {
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                }
+                command02.Parameters.Add("@Nazwa_Miasta", SqlDbType.NVarChar).Value = city_name;
+                int return_value = 0;
+                return_value = (int)command02.ExecuteScalar();
+
+                return return_value;
+            }
+
+            //return 0;
         }
 
         private void AddNewSender_checkbox_CheckedChanged(object sender, EventArgs e)

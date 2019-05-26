@@ -50,6 +50,8 @@ namespace ParcelDeliveryCompany_ClassLibrary1.AddEditForms
             //this.selected_dictionary = selection;
             //DictionariesNames dn = (DictionariesNames)selected_dictionary;
             //SetDictionaryLabels(dn);
+            this.new_area_Checkbox.Enabled = false;
+            this.new_area_Checkbox.Checked = false;
             Load_Area_List();
 
             this.edited_record = record_to_edit;
@@ -139,14 +141,14 @@ namespace ParcelDeliveryCompany_ClassLibrary1.AddEditForms
             {
                 using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
                 {
-                    
-                    string command_string = "INSERT INTO Miasto VALUES(@city_name, " +
-                                    "(SELECT Id_strefy FROM Strefa WHERE Nazwa_strefy = @area));";
+
+                    string command_string = "Dodaj_miasto";/*"INSERT INTO Miasto VALUES(@city_name, " +
+                                    "(SELECT Id_strefy FROM Strefa WHERE Nazwa_strefy = @area));";*/
 
                     if(current_mode == FormMode.edit)
                     {
-                        command_string = "UPDATE Miasto SET Nazwa_miasta = @city_name, " +
-                                    "Id_strefy = (SELECT Id_strefy FROM Strefa WHERE Nazwa_strefy = @area) WHERE Id_miasta = @item_id;";
+                        command_string = "UPDATE Miasto SET Nazwa_miasta = @Nazwa_miasta, " +
+                                    "Id_strefy = (SELECT Id_strefy FROM Strefa WHERE Nazwa_strefy = @Strefa) WHERE Id_miasta = @item_id;";
                     }
 
                     using (SqlCommand command02 = new SqlCommand(command_string, connection))
@@ -155,10 +157,23 @@ namespace ParcelDeliveryCompany_ClassLibrary1.AddEditForms
                         {
                             connection.Open();
                         }
-                        command02.Parameters.Add("@city_name", SqlDbType.NVarChar);
-                        command02.Parameters.Add("@area", SqlDbType.NVarChar);
-                        command02.Parameters["@city_name"].Value = newCityName_textBox.Text;
-                        command02.Parameters["@area"].Value = newCityArea_listBox.SelectedItems[0].ToString();
+
+                        if(current_mode == FormMode.add)
+                        {
+                            command02.CommandType = CommandType.StoredProcedure;
+                        }
+                        command02.Parameters.Add("@Nazwa_miasta", SqlDbType.NVarChar);
+                        command02.Parameters.Add("@Strefa", SqlDbType.NVarChar);
+                        command02.Parameters["@Nazwa_miasta"].Value = newCityName_textBox.Text;
+
+                        if (new_area_Checkbox.Checked == true)
+                        {
+                            command02.Parameters["@Strefa"].Value = new_area_nameTextBox1.Text;
+                        }
+                        else
+                        {
+                            command02.Parameters["@Strefa"].Value = newCityArea_listBox.SelectedItems[0].ToString();
+                        }
 
                         if (current_mode == FormMode.edit)
                         {
@@ -183,6 +198,21 @@ namespace ParcelDeliveryCompany_ClassLibrary1.AddEditForms
         {
             this.Close();
             this.Dispose();
+        }
+
+        private void New_area_Checkbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (new_area_Checkbox.Checked == true)
+            {
+                newCityArea_listBox.SelectedItems.Clear();
+                newCityArea_listBox.Visible = false;
+                new_area_nameTextBox1.Visible = true;
+            }
+            else
+            {
+                newCityArea_listBox.Visible = true;
+                new_area_nameTextBox1.Visible = false;
+            }
         }
     }
 }

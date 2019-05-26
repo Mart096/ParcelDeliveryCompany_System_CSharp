@@ -39,6 +39,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
 
         private void Load_Complaint_State_List()
         {
+            complaintState_listView.Items.Clear();
             try
             {
                 DataTable dt = new DataTable();
@@ -72,10 +73,10 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             try
             {
                 using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
-                using (SqlCommand command = new SqlCommand("SELECT * FROM Complaint_Details_View WHERE Id_zgloszenia_reklamacji = @item_id", connection))
+                using (SqlCommand command = new SqlCommand("SELECT * FROM Complaint_Details_View WHERE Id_zgloszenia_reklamacji = @Stan_reklamacji", connection))
                 {
-                    command.Parameters.Add("@item_id", SqlDbType.Int);
-                    command.Parameters["@item_id"].Value = object_id;
+                    command.Parameters.Add("@Stan_reklamacji", SqlDbType.Int);
+                    command.Parameters["@Stan_reklamacji"].Value = object_id;
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {
                         if (connection.State != ConnectionState.Open)
@@ -108,34 +109,62 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                 DialogResult dlg_result = MessageClass.DisplayMessage(1614, "");
                 if (dlg_result == DialogResult.Yes)
                 {
-                    try
+                    if (Check_Input() == true)
                     {
-                        using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
-                        using (SqlCommand command = new SqlCommand("UPDATE Zgloszenia_reklamacji SET Id_stanu_reklamacji = @complaint_state_id WHERE Id_zgloszenia_reklamacji = @item_id", connection))
+                        try
                         {
-                            command.Parameters.Add("@complaint_state_id", SqlDbType.Int);
-                            command.Parameters.Add("@item_id", SqlDbType.Int);
-                            command.Parameters["@complaint_state_id"].Value = Convert.ToInt32(complaintState_listView.SelectedItems[0].Text);
-                            command.Parameters["@item_id"].Value = this.object_id;
+                            string command_string = "Aktualizuj_zgloszenie_reklamacji";
 
-                            connection.Open();
+                            using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
+                            using (SqlCommand command = new SqlCommand(command_string, connection)) //"UPDATE Zgloszenia_reklamacji SET Id_stanu_reklamacji = @Id_zgloszenia_reklamacji WHERE Id_zgloszenia_reklamacji = @Stan_reklamacji", connection))
+                            {
+                                command.CommandType = CommandType.StoredProcedure;
 
-                            int result = command.ExecuteNonQuery();
-                            if (result == 1)
-                            {
-                                ComplaintState_textbox.Text = complaintState_listView.SelectedItems[0].SubItems[1].Text;
-                                complaintState_listView.SelectedItems.Clear();
-                                MessageClass.DisplayMessage(1611);
-                            }
-                            else
-                            {
-                                MessageClass.DisplayMessage(1612);
+                                command.Parameters.Add("@Id_zgloszenia_reklamacji", SqlDbType.Int);
+                                command.Parameters.Add("@Stan_reklamacji", SqlDbType.NVarChar);
+                                command.Parameters["@Id_zgloszenia_reklamacji"].Value = this.object_id;
+
+                                if (new_complaint_state_checkBox.Checked == true)
+                                {
+                                    command.Parameters["@Stan_reklamacji"].Value = new_complaint_state_textBox.Text;
+                                }
+                                else
+                                {
+                                    command.Parameters["@Stan_reklamacji"].Value = complaintState_listView.SelectedItems[0].SubItems[1].Text;//Convert.ToInt32(complaintState_listView.SelectedItems[0].Text);
+                                }
+
+                                connection.Open();
+
+                                int result = command.ExecuteNonQuery();
+                                if (result == (-1))
+                                {
+                                    if (new_complaint_state_checkBox.Checked == true)
+                                    {
+                                        ComplaintState_textbox.Text = new_complaint_state_textBox.Text;
+                                    }
+                                    else
+                                    {
+                                        ComplaintState_textbox.Text = complaintState_listView.SelectedItems[0].SubItems[1].Text;
+                                    }
+                                    complaintState_listView.SelectedItems.Clear();
+                                    new_complaint_state_textBox.Clear();
+                                    new_complaint_state_checkBox.Checked = false;
+                                    MessageClass.DisplayMessage(1611);
+                                }
+                                else
+                                {
+                                    MessageClass.DisplayMessage(1612);
+                                }
                             }
                         }
+                        catch (Exception)
+                        {
+                            MessageClass.DisplayMessage(1613);
+                        }
                     }
-                    catch (Exception)
+                    else
                     {
-                        MessageClass.DisplayMessage(1613);
+                        MessageClass.DisplayMessage(1112);
                     }
                 }
             }
@@ -143,6 +172,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             {
                 MessageClass.DisplayMessage(2501);
             }
+            Load_Complaint_State_List();
         }
 
         private void Cancel_button_Click(object sender, EventArgs e)
@@ -153,7 +183,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
 
         private void ComplaintState_listView_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (complaintState_listView.SelectedItems.Count == 1)
+            if (complaintState_listView.SelectedItems.Count == 1 && new_complaint_state_checkBox.Checked==false)
             {
                 if (complaintState_listView.SelectedItems[0].SubItems[1].Text.Equals(ComplaintState_textbox.Text))
                 {
@@ -166,6 +196,39 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             }
             else
             {
+                updateComplaintState_button.Enabled = false;
+            }
+        }
+
+        private bool Check_Input()
+        {
+            bool result = true;
+
+            if(new_complaint_state_checkBox.Checked==true && (new_complaint_state_textBox.Text.Length==0 || new_complaint_state_textBox.Text.Trim().Length == 0))
+            {
+                result = false;
+            }
+            else if(new_complaint_state_checkBox.Checked==false && complaintState_listView.SelectedItems.Count != 1)
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
+        private void New_complaint_state_checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (new_complaint_state_checkBox.Checked == true)
+            {
+                complaintState_listView.SelectedItems.Clear();
+                complaintState_listView.Visible = false;
+                new_complaint_state_textBox.Visible = true;
+                updateComplaintState_button.Enabled = true;
+            }
+            else
+            {
+                complaintState_listView.Visible = true;
+                new_complaint_state_textBox.Visible = false;
                 updateComplaintState_button.Enabled = false;
             }
         }

@@ -40,12 +40,12 @@ namespace ParcelDeliveryCompany_ClassLibrary1.AddInDetailsForm
             {
                 DataTable dt = new DataTable();
                 using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
-                using (SqlCommand command = new SqlCommand("SELECT * FROM Consignment_Detailed_List_View WHERE Id_przesylki NOT IN (SELECT Id_przesylki FROM Przesylki_w_kursie WHERE Id_kursu = @item_id) AND Stan_odbioru != @state;", connection))
+                using (SqlCommand command = new SqlCommand("SELECT * FROM Consignment_Detailed_List_View WHERE Id_przesylki NOT IN (SELECT Id_przesylki FROM Przesylki_w_kursie WHERE Id_kursu = @Id_kursu) AND Stan_odbioru != @state;", connection))
                 using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                 {
-                    command.Parameters.Add("@item_id", SqlDbType.Int);
+                    command.Parameters.Add("@Id_kursu", SqlDbType.Int);
                     command.Parameters.Add("@state", SqlDbType.NVarChar);
-                    command.Parameters["@item_id"].Value = item_id;
+                    command.Parameters["@Id_kursu"].Value = item_id;
                     command.Parameters["@state"].Value = "Zakończone";
 
                     adapter.Fill(dt);
@@ -77,17 +77,18 @@ namespace ParcelDeliveryCompany_ClassLibrary1.AddInDetailsForm
 
                 try
                 {
-                    string insert_command = "INSERT INTO Przesylki_w_kursie VALUES (@consignment_id, @item_id);";
+                    string insert_command = "Dodaj_przesylke_w_kursie";//"INSERT INTO Przesylki_w_kursie VALUES (@Id_przesylki, @Id_kursu);";
 
 
                     using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
                     using (SqlCommand command = new SqlCommand(insert_command, connection))
                     {
-                        command.Parameters.Add("@consignment_id", SqlDbType.Int);
-                        command.Parameters["@consignment_id"].Value = consignment_ListView.SelectedItems[0].Text;
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.Add("@Id_przesylki", SqlDbType.Int);
+                        command.Parameters["@Id_przesylki"].Value = consignment_ListView.SelectedItems[0].Text;
 
-                        command.Parameters.Add("@item_id", SqlDbType.Int);
-                        command.Parameters["@item_id"].Value = item_id;
+                        command.Parameters.Add("@Id_kursu", SqlDbType.Int);
+                        command.Parameters["@Id_kursu"].Value = item_id;
 
 
                         if (connection.State != ConnectionState.Open)
@@ -97,11 +98,11 @@ namespace ParcelDeliveryCompany_ClassLibrary1.AddInDetailsForm
 
                         int result = command.ExecuteNonQuery();
 
-                        if (result == 0)
+                        if (result != (-1))
                         {
                             MessageClass.DisplayMessage(1702);
                         }
-                        if (result == 1)
+                        if (result == (-1))
                         {
                             MessageClass.DisplayMessage(1703); 
                         }

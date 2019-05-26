@@ -46,6 +46,8 @@ namespace ParcelDeliveryCompany_ClassLibrary1
 
             if(current_mode == FormMode.edit)
             {
+                new_weight_category_checkBox.Enabled = false;
+                new_size_category_checkBox.Enabled = false;
                 this.edited_id = edit_id;
                 Load_Edited_Parcel_Data(edited_id);
             }
@@ -56,16 +58,16 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             DataTable dt = new DataTable();
             DataTable dt1 = new DataTable();
 
-            string command1 = "SELECT * FROM Paczka WHERE Id_paczki = @parcel_id;";
-            string command2 = "SELECT Id_cechy_paczki FROM Cecha_Paczki WHERE Id_paczki = @parcel_id;";
+            string command1 = "SELECT * FROM Paczka WHERE Id_paczki = @Id_paczki;";
+            string command2 = "SELECT Id_cechy_paczki FROM Cecha_Paczki WHERE Id_paczki = @Id_paczki;";
 
             try
             {
                 using (SqlConnection connection = new SqlConnection(MainWindowReference.GetConnectionString()))
                 using (SqlCommand command = new SqlCommand(command1, connection))
                 {
-                    command.Parameters.Add("@parcel_id", SqlDbType.Int);
-                    command.Parameters["@parcel_id"].Value = edited_id;
+                    command.Parameters.Add("@Id_paczki", SqlDbType.Int);
+                    command.Parameters["@Id_paczki"].Value = edited_id;
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {
                         if (connection.State != ConnectionState.Open)
@@ -161,7 +163,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             string command_string = "SELECT * FROM Consignment_Detailed_List_View";
             if (consignment_id != 0)
             {
-                command_string = "SELECT * FROM Consignment_Detailed_List_View WHERE Id_przesylki = @consignment_id";
+                command_string = "SELECT * FROM Consignment_Detailed_List_View WHERE Id_przesylki = @Id_przesylki";
             }
             try
             {
@@ -172,8 +174,8 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                 {
                     if(consignment_id != 0)
                     {
-                        command.Parameters.Add("@consignment_id", SqlDbType.Int);
-                        command.Parameters["@consignment_id"].Value = this.consignment_id;
+                        command.Parameters.Add("@Id_przesylki", SqlDbType.Int);
+                        command.Parameters["@Id_przesylki"].Value = this.consignment_id;
                     }
                     adapter.Fill(dt);
 
@@ -196,7 +198,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             }
             catch (Exception)
             {
-                MessageClass.DisplayMessage(706, "consignments\'");
+                MessageClass.DisplayMessage(706, "consignments'");
                 //MessageBox.Show("Could not load consignments\' list.", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -298,11 +300,10 @@ namespace ParcelDeliveryCompany_ClassLibrary1
         {
             DataTable dt = new DataTable();
 
-            string operation_string= "INSERT INTO Paczka OUTPUT INSERTED.Id_paczki VALUES(@consignment_id, @weight_cat_id, " +
-                                "@size_cat_id);";
-            string operation_string2="SELECT Id_cechy_paczki FROM Cecha_Paczki WHERE Id_paczki = @parcel_id;";
-            string operation_string3 = "INSERT INTO Cecha_Paczki VALUES (@parcel_id, @property_id);";//(@parcel_id, (SELECT Id_cechy FROM Cecha WHERE Cecha = @property_name))";
-            string operation_string4 = "DELETE FROM Cecha_Paczki WHERE Id_paczki = @parcel_id AND Id_cechy_paczki = @property_id";
+            string operation_string = "Dodaj_paczke";//"INSERT INTO Paczka OUTPUT INSERTED.Id_paczki VALUES(@Id_przesylki, @weight_cat_id, @size_cat_id);";
+            string operation_string2= "SELECT Id_cechy_paczki FROM Cecha_Paczki WHERE Id_paczki = @Id_paczki;";
+            string operation_string3 = "Dodaj_ceche_paczki";//"INSERT INTO Cecha_Paczki VALUES (@Id_paczki, @Id_cechy);";//(@Id_paczki, (SELECT Id_cechy FROM Cecha WHERE Cecha = @property_name))";
+            string operation_string4 = "DELETE FROM Cecha_Paczki WHERE Id_paczki = @Id_paczki AND Id_cechy_paczki = @Id_cechy";
 
             if (Check_Input() == true)
             {
@@ -312,8 +313,8 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                     {
                         if (this.current_mode == FormMode.edit)
                         {
-                            operation_string = "UPDATE Paczka SET Id_przesylki = @consignment_id, " +
-                                "Id_kat_wagowej = @weight_cat_id, Id_gabarytu = @size_cat_id WHERE Id_paczki = @parcel_id";
+                            operation_string = "UPDATE Paczka SET Id_przesylki = @Id_przesylki, " +
+                                "Id_kat_wagowej = @weight_cat_id, Id_gabarytu = @size_cat_id WHERE Id_paczki = @Id_paczki";
                         }
                         //!!!
                         //Należy sprawdzić jakie cechy ma paczka i usunąć te cechy, które zostały odznaczone, i dodać nowe, jeszcze nie dodane to tabeli
@@ -329,23 +330,58 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                             }
 
                             int parcel_id = 0;
-                            command.Parameters.Add("@consignment_id", SqlDbType.Int);
-                            command.Parameters.Add("@weight_cat_id", SqlDbType.Int);
-                            command.Parameters.Add("@size_cat_id", SqlDbType.Int);
+                            command.Parameters.Add("@Id_przesylki", SqlDbType.Int);
+                            command.Parameters["@Id_przesylki"].Value = Convert.ToInt32(consignment_ListView.SelectedItems[0].Text);
 
-                            command.Parameters["@consignment_id"].Value = Convert.ToInt32(consignment_ListView.SelectedItems[0].Text);
-                            command.Parameters["@weight_cat_id"].Value = Convert.ToInt32(weightCategory_listView.SelectedItems[0].Text);
-                            command.Parameters["@size_cat_id"].Value = Convert.ToInt32(sizeCategory_listView.SelectedItems[0].Text);
+                            if (current_mode == FormMode.add)
+                            {
+                                command.CommandType = CommandType.StoredProcedure;
+
+                                if (new_weight_category_checkBox.Checked == true)
+                                {
+                                    command.Parameters.AddWithValue("@Kategoria_wagowa", new_weight_category_textBox.Text);
+                                }
+                                else
+                                {
+                                    command.Parameters.AddWithValue("@Kategoria_wagowa", weightCategory_listView.SelectedItems[0].SubItems[1].Text);
+                                }
+
+                                if (new_size_category_checkBox.Checked == true)
+                                {
+                                    command.Parameters.AddWithValue("@Gabaryt", new_size_category_textBox.Text);
+                                }
+                                else
+                                {
+                                    command.Parameters.AddWithValue("@Gabaryt", sizeCategory_listView.SelectedItems[0].SubItems[1].Text);
+                                }
+                                
+                            }
+                            else if (current_mode == FormMode.edit)
+                            {
+                                command.Parameters.Add("@weight_cat_id", SqlDbType.Int);
+                                command.Parameters.Add("@size_cat_id", SqlDbType.Int);
+
+                                command.Parameters["@weight_cat_id"].Value = Convert.ToInt32(weightCategory_listView.SelectedItems[0].Text);
+                                command.Parameters["@size_cat_id"].Value = Convert.ToInt32(sizeCategory_listView.SelectedItems[0].Text);
+                            }
+                            
+
+                            /*command.Parameters.Add("@weight_cat_id", SqlDbType.Int);
+                            command.Parameters.Add("@size_cat_id", SqlDbType.Int);*/
+
+                            
+                            /*command.Parameters["@weight_cat_id"].Value = Convert.ToInt32(weightCategory_listView.SelectedItems[0].Text);
+                            command.Parameters["@size_cat_id"].Value = Convert.ToInt32(sizeCategory_listView.SelectedItems[0].Text);*/
 
                             if (current_mode == FormMode.edit)
                             {
                                 parcel_id = edited_id;
 
-                                command.Parameters.Add("@parcel_id", SqlDbType.Int);
+                                command.Parameters.Add("@Id_paczki", SqlDbType.Int);
 
-                                command.Parameters["@parcel_id"].Value = parcel_id;
+                                command.Parameters["@Id_paczki"].Value = parcel_id;
 
-                                //command.Parameters.Add("@property_id", SqlDbType.Int).Value=1;
+                                //command.Parameters.Add("@Id_cechy", SqlDbType.Int).Value=1;
                                 command.ExecuteNonQuery();
                             }
                             else
@@ -360,22 +396,29 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                             command.Parameters.Clear();
                             if (current_mode == FormMode.add)
                             {
+                                command.CommandType = CommandType.StoredProcedure;
                                 command.CommandText = operation_string3;
-                                command.Parameters.Add("@parcel_id", SqlDbType.Int).Value = parcel_id;
-                                command.Parameters.Add("@property_id", SqlDbType.Int);
+                                command.Parameters.Add("@Id_paczki", SqlDbType.Int).Value = parcel_id;
+                                command.Parameters.Add("@Cecha", SqlDbType.NVarChar);
                                 result = 0;
                                 foreach (ListViewItem item in properties_ListView.SelectedItems)
                                 {
-                                    command.Parameters["@property_id"].Value = Convert.ToInt32(item.Text); //przypisanie id cechy
+                                    command.Parameters["@Cecha"].Value = item.SubItems[1].Text; //przypisanie nazwy cechy
                                     result = (int)command.ExecuteNonQuery();//dodanie cechy paczki
                                     if (result != 1)
                                         break;
                                 }
+                                if (new_property_checkBox.Checked == true)
+                                {
+                                    command.Parameters["@Cecha"].Value = new_property_textBox.Text; //przypisanie nazwy cechy
+                                    result = (int)command.ExecuteNonQuery();//dodanie cechy paczki
+                                }
                             }
                             else
                             {
-                                command.Parameters.Add("@parcel_id", SqlDbType.Int).Value = parcel_id;
+                                command.Parameters.Add("@Id_paczki", SqlDbType.Int).Value = parcel_id;
                                 //command.Parameters.Add("@property_name", SqlDbType.NVarChar);
+                                command.CommandType = CommandType.Text;
                                 command.CommandText = operation_string2;
 
                                 using (SqlDataAdapter adapter = new SqlDataAdapter(command))
@@ -383,9 +426,11 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                                     adapter.Fill(dt); //pobieranie listy cech paczki
                                 }
 
+                                command.CommandType = CommandType.StoredProcedure;
                                 command.CommandText = operation_string3;
                                 //command.Parameters.Add("@property_name", SqlDbType.NVarChar);
-                                command.Parameters.Add("@property_id", SqlDbType.Int);
+                                //command.Parameters.Add("@Id_cechy", SqlDbType.Int);
+                                command.Parameters.Add("@Cecha", SqlDbType.NVarChar);
                                 foreach (ListViewItem item in properties_ListView.SelectedItems) //dodawanie cech, które nie były zaznaczone
                                 {
                                     bool found = false;
@@ -400,15 +445,33 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                                     }
                                     if (found == false)
                                     {
-                                        command.Parameters["@property_id"].Value = Convert.ToInt32(item.Text);
+                                        command.Parameters["@Cecha"].Value = item.SubItems[1].Text;//Convert.ToInt32(item.Text);
                                         command.ExecuteNonQuery();
                                     }
                                 }
+                                int added_property_id = 0;
+                                int added_property_listview_id = 0;
+                                if (new_property_checkBox.Checked == true)
+                                {
+                                    command.Parameters["@Cecha"].Value = new_property_textBox.Text;//Convert.ToInt32(item.Text);
+                                    added_property_id = (int)command.ExecuteScalar();
+                                    ListViewItem new_property = new ListViewItem(added_property_id.ToString());
+                                    new_property.SubItems.Add(new_property_textBox.Text);
+
+                                    added_property_listview_id=properties_ListView.Items.Add(new_property).Index;
+                                    properties_ListView.Items[added_property_listview_id].Selected = true;
+                                    
+                                }
 
                                 //command.Parameters.Clear();
-                                //command.Parameters.Add("@parcel_id", SqlDbType.Int).Value = parcel_id;
-                                //command.Parameters.Add("@property_id", SqlDbType.Int);
+                                //command.Parameters.Add("@Id_paczki", SqlDbType.Int).Value = parcel_id;
+                                //command.Parameters.Add("@Id_cechy", SqlDbType.Int);
+                                command.CommandType = CommandType.Text;
+                                command.Parameters.Clear();
                                 command.CommandText = operation_string4;
+                                //command.Parameters.Remove("@Cecha");
+                                command.Parameters.AddWithValue("@Id_paczki", parcel_id);
+                                command.Parameters.Add("@Id_cechy", SqlDbType.Int);
                                 //usuwanie cech, które zostały odznaczone
                                 for (int i = 0; i < dt.Rows.Count; i++)
                                 {
@@ -420,17 +483,19 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                                         if (value.Equals(item.Text))
                                         {
                                             found = true;
+                                            result = 1;
                                             break;
                                         }
                                         /*if (found == false)
                                         {
-                                            command.Parameters["@property_id"].Value = Convert.ToInt32(value);
+                                            command.Parameters["@Id_cechy"].Value = Convert.ToInt32(value);
                                             result = (int)command.ExecuteNonQuery();
                                         }*/
                                     }
                                     if (found == false)
                                     {
-                                        command.Parameters["@property_id"].Value = Convert.ToInt32(value);
+                                        command.Parameters["@Id_cechy"].Value = Convert.ToInt32(value);
+                                        //command.Parameters["@Cecha"].Value=
                                         result = (int)command.ExecuteNonQuery();
                                     }
                                 }
@@ -491,21 +556,80 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                 result = false;
             }
 
-            if (weightCategory_listView.SelectedItems.Count != 1)
+            if (new_weight_category_checkBox.Checked==false && weightCategory_listView.SelectedItems.Count != 1)
             {
                 result = false;
             }
-            if (sizeCategory_listView.SelectedItems.Count != 1)
+            else if (new_weight_category_checkBox.Checked == true && (new_weight_category_textBox.Text.Length==0 || new_weight_category_textBox.Text.Trim().Length == 0))
             {
                 result = false;
             }
-            if (properties_ListView.SelectedItems.Count < 1)
+
+            if (new_size_category_checkBox.Checked==false && sizeCategory_listView.SelectedItems.Count != 1)
+            {
+                result = false;
+            }
+            else if(new_size_category_checkBox.Checked==true && (new_size_category_textBox.Text.Length==0 || new_size_category_textBox.Text.Trim().Length == 0))
+            {
+                result = false;
+            }
+
+            if (new_property_checkBox.Checked==false && properties_ListView.SelectedItems.Count < 1)
+            {
+                result = false;
+            }
+            if(new_property_checkBox.Checked==true && (new_property_textBox.Text.Length==0 || new_property_textBox.Text.Trim().Length == 0))
             {
                 result = false;
             }
             
 
             return result;
+        }
+
+        private void New_weight_category_checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (new_weight_category_checkBox.Checked==true)
+            {
+                weightCategory_listView.SelectedItems.Clear();
+                weightCategory_listView.Visible = false;
+                new_weight_category_textBox.Visible = true;
+            }
+            else
+            {
+                weightCategory_listView.Visible = true;
+                new_weight_category_textBox.Visible = false;
+            }
+        }
+
+        private void New_size_category_checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (new_size_category_checkBox.Checked == true)
+            {
+                sizeCategory_listView.SelectedItems.Clear();
+                sizeCategory_listView.Visible = false;
+                new_size_category_textBox.Visible = true;
+            }
+            else
+            {
+                sizeCategory_listView.Visible = true;
+                new_size_category_textBox.Visible = false;
+            }
+        }
+
+        private void New_property_checkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (new_property_checkBox.Checked == true)
+            {
+                //properties_ListView.SelectedItems.Clear();
+                properties_ListView.Visible = false;
+                new_property_textBox.Visible = true;
+            }
+            else
+            {
+                properties_ListView.Visible = true;
+                new_property_textBox.Visible = false;
+            }
         }
     }
 }
