@@ -273,6 +273,7 @@
             this.city_name_column,
             this.area_name_column});
             this.city_listView.FullRowSelect = true;
+            this.city_listView.HideSelection = false;
             this.city_listView.Location = new System.Drawing.Point(3, 258);
             this.city_listView.MultiSelect = false;
             this.city_listView.Name = "city_listView";
