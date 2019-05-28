@@ -15,19 +15,31 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_1DA900D641EB4F518AE761CE8DA499CE"
-        "OwnerKey" = "8:_26122B85BE54872591F47D95DD1E770B"
+        "MsmKey" = "8:_0005B61C53DFD086D766E85F47A18EA2"
+        "OwnerKey" = "8:_25D4550A4625470EADF04FF6E9F6CC24"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0005B61C53DFD086D766E85F47A18EA2"
+        "OwnerKey" = "8:_22AF888CD014DADC46ADB1532B857F20"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_1DA900D641EB4F518AE761CE8DA499CE"
-        "OwnerKey" = "8:_C25CF54F908B67E1B39E527FC96E8E5A"
+        "OwnerKey" = "8:_22AF888CD014DADC46ADB1532B857F20"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_1DA900D641EB4F518AE761CE8DA499CE"
+        "OwnerKey" = "8:_25D4550A4625470EADF04FF6E9F6CC24"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_22AF888CD014DADC46ADB1532B857F20"
         "OwnerKey" = "8:_25D4550A4625470EADF04FF6E9F6CC24"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -39,20 +51,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_26122B85BE54872591F47D95DD1E770B"
-        "OwnerKey" = "8:_25D4550A4625470EADF04FF6E9F6CC24"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_3F9F64349A3D8464959DB19E52B64A2D"
-        "OwnerKey" = "8:_26122B85BE54872591F47D95DD1E770B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3F9F64349A3D8464959DB19E52B64A2D"
-        "OwnerKey" = "8:_C25CF54F908B67E1B39E527FC96E8E5A"
+        "OwnerKey" = "8:_22AF888CD014DADC46ADB1532B857F20"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -69,20 +69,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C25CF54F908B67E1B39E527FC96E8E5A"
-        "OwnerKey" = "8:_25D4550A4625470EADF04FF6E9F6CC24"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C25CF54F908B67E1B39E527FC96E8E5A"
-        "OwnerKey" = "8:_26122B85BE54872591F47D95DD1E770B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C25CF54F908B67E1B39E527FC96E8E5A"
+        "MsmKey" = "8:_A411711867EF408085CB3CDD1D5A7213"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -94,7 +82,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_26122B85BE54872591F47D95DD1E770B"
+        "OwnerKey" = "8:_22AF888CD014DADC46ADB1532B857F20"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -107,6 +95,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_3F9F64349A3D8464959DB19E52B64A2D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_0005B61C53DFD086D766E85F47A18EA2"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -127,6 +121,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -143,6 +153,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -172,6 +190,37 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0005B61C53DFD086D766E85F47A18EA2"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+                "ScatterAssemblies"
+                {
+                    "_0005B61C53DFD086D766E85F47A18EA2"
+                    {
+                    "Name" = "8:System.Net.Http.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.Net.Http.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_2CCF47BBBA18464991A78E1A090CFFCE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1DA900D641EB4F518AE761CE8DA499CE"
             {
             "AssemblyRegister" = "3:1"
@@ -203,20 +252,20 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_26122B85BE54872591F47D95DD1E770B"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_22AF888CD014DADC46ADB1532B857F20"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TestGmapProject01, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:ParcelDeliveryCompany_ClassLibrary1, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_26122B85BE54872591F47D95DD1E770B"
+                    "_22AF888CD014DADC46ADB1532B857F20"
                     {
-                    "Name" = "8:TestGmapProject01.exe"
+                    "Name" = "8:ParcelDeliveryCompany_ClassLibrary1.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:TestGmapProject01.exe"
+            "SourcePath" = "8:ParcelDeliveryCompany_ClassLibrary1.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_2CCF47BBBA18464991A78E1A090CFFCE"
@@ -265,21 +314,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C25CF54F908B67E1B39E527FC96E8E5A"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A411711867EF408085CB3CDD1D5A7213"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ParcelDeliveryCompany_ClassLibrary1, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_C25CF54F908B67E1B39E527FC96E8E5A"
-                    {
-                    "Name" = "8:ParcelDeliveryCompany_ClassLibrary1.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:ParcelDeliveryCompany_ClassLibrary1.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\TestSQLServerProject01\\Jak dodać kuriera.txt"
+            "TargetName" = "8:Jak dodać kuriera.txt"
             "Tag" = "8:"
             "Folder" = "8:_2CCF47BBBA18464991A78E1A090CFFCE"
             "Condition" = "8:"
@@ -293,7 +331,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -353,7 +391,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:ParcelDelivery Admin Application"
         "ProductCode" = "8:{ACC33A0F-9298-4881-A49E-7BA8B3489474}"
-        "PackageCode" = "8:{9C04C11D-2979-40E1-8E7A-2DE806D27E15}"
+        "PackageCode" = "8:{21B774E3-CCDC-4D7B-9309-0EE7AB89990E}"
         "UpgradeCode" = "8:{219D8011-9574-4826-B8DD-9EBC530DB4F6}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -874,7 +912,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_25D4550A4625470EADF04FF6E9F6CC24"
             {
-            "SourcePath" = "8:..\\TestSQLServerProject01\\obj\\Release\\ParcelDeliveryCompanyAdminApplication.exe"
+            "SourcePath" = "8:..\\TestSQLServerProject01\\obj\\Debug\\ParcelDeliveryCompanyAdminApplication.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_2CCF47BBBA18464991A78E1A090CFFCE"
