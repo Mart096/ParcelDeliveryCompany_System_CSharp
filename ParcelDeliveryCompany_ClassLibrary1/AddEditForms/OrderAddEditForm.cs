@@ -410,7 +410,13 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                     command01.Parameters.AddWithValue("@Numer_telefonu", phoneNumber_textBox.Text);
 
                     //string sender_id_string = (string)command01.ExecuteScalar();
-                    sender_id = Convert.ToInt32(command01.ExecuteScalar());
+                    //sender_id = Convert.ToInt32(command01.ExecuteScalar());
+                    //return sender_id;
+                    SqlParameter result_param = command01.Parameters.Add("RetVal", SqlDbType.Int);
+                    result_param.Direction = ParameterDirection.ReturnValue;
+                    command01.ExecuteNonQuery();
+                    sender_id = Convert.ToInt32(result_param.Value);
+                    //sender_id = Convert.ToInt32(command01.ExecuteScalar()); //stara wersja - bez procedury
                     return sender_id;
                 }
             }

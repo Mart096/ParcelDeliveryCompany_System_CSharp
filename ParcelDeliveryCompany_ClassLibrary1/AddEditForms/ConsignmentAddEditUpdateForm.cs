@@ -391,8 +391,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                                 }
                                 
                             }
-
-                            if (this.current_mode == FormMode.edit)
+                            else if (this.current_mode == FormMode.edit)
                             {
                                 command.Parameters.Add("@pickup_method_id", SqlDbType.Int);
                                 command.Parameters.Add("@consignment_type_id", SqlDbType.Int);

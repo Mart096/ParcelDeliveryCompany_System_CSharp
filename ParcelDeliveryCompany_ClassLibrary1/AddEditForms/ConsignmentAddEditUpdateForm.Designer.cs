@@ -46,6 +46,8 @@
             this.postCode_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.phoneNumber_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.new_consignment_type_textBox = new System.Windows.Forms.TextBox();
+            this.new_pickup_method_textBox = new System.Windows.Forms.TextBox();
             this.new_pickupMethod_checkBox = new System.Windows.Forms.CheckBox();
             this.add_new_consignment_type_checkBox = new System.Windows.Forms.CheckBox();
             this.addNewConsignee_checkbox = new System.Windows.Forms.CheckBox();
@@ -67,8 +69,6 @@
             this.pickupMethod_column = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.new_pickup_method_textBox = new System.Windows.Forms.TextBox();
-            this.new_consignment_type_textBox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.consigneeListView_panel.SuspendLayout();
             this.SuspendLayout();
@@ -201,6 +201,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.customerAddEdit_controler);
             this.panel1.Controls.Add(this.new_consignment_type_textBox);
             this.panel1.Controls.Add(this.new_pickup_method_textBox);
             this.panel1.Controls.Add(this.new_pickupMethod_checkBox);
@@ -218,6 +219,22 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(616, 596);
             this.panel1.TabIndex = 6;
+            // 
+            // new_consignment_type_textBox
+            // 
+            this.new_consignment_type_textBox.Location = new System.Drawing.Point(310, 579);
+            this.new_consignment_type_textBox.Name = "new_consignment_type_textBox";
+            this.new_consignment_type_textBox.Size = new System.Drawing.Size(253, 20);
+            this.new_consignment_type_textBox.TabIndex = 18;
+            this.new_consignment_type_textBox.Visible = false;
+            // 
+            // new_pickup_method_textBox
+            // 
+            this.new_pickup_method_textBox.Location = new System.Drawing.Point(12, 579);
+            this.new_pickup_method_textBox.Name = "new_pickup_method_textBox";
+            this.new_pickup_method_textBox.Size = new System.Drawing.Size(253, 20);
+            this.new_pickup_method_textBox.TabIndex = 17;
+            this.new_pickup_method_textBox.Visible = false;
             // 
             // new_pickupMethod_checkBox
             // 
@@ -254,7 +271,6 @@
             // 
             // consigneeListView_panel
             // 
-            this.consigneeListView_panel.Controls.Add(this.customerAddEdit_controler);
             this.consigneeListView_panel.Controls.Add(this.clearFilter_button);
             this.consigneeListView_panel.Controls.Add(this.consigneeSearch_button);
             this.consigneeListView_panel.Controls.Add(this.searchConsignee_textBox);
@@ -269,12 +285,14 @@
             // 
             // customerAddEdit_controler
             // 
+            this.customerAddEdit_controler.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.customerAddEdit_controler.AutoScroll = true;
             this.customerAddEdit_controler.Enabled = false;
-            this.customerAddEdit_controler.Location = new System.Drawing.Point(0, -8);
+            this.customerAddEdit_controler.Location = new System.Drawing.Point(12, 296);
             this.customerAddEdit_controler.MainWindowReference = null;
             this.customerAddEdit_controler.Name = "customerAddEdit_controler";
-            this.customerAddEdit_controler.Size = new System.Drawing.Size(563, 251);
+            this.customerAddEdit_controler.Size = new System.Drawing.Size(544, 243);
             this.customerAddEdit_controler.TabIndex = 29;
             this.customerAddEdit_controler.Visible = false;
             // 
@@ -431,22 +449,6 @@
             this.label2.Size = new System.Drawing.Size(45, 17);
             this.label2.TabIndex = 6;
             this.label2.Text = "Order";
-            // 
-            // new_pickup_method_textBox
-            // 
-            this.new_pickup_method_textBox.Location = new System.Drawing.Point(12, 579);
-            this.new_pickup_method_textBox.Name = "new_pickup_method_textBox";
-            this.new_pickup_method_textBox.Size = new System.Drawing.Size(253, 20);
-            this.new_pickup_method_textBox.TabIndex = 17;
-            this.new_pickup_method_textBox.Visible = false;
-            // 
-            // new_consignment_type_textBox
-            // 
-            this.new_consignment_type_textBox.Location = new System.Drawing.Point(310, 579);
-            this.new_consignment_type_textBox.Name = "new_consignment_type_textBox";
-            this.new_consignment_type_textBox.Size = new System.Drawing.Size(253, 20);
-            this.new_consignment_type_textBox.TabIndex = 18;
-            this.new_consignment_type_textBox.Visible = false;
             // 
             // ConsignmentAddEditUpdateForm
             // 
