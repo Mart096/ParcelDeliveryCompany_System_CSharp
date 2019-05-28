@@ -1,0 +1,22 @@
+Procedura dodawania użytkownika o roli kuriera:
+
+1)Po uruchomieniu programu i zalogowaniu się do bazy danych, przejdź do zakładki zarządzania
+kurierami(couriers management)
+2)Wprowadź dane kuriera i potwierdź opcją "add new courier".
+Kluczowe tutaj będą imię, nazwisko i numer identyfikacyjny kuriera (ID w bazie danych, NIE PESEL);
+przykład:
+Imie: Jan
+Nazwisko: Kowalski
+ID: 3
+
+3)W Microsoft SQL Server Management Studio dodaj nowego użytkownika na serwerze(login może być dowolny);
+	<nazwa_serwera>/Security/Logins
+4)W docelowej bazie danych dodaj nowego użytkownika (<nazwa_serwera>/Databases/<nazwa_bazy_danych>/Security/Users
+	WAŻNE:
+	nazwa użytkownika (User name) w bazie danych powinna mieć następującą strukturę:
+	imie nazwisko id
+	
+	Przykład:
+	Jan Kowalski 3
+5)Po dodaniu użytkownika w bazie danych, naciśnij prawym przyciskiem myszy na utworzonym użytkowniku,
+otwórz właściwości (properties), przejdź do zakładki membership, i zaznaczyć rolę "Courier"

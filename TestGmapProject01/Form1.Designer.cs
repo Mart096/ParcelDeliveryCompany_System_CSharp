@@ -33,6 +33,9 @@
             // 
             // mapControler1
             // 
+            this.mapControler1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.mapControler1.Location = new System.Drawing.Point(1, 12);
             this.mapControler1.MinimumSize = new System.Drawing.Size(797, 507);
             this.mapControler1.Name = "mapControler1";

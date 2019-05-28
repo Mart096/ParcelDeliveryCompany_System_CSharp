@@ -61,6 +61,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.calculation_time = new System.Windows.Forms.Label();
+            this.providers_listBox = new System.Windows.Forms.ListBox();
+            this.change_provider_button = new System.Windows.Forms.Button();
             this.routePlannerPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -252,8 +254,8 @@
             // 
             // gMapControl1
             // 
-            this.gMapControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.gMapControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gMapControl1.Bearing = 0F;
             this.gMapControl1.CanDragMap = true;
@@ -406,10 +408,36 @@
             this.calculation_time.TabIndex = 34;
             this.calculation_time.Text = "Calculation time: none";
             // 
+            // providers_listBox
+            // 
+            this.providers_listBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.providers_listBox.FormattingEnabled = true;
+            this.providers_listBox.Items.AddRange(new object[] {
+            "OpenStreetMapProvider",
+            "OpenStreet4UMapProvider",
+            "OpenCycleMapProvider"});
+            this.providers_listBox.Location = new System.Drawing.Point(537, 448);
+            this.providers_listBox.Name = "providers_listBox";
+            this.providers_listBox.Size = new System.Drawing.Size(167, 43);
+            this.providers_listBox.TabIndex = 35;
+            // 
+            // change_provider_button
+            // 
+            this.change_provider_button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.change_provider_button.Location = new System.Drawing.Point(710, 448);
+            this.change_provider_button.Name = "change_provider_button";
+            this.change_provider_button.Size = new System.Drawing.Size(75, 45);
+            this.change_provider_button.TabIndex = 0;
+            this.change_provider_button.Text = "Change provider";
+            this.change_provider_button.UseVisualStyleBackColor = true;
+            this.change_provider_button.Click += new System.EventHandler(this.change_provider_button_Click);
+            // 
             // MapControler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.change_provider_button);
+            this.Controls.Add(this.providers_listBox);
             this.Controls.Add(this.calculation_time);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
@@ -465,5 +493,7 @@
         private System.Windows.Forms.Button zoomOut_button;
         private System.Windows.Forms.Button zoomIn_button;
         private System.Windows.Forms.Label calculation_time;
+        private System.Windows.Forms.ListBox providers_listBox;
+        private System.Windows.Forms.Button change_provider_button;
     }
 }

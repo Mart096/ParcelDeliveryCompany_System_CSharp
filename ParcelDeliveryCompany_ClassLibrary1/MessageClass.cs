@@ -386,7 +386,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             }
             else if (message_code == 1504)
             {
-                MessageBox.Show("Failed to save changes to seleceted pickup request.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Failed to save changes to selected pickup request.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else if (message_code == 1505)
             {
@@ -394,7 +394,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             }
             else if (message_code == 1506)
             {
-                MessageBox.Show("Changes to seleceted pickup request have been saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Changes to selected pickup request have been saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else if (message_code == 1507)
             {
@@ -435,7 +435,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             }
             else if (message_code == 1604)
             {
-                MessageBox.Show("Failed to save changes to seleceted complaint.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Failed to save changes to selected complaint.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else if (message_code == 1605)
             {
@@ -443,7 +443,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             }
             else if (message_code == 1606)
             {
-                MessageBox.Show("Changes to seleceted complaint has been saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Changes to selected complaint have been saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else if (message_code == 1607)
             {

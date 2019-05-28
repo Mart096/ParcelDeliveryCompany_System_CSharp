@@ -12,6 +12,8 @@ using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using GMap.NET.MapProviders;
+using System.Net.Http;
+using System.Net;
 
 namespace ParcelDeliveryCompany_ClassLibrary1
 {
@@ -31,8 +33,25 @@ namespace ParcelDeliveryCompany_ClassLibrary1
 
         private void OnLoad(object sender, EventArgs e)
         {
-            gMapControl1.MapProvider = GMap.NET.MapProviders.OpenStreetMapProvider.Instance;
-            GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident / 6.0)");
+            //GMapProvider.WebProxy = WebRequest.GetSystemWebProxy();
+            //GMapProvider.WebProxy.Credentials = CredentialCache.DefaultNetworkCredentials;            
+            //WebClient web = new WebClient();
+            /*using (WebClient web = new WebClient())
+            {
+                web.Headers["User-Agent"] =
+                "Mozilla/4.0 (Compatible; Windows NT 5.1; MSIE 6.0) " +
+                "(compatible; MSIE 6.0; Windows NT 5.1; " +
+                ".NET CLR 1.1.4322; .NET CLR 2.0.50727)";
+            }*/
+            System.Net.ServicePointManager.DefaultConnectionLimit = 2;
+            gMapControl1.CacheLocation = AppDomain.CurrentDomain.BaseDirectory+"\\maps_cache";
+            GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;
+            gMapControl1.MapProvider = GMap.NET.MapProviders.OpenStreet4UMapProvider.Instance;
+            //gMapControl1.
+            //gMapControl1.MapProvider = GMap.NET.MapProviders.OpenStreetMapProvider.Instance;
+            //GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;
             gMapControl1.SetPositionByKeywords("Żołnierska 51, Szczecin, Poland");
             gMapControl1.IgnoreMarkerOnMouseWheel = true;
             //gMapControl1.SetPositionByKeywords("Warsaw, Poland");
@@ -838,6 +857,25 @@ namespace ParcelDeliveryCompany_ClassLibrary1
         private void CalculateTime_End()
         {
 
+        }
+
+        private void change_provider_button_Click(object sender, EventArgs e)
+        {
+            if (providers_listBox.SelectedItems.Count == 1)
+            {
+                if (providers_listBox.SelectedItems[0].Equals("OpenStreetMapProvider"))
+                {
+                    gMapControl1.MapProvider = GMap.NET.MapProviders.OpenStreetMapProvider.Instance;
+                }
+                else if (providers_listBox.SelectedItems[0].Equals("OpenStreet4UMapProvider"))
+                {
+                    gMapControl1.MapProvider = GMap.NET.MapProviders.OpenStreet4UMapProvider.Instance;
+                }
+                else if (providers_listBox.SelectedItems[0].Equals("OpenCycleMapProvider"))
+                {
+                    gMapControl1.MapProvider = GMap.NET.MapProviders.OpenCycleMapProvider.Instance;
+                }
+            }
         }
     }
 }
