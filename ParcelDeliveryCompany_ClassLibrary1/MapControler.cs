@@ -53,7 +53,8 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             System.Net.ServicePointManager.DefaultConnectionLimit = 2;
             gMapControl1.CacheLocation = AppDomain.CurrentDomain.BaseDirectory+"\\maps_cache";
             GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
-            gMapControl1.MapProvider = GMap.NET.MapProviders.OpenStreet4UMapProvider.Instance;
+            gMapControl1.MapProvider = GMap.NET.MapProviders.OpenStreetMapProvider.Instance;
+            gMapControl1.MapProvider.RefererUrl = "https://www.openrailwaymap.org/";
             GMap.NET.MapProviders.OpenStreetMapProvider.UserAgent = GMap.NET.MapProviders.GMapProvider.UserAgent = "MakeRouteAlongMarkersProject";
             GMap.NET.MapProviders.OpenStreet4UMapProvider.UserAgent = GMap.NET.MapProviders.GMapProvider.UserAgent = "MakeRouteAlongMarkersProject";
             GMap.NET.MapProviders.OpenCycleMapProvider.UserAgent = GMap.NET.MapProviders.GMapProvider.UserAgent = "MakeRouteAlongMarkersProject";
@@ -873,6 +874,7 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                 if (providers_listBox.SelectedItems[0].Equals("OpenStreetMapProvider"))
                 {
                     gMapControl1.MapProvider = GMap.NET.MapProviders.OpenStreetMapProvider.Instance;
+                    gMapControl1.MapProvider.RefererUrl = "https://www.openrailwaymap.org/";
                 }
                 else if (providers_listBox.SelectedItems[0].Equals("OpenStreet4UMapProvider"))
                 {
