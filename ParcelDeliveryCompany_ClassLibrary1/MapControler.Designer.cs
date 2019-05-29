@@ -415,7 +415,8 @@
             this.providers_listBox.Items.AddRange(new object[] {
             "OpenStreetMapProvider",
             "OpenStreet4UMapProvider",
-            "OpenCycleMapProvider"});
+            "OpenCycleMapProvider",
+            "WikiMapiaMapProvider"});
             this.providers_listBox.Location = new System.Drawing.Point(537, 448);
             this.providers_listBox.Name = "providers_listBox";
             this.providers_listBox.Size = new System.Drawing.Size(167, 43);

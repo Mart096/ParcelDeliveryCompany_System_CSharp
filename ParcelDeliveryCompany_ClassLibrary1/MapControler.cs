@@ -28,13 +28,18 @@ namespace ParcelDeliveryCompany_ClassLibrary1
         
         public MapControler()
         {
+            GMap.NET.MapProviders.GMapProvider.UserAgent = "MakeRouteAlongMarkersProject";
+            //GMapProvider.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:13.0) Gecko/20100101 Firefox/13.0.1";
+            /*GMapProvider.WebProxy = WebRequest.GetSystemWebProxy();
+            GMapProvider.WebProxy.Credentials = CredentialCache.DefaultNetworkCredentials;*/
             InitializeComponent();
+            //gMapControl1.Manager.Mode = AccessMode.ServerAndCache;
         }
 
         private void OnLoad(object sender, EventArgs e)
-        {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident / 6.0)");
+        {            
+            /*var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident / 6.0)");*/
             //GMapProvider.WebProxy = WebRequest.GetSystemWebProxy();
             //GMapProvider.WebProxy.Credentials = CredentialCache.DefaultNetworkCredentials;            
             //WebClient web = new WebClient();
@@ -47,11 +52,13 @@ namespace ParcelDeliveryCompany_ClassLibrary1
             }*/
             System.Net.ServicePointManager.DefaultConnectionLimit = 2;
             gMapControl1.CacheLocation = AppDomain.CurrentDomain.BaseDirectory+"\\maps_cache";
-            GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;
+            GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
             gMapControl1.MapProvider = GMap.NET.MapProviders.OpenStreet4UMapProvider.Instance;
-            //gMapControl1.
+            GMap.NET.MapProviders.OpenStreetMapProvider.UserAgent = GMap.NET.MapProviders.GMapProvider.UserAgent = "MakeRouteAlongMarkersProject";
+            GMap.NET.MapProviders.OpenStreet4UMapProvider.UserAgent = GMap.NET.MapProviders.GMapProvider.UserAgent = "MakeRouteAlongMarkersProject";
+            GMap.NET.MapProviders.OpenCycleMapProvider.UserAgent = GMap.NET.MapProviders.GMapProvider.UserAgent = "MakeRouteAlongMarkersProject";
             //gMapControl1.MapProvider = GMap.NET.MapProviders.OpenStreetMapProvider.Instance;
-            //GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerAndCache;
+            //GMap.NET.GMaps.Instance.Mode = GMap.NET.AccessMode.ServerOnly;
             gMapControl1.SetPositionByKeywords("Żołnierska 51, Szczecin, Poland");
             gMapControl1.IgnoreMarkerOnMouseWheel = true;
             //gMapControl1.SetPositionByKeywords("Warsaw, Poland");
@@ -874,6 +881,10 @@ namespace ParcelDeliveryCompany_ClassLibrary1
                 else if (providers_listBox.SelectedItems[0].Equals("OpenCycleMapProvider"))
                 {
                     gMapControl1.MapProvider = GMap.NET.MapProviders.OpenCycleMapProvider.Instance;
+                }
+                else if (providers_listBox.SelectedItems[0].Equals("WikiMapiaMapProvider"))
+                {
+                    gMapControl1.MapProvider = GMap.NET.MapProviders.WikiMapiaMapProvider.Instance;
                 }
             }
         }
