@@ -389,9 +389,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:ParcelDelivery Admin Application"
+        "ProductName" = "8:Parcel Delivery Admin Application"
         "ProductCode" = "8:{ACC33A0F-9298-4881-A49E-7BA8B3489474}"
-        "PackageCode" = "8:{21B774E3-CCDC-4D7B-9309-0EE7AB89990E}"
+        "PackageCode" = "8:{A57E1CF9-54E1-43BD-9585-1C13D1082A1E}"
         "UpgradeCode" = "8:{219D8011-9574-4826-B8DD-9EBC530DB4F6}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
