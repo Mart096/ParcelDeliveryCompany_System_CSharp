@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParcelDeliveryCompany_Class
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParcelDeliveryCompanyEmployeeApplication", "CourierCompanyEmployeeApplication\ParcelDeliveryCompanyEmployeeApplication.csproj", "{AE2B1B26-DD6B-4061-A57E-92FD9E8CFA23}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ParcelDeliveryCompany_EmployeeApplicationInstaller", "Setup2\Setup2.vdproj", "{D0D9F56E-0764-436D-8466-A27F004BA058}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ParcelDeliveryCompany_EmployeeApplicationInstaller", "ParcelDeliveryCompanyEmployeeAppInstaller\Setup2.vdproj", "{D0D9F56E-0764-436D-8466-A27F004BA058}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TestSetup_MapProject", "TestSetup_MapProject\TestSetup_MapProject.vdproj", "{D707FBCB-9E16-45CA-88F9-C95BB730B9B9}"
 EndProject
