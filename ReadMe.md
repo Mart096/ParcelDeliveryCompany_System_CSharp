@@ -21,5 +21,5 @@ Celem tego zabiegu było wprowadzenie zarządzania uprawnieniami do wybranych fu
 1. Administrator
 2. Kurier
 3. Dyspozytor
-4. Pracownik ds. komunikacji z klientem (odpowiedzialny za dodawanie do systemu zleceń klientów, np. w wyniku podczas rozmowy telefonicznej)
+4. Pracownik ds. komunikacji z klientem (odpowiedzialny za dodawanie do systemu zleceń klientów, np. w wyniku rozmowy telefonicznej)
 5. Pracownik działu reklamacji
