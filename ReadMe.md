@@ -10,7 +10,6 @@ More details in english soon.
 
 ### PL (Polski)
 
-1. Opis
 Projekt WinForms, który opracowałem w ramach pracy dyplomowej z użyciem języka programowania C#, na platformie docelowej .NET Framework 4.5.1. <br>
 Do przechowywania danych przetwarzanych przez program, został wykorzystany system zarządzania bazą danych Microsoft SQL Server 2017. <br>
 Projekt został podzielony na dwie aplikacje:
