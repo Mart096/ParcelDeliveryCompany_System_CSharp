@@ -22,3 +22,9 @@ Celem tego zabiegu było wprowadzenie zarządzania uprawnieniami do wybranych fu
 3. Dyspozytor
 4. Pracownik ds. komunikacji z klientem (odpowiedzialny za dodawanie do systemu zleceń klientów, np. w wyniku rozmowy telefonicznej)
 5. Pracownik działu reklamacji
+
+Program posiada możliwość wyświetlania mapy z zaznaczonymi miejscami docelowych adresatów przesyłek (przedstawionych w postaci markerów), oraz narysowania drogi dojazdu. Program posiada dwa sposoby rysowania dróg:
+1. Według kolejności znaczników na liście (markers list)
+2. Obliczenie najkrótszej ścieżki.
+
+W trybie dostarczania przesyłek (drugi tryb to transport przesyłek pomiędzy punktami firmowymi), każdy ze sposobów zakłada, że droga rozpoczyna się i kończy w tym samym punkcie firmowym. Dodatkowo, drugi sposób rysowania drogi wykorzystuje algorytm rozwiązywania problemu komiowjażera, do określenia najkrótszej ścieżki.
